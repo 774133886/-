@@ -1,0 +1,79 @@
+.centerCon{
+	width: 1200px;
+	margin: 0 auto;
+}
+/*头部*/
+.curHeader img{
+	float: left;
+	display: block;
+	margin: 11px 60px 0 75px;
+}
+.curHeader a{
+	float: left;
+	line-height: 95px;
+	display: block;
+	font-size: 15px;
+	color: #6f6e77;
+	width: 86px;
+	margin-right: 69px;
+	text-align: center;
+	font-weight: bold;
+}
+.curHeader a:last-child{
+	margin-right: 0;
+}
+.curHeader a.active{
+	position: relative;
+	color: #211d1e;
+}
+.curHeader a.active:after{
+	content: '';
+	height: 7px;
+	width: 100%;
+	background-color: #6ebdca;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+}
+/*尾部*/
+.curFooter{
+	height: 315px;
+	background-color: #2d2e35;
+}
+.foot-l{
+	float: left;
+	width: 50%;
+	padding-top: 120px;
+}
+.foot-l .clearfix a{
+	float: left;
+	margin-right: 43px;
+	font-size: 14px;
+	color: #FFFFFF;
+}
+.foot-r{
+	 float: right;
+	 width: 50%;
+	 padding-top: 92px;
+}
+.foot-r .clearfix{
+	padding-top: 28px;
+}
+.foot-r .clearfix a{
+	float: left;
+	font-size: 15px;
+	color: #FFFFFF;
+	text-align: center;
+	display: block;
+	width: 70px;
+}
+.foot-r .clearfix a img{
+	height: 35px;
+}
+/*中间*/
+.main{
+	height: 100%;
+}
+.container{
+	min-height: calc(100% - 410px);
+}
