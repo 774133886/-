@@ -69,6 +69,76 @@
 
 
 
+/* 案例页面 */
+.case .banner{
+    width: 100%;
+    height: 485px;
+    background: url(../images/banner2.png) no-repeat center;
+    background-size:  cover;
+}
+.case .case-item{
+    width: 400px;
+    height: 400px;
+    padding: 15px;
+    margin-top: 30px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, .2);
+    background-color: #fff;
+    cursor: pointer;
+    transition: all linear .2s;
+}
+.case .case-item:hover{
+    box-shadow: 0px 0px 55px rgba(0, 0, 0, .6);
+}
+.case .case-item p{
+    line-height: 1;
+}
+.case .case-item:not(:nth-child(3n+3)){
+    margin-right: calc((100% - 1200px) / 2);
+}
+.case .filter-search{
+    height: 60px;
+    line-height: 60px;
+}
+.case .filter{
+    width: 800px;
+}
+.case .filter-item .angle{
+    width: 16px;
+}
+.case .search{
+    margin-right: 20px;
+    border: 1px solid #dbdbdd;
+    height: 40px;
+    line-height: 40px;
+    border-radius: 3px;
+    padding-left: 25px;
+    padding-right:  50px;
+}
+.case .search .search-btn{
+    background: url(../images/icon_scope.png) no-repeat center;
+    background-size: 27px 28px;
+    width: 50px;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    cursor: pointer;
+}
+.case .case-item .avator{
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+}
+.case .case-item .new{
+    width: 40px;
+    position: absolute;
+    right: 14px;
+    bottom: 74px;
+}
+
+
+
+
 
 
 
@@ -89,6 +159,7 @@
 
 .border-b-e8{border-bottom: 1px solid #e8e8e9 !important}
 .center-1200{width: 1200px !important; margin: 0 auto !important}
+.center-1260{width: 1260px !important; margin: 0 auto !important}
 .font15{font-size: 15px !important;}
 .font22{font-size: 22px !important;}
 .color-8b{color: #8b8b8b !important;}
@@ -98,3 +169,14 @@
 .wid255{width: 255px !important;}
 .bg-6ebdca{background-color: #6ebdca !important;}
 .p-b-70{padding-bottom: 70px !important;}
+.mask-100{width: 100%;height: 100%;background-color: rgba(0, 0, 0, .6);}
+.font28{font-size: 28px !important;}
+.bg-f1f2f4{background-color: #f1f2f4!important}
+.m-t-110{margin-top: 110px !important;}
+.m-t-170{margin-top: 170px !important;}
+.p-t-110{padding-top: 110px !important;}
+.pointer{cursor: pointer;}
+.vert-line{width: 2px; background-color: #ededee;}
+.hgt10{height: 10px}
+.color-221714{color: #221714!important;}
+.fw_500{font-weight: 500}
