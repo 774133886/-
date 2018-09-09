@@ -1,0 +1,113 @@
+/*flex*/
+.column-between{
+	display: flex;
+	display: -webkit-flex;
+  	flex-direction: column;
+  	-webkit-flex-direction: column;
+  	justify-content: space-between;
+  	-webkit-justify-content: space-between;
+}
+.column-around{
+	display: flex;
+	display: -webkit-flex;
+  	flex-direction: column;
+  	-webkit-flex-direction: column;
+  	justify-content: space-around;
+  	-webkit-justify-content: space-around;
+}
+.between{
+	display: flex;
+	display: -webkit-flex;
+  	justify-content: space-between;
+  	-webkit-justify-content: space-between;
+}
+.column-center-b{
+	display: flex;
+	display: -webkit-flex;
+  	flex-direction: column;
+  	-webkit-flex-direction: column;
+  	justify-content: space-between;
+  	-webkit-justify-content: space-between;
+  	align-items: center;
+  	-webkit-align-items: center;
+}
+.column-center-c{
+	display: flex;
+	display: -webkit-flex;
+  	flex-direction: column;
+  	-webkit-flex-direction: column;
+  	justify-content: space-around;
+  	-webkit-justify-content: space-around;
+  	align-items: center;
+  	-webkit-align-items: center;
+}
+.around-center{
+	display: flex;
+    display: -webkit-flex;
+    justify-content: space-around;
+    align-items: center;
+    -webkit-justify-content: space-around;
+    -webkit-align-items: center;
+}
+.left-center{
+	display: flex;
+    display: -webkit-flex;
+    align-items: center;
+    -webkit-align-items: center;
+}
+.between-center{
+	display: flex;
+    display: -webkit-flex;
+    justify-content: space-between;
+    align-items: center;
+    -webkit-justify-content: space-between;
+    -webkit-align-items: center;
+}
+.center{
+	display: flex;
+    display: -webkit-flex;
+    align-items: center;
+    -webkit-align-items: center;
+}
+.center-end{
+	display: flex;
+    display: -webkit-flex;
+    align-items: center;
+    -webkit-align-items: center;
+    justify-content: flex-end;
+    -webkit-justify-content: flex-end;
+}
+#mask_focus {
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	left: 0;
+	top: 0;
+	background-color: rgba(0, 0, 0, .3);
+	display: none;
+	z-index: 2
+}
+#mask_focus .card {
+	width:100%;
+	height: auto;
+	position: absolute;
+	bottom: 0;
+	left:0;
+	background-color: #fff;
+}
+.Con{
+	width: 100%;
+	height: auto;
+}
+.l-pad30{
+	padding: 0 .3rem;
+}
+.l-pad20{
+	padding: 0 .2rem;
+}
+.poAb{
+	position: absolute;
+}
+.poRe{
+	position: relative;
+}
