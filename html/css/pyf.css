@@ -337,3 +337,165 @@
 .font15{
 	font-size: 15px;
 }
+/*designer*/
+.designerCtt{
+	padding-top: 35px;
+}
+.desHeadLeft{
+	width: 805px;
+	float: left;
+}
+.desHeadLeft .coverImg{
+	height: 875px;
+}
+.border-b-e8e8e9{
+	border-bottom: 1px solid #e8e8e9;
+}
+.desHeadText{
+	height: 115px;
+	background-color: #F1F2F4;
+	padding: 25px 30px;
+	color: #221714;
+}
+.iconShare{
+	background: url(../images/icon-share.png) no-repeat left center;
+	background-size: 24px;
+	color: #7f7f80;
+	font-size: 15px;
+	padding-left: 30px;
+	padding-top: 7px;
+}
+.desHeadRight{
+	width: 370px;
+	float: right;
+}
+.icon-tap{
+	color: #fff;
+	text-align: center;
+	background: url(../images/icon-tap.png) no-repeat;
+	background-size: 100%;
+	width: 57px;
+	height: 73px;
+	font-size: 14px;
+	padding-top: 8px;
+}
+.font22{
+	font-size: 22px;
+}
+.color-8b8b8b{
+	color: #8b8b8b;
+}
+.p_btns{
+	font-size: 0;
+}
+.p_btns a{
+	display: inline-block;
+	width: 88px;
+	height: 32px;
+	border: 1px solid #d7d6d6;
+	margin-right: 6px;
+	text-align: center;
+	line-height: 30px;
+	color: #221714;
+	font-size: 14px;
+}
+.p_btns a:nth-child(4n+4){
+	margin-right: 0;
+}
+.p_imgs .coverImg{
+	float: left;
+	width: calc(50% - 3px);
+	height: 150px;
+}
+.p_imgs .coverImg:nth-child(2n+1){
+	margin-right: 6px;
+}
+.p_imgs .coverImg:nth-child(n + 3){
+	margin-top: 6px;
+}
+.m-b-auto{
+	margin-bottom: 75px;
+}
+.listCtt{
+	margin-top: 70px;
+}
+.caseItem{
+	width: 295px;
+}
+.caseItem img{
+	width: 100%;
+	display: block;
+}
+.caseItem .iconShare{
+	padding-top: 5px;
+	background-size: 20px;
+}
+.color-2d2e35{
+	color: #2d2e35;
+}
+.inspirationBanner{
+	height: 485px;
+	background: url(../images/banner-3.jpg) no-repeat;
+	background-size: cover;
+	padding-top: 110px;
+}
+.inspirationBanner h1{
+	font-size: 44px;
+}
+.inspirationCtt{
+	margin-top: -110px;
+}
+.inspirationFilter{
+	background-color: #FFFFFF;
+	overflow: hidden;
+	-webkit-box-shadow: 0 0 5px rgba(0,0,0,.1);
+	box-shadow: 0 0 5px rgba(0,0,0,.1);
+}
+.inspirationSearch{
+	padding: 13px 20px;
+	-webkit-box-shadow: 0 1px 5px rgba(0,0,0,.1);
+	box-shadow: 0 1px 5px rgba(0,0,0,.1);
+}
+.inspirationSearch form{
+	border: 1px solid #dbdbdd;
+	border-radius: 5px;
+	padding-left: 30px;
+}
+.inspirationSearch form input{
+	padding: 12px 0;
+	font-size: 15px;
+}
+.inspirationSearch form button{
+	width: 70px;
+	height: 41px;
+	background: url(../images/icon-search.png) no-repeat center;
+}
+.insFilterIcon{
+	padding: 25px 30px;
+}
+.insFilterIcon1 a{
+	display: inline-block;
+	color: #6f6e77;
+	font-size: 15px;
+	margin-right: 60px;
+	margin-bottom: 10px;
+}
+.insFilterIcon1 a.active{
+	color: #2d2e35;
+}
+.insFilterIcon2 span{
+	color: #6f6e77;
+}
+.colors a{
+	width: 115px;
+	height: 10px;
+}
+.colors a.active{
+	height: 16px;
+}
+.m-b-50{
+	margin-bottom: 50px;
+}
+.m-b-40{
+	margin-bottom: 40px;
+}
