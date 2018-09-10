@@ -23,6 +23,7 @@
 .designer .tag-item:hover{
     background-color: #6ebdca;
     color: #fff;
+    border: 1px solid #6ebdca;
 }
 .designer .tag-item:nth-child(2n+1){
     margin-right: calc(100% - 230px);
