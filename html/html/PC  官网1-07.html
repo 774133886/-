@@ -34,7 +34,7 @@
 			</div>
 			<div class="border-b-e8"></div>
 			
-			<div class="container bg-f1f2f4 clearfix">
+			<div class="container pb200 bg-f1f2f4 clearfix">
 				<div class="qusBg">
 					<div class="center-1260 pt374">
 						<div class="qaBox box_s l-pad40 between-center bg-fff">
@@ -58,13 +58,37 @@
 								<span class="font22 color-2d2e35">服务流程</span>
 							</div>
 						</div>
-						<div class="queArea">
-							
+						<div class="queArea between bg-fff box_s">
+							<div class="queALeft box_s2">
+								<div class="queLine">
+									在哪里 可以找到装修师傅?
+								</div>
+								<div class="queLine">
+									遇到这个问题怎么办?
+								</div>
+								<div class="queLine">
+									遇到这个问题怎么办?
+								</div>
+								<div class="queLine">
+									遇到这个问题怎么办?
+								</div>
+							</div>
+							<div class="queARight">
+								<div class="font18 l-h-45">
+									问：在哪里可以找到装修师傅？
+								</div>
+								<div class="l-h-30 font15 color-94">
+									爱装帮装修,一家集装修设计,施工为一体的互联网家居整装品牌,致力于解决家装设计常识问题,甄选城中优质装修公司,丰富选择实现理想“家”!直坚持原创设计。用设计表达对生活、对美的追求和理解，把全新的，健康、清新、自然、婉约的生活元素以设计的概念注入到设计中。
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-			
+			<div id="back-to-top" class="backTop column-center-c">
+				<img src="../images/icon_backTop.png"/>
+				<span class="color-2d2e35 font15">回到顶部</span>
+			</div>
 			<div class="curFooter">
 				<div class="centerCon clearfix">
 					<div class="foot-l">
@@ -118,15 +142,31 @@
 	<script type="text/javascript" src="../lib/page.js"></script>
 	<script>
 
-		var mySwiper = new Swiper('.swiper-container', {
-			// autoplay: 5000,//可选选项，自动滑动
-			pagination : '.swiper-pagination',
-			paginationType: 'bullets',
-			prevButton:'.swiper-button-prev',
-			nextButton:'.swiper-button-next',
-			simulateTouch: false
-		})		
+		$(function(){
+		        //当滚动条的位置处于距顶部100像素以下时，跳转链接出现，否则消失
+	
+	            $(".main").scroll(function(){
+	                if ($(".main").scrollTop()>100){
+	                    $("#back-to-top").fadeIn(500);
+	                }
+	                else
+	                {
+	                    $("#back-to-top").fadeOut(500);
+	                }
+	            });
+	
+	            //当点击跳转链接后，回到页面顶部位置
+	            $("#back-to-top").click(function(){
+	                //$('body,html').animate({scrollTop:0},1000);
+			        if ($('.main').scrollTop()) {
+			                $('.main').animate({ scrollTop: 0 }, 1000);
+			                return false;
+			            }
+			            $('.main').animate({ scrollTop: 0 }, 1000);
+			                 return false;            
+	           });       
 
+		});
 	</script>
 
 </html>
