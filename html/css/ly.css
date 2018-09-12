@@ -320,3 +320,50 @@
 	height: 70px;
 	padding: 10px 0;
 }
+.h100{
+	height: 100%;
+}
+.topBox{
+	border: 1px solid #dcdbdb;
+	height: 112px;
+	padding: 26px 100px;
+}
+.tleft{
+	width: 182px;
+}
+.dairycontent{
+	width: 100%;
+	height: auto;
+	padding: 35px 50px 50px 55px;
+}
+.picContent{
+	width: 950px;
+	height: auto;
+	margin-top: 32px;
+}
+.picC{
+	width: 230px;
+	height: 230px;
+	margin-right: 8px;
+}
+.picC:nth-child(4n){
+	margin-right: 0;
+}
+.pagecArea{
+	margin-top: 56px;
+	width: 100%;
+	height: auto;
+}
+.pagecbox{
+	width:600px;
+	height: auto;
+	background-color: #fff;
+}
+.pagecImg{
+	width: 100%;
+	height: 342px;
+}
+.pagecbleft{
+	width: 175px;
+	height: 60px;
+}
