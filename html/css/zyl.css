@@ -1,17 +1,17 @@
-/* 设计师页面 */
-.designer .swiper-container{
+/* 主页 */
+.index .swiper-container{
     width: 910px;
     height: 630px;
 }
-.designer .swiper-wrapper{
+.index .swiper-wrapper{
     height: 560px !important;
 }
-.designer .swiper-slide{
+.index .swiper-slide{
     background-repeat: no-repeat !important;
     background-size: 910px 630px !important;
     background-position: center !important;
 }
-.designer .tag-item{
+.index .tag-item{
     width: 115px;
     height: 35px;
     line-height: 35px;
@@ -20,30 +20,29 @@
     border: 1px solid #d7d6d6;
     cursor: pointer;
 }
-.designer .tag-item:hover{
+.index .tag-item:hover{
     background-color: #6ebdca;
     color: #fff;
-    border: 1px solid #6ebdca;
 }
-.designer .tag-item:nth-child(2n+1){
+.index .tag-item:nth-child(2n+1){
     margin-right: calc(100% - 230px);
 }
-.designer .avator{
+.index .avator{
     width: 255px;
     height: 285px;
 }
-.designer .order-btn{
+.index .order-btn{
     bottom: 0;
     left: 0;
     width: 100%;
 }
-.designer .order-btn button{
+.index .order-btn button{
     background-color: #6e6e6e;
     background: url(../images/icon_time.png) no-repeat 58px center #6ebdca;
     background-size: 25px 25px;
     cursor: pointer;
 }
-.designer .swiper-pagination{
+.index .swiper-pagination{
     position: absolute;
     bottom: 0;
     left: 0;
@@ -51,16 +50,16 @@
     height: 70px;
     line-height: 60px;
 }
-.designer .swiper-pagination-bullet{
+.index .swiper-pagination-bullet{
     width: 10px !important;
     height: 10px !important;
     /* background-color: #bfbebd !important; */
     border-radius: 0;
 }
-.designer .swiper-pagination-bullet-active{
+.index .swiper-pagination-bullet-active{
     background-color: #6ebdca !important;
 }
-.designer .swiper-button-next, .swiper-button-prev{
+.index .swiper-button-next, .swiper-button-prev{
     transform: translate(0 ,-50%);
     -webkit-transform: translate(0 ,-50%);
     background-size: 50px 90px;
@@ -141,6 +140,69 @@
 
 
 
+/* 设计师页面 */
+.designer .banner{
+    background: url(../images/banner4.png) no-repeat center;
+}
+.designer .main-wrapper{
+    position: relative;
+    bottom: 105px;
+    z-index: 9;
+}
+.designer .d-info{
+    box-shadow: 0 0 2px #edeeef;
+}
+.designer .d-info .avator{
+    width: 172px;
+    height: 172px;
+    border-radius: 50%;
+}
+.designer .d-info .tag .tag-item{
+    display: inline-block;
+    width: 107px;
+    height: 35px;
+    line-height: 35px;
+    border: 1px solid #d2d1d1;
+    text-align: center;
+    font-size: 15px;
+}
+.designer .order{
+    right: 75px;
+    bottom: 100px;
+}
+.designer .order-btn{
+    background-color: #6e6e6e;
+    background: url(../images/icon_time.png) no-repeat 30px center #6ebdca;
+    background-size: 25px 25px;
+    cursor: pointer;
+}
+.designer .case-item img{
+    width: 100%;
+    height: auto;
+}
+.designer .banner{
+    width: 100%;
+    height: 485px;
+    background-size:  cover;
+}
+.designer .case-item{
+    margin-bottom: 90px;
+}
+.designer .new{
+    width: 40px !important;
+    position: absolute;
+    right: 5px;
+    top: 30px;
+}
+
+
+
+
+
+
+
+
+
 
 
 
@@ -181,3 +243,13 @@
 .hgt10{height: 10px}
 .color-221714{color: #221714!important;}
 .fw_500{font-weight: 500}
+.hgt295{height: 295px;}
+.p-l-65{padding-left: 65px;}
+.m-t-70{margin-top: 70px;}
+.m-t-90{margin-top: 90px;}
+.p-t-90{padding-top: 90px;}
+.flex_item_center{justify-content: center;}
+.wid550{width: 550px;}
+.wid230{width: 230px;}
+.wid970{width: 970px;}
+.p_both70{padding-left: 70px;padding-right: 70px;}
