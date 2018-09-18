@@ -21,7 +21,7 @@
 	</head>
 
 	<body>
-		<div class="main">
+		<div class="main" id="app">
 			<div class="curHeader centerCon clearfix">
 				<img src="../images/headLogo.png" alt="" />
 				<a href="javascript:;" class="active">首 页</a>
@@ -37,9 +37,7 @@
 				<div class="indexSwiper min1200">
 					<div class="swiper-container">
 						<div class="swiper-wrapper">
-						    <div class="swiper-slide"><img src="../images/index-banner1.jpg" alt="" /></div>
-						    <div class="swiper-slide"><img src="../images/index-banner1.jpg" alt="" /></div>
-						    <div class="swiper-slide"><img src="../images/index-banner1.jpg" alt="" /></div>
+						    <div v-for="item in banner" class="swiper-slide"><img :alt="item.name" :src="item.image" alt="" /></div>
 						</div>
 						<div class="swiper-pagination"></div>
 					</div>
@@ -412,13 +410,39 @@
 	<script type="text/javascript" src="../lib/swiper.min.js"></script>
 	<script type="text/javascript" src="../lib/page.js"></script>
 	<script>
-		//banner
-		var mySwiper = new Swiper('.indexSwiper .swiper-container', {
-			autoplay: 5000,//可选选项，自动滑动
-			pagination : '.indexSwiper .swiper-pagination',
-			loop : true,
-			paginationClickable :true,
+		var app = new Vue({
+			el: '#app',
+			data: {
+				banner: []
+			},
+			mounted: function(){
+				//获取banner
+				$.ajax({
+					type:"get",
+					url: host+"/api/l/getBanner",
+					success: function(res){
+						res = JSON.parse(res);
+						if(res.success){
+							app.banner = res.data;
+							app.$nextTick(function(){
+								var mySwiper = new Swiper('.indexSwiper .swiper-container', {
+									autoplay: 5000,//可选选项，自动滑动
+									pagination : '.indexSwiper .swiper-pagination',
+									loop : true,
+									paginationClickable :true,
+								})
+							})
+						}else{
+							console.log(res.message);
+						}
+					}
+				});
+			},
+			methods: {
+				
+			}
 		})
+		
 		//设计师
 		var mySwiper = new Swiper('.id_swiper .swiper-container', {
 			autoplay: 5000,//可选选项，自动滑动
