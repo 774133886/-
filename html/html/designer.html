@@ -21,7 +21,7 @@
 	</head>
 
 	<body>
-		<div class="">
+		<div class="" id="app">
 			<div class="border-b-e8e8e9">
 				<div class="curHeader centerCon clearfix">
 					<img src="../images/headLogo.png" alt="" />
@@ -52,44 +52,18 @@
 								</div>
 							</div>
 							<div class="desHeadRight">
-								<div class="m-b-auto">
+								<div v-for="item in designer">
 									<div class="flex_dom m-b-30">
 										<div class="flex_1 p-t-20">
-											<h3 class="font22 color-2d2e35">张鑫</h3>
-											<p class="font15 color-8b8b8b">XXXXX资深空间设计师</p>
+											<h3 class="font22 color-2d2e35">{{item.name}}</h3>
+											<p class="font15 color-8b8b8b">{{item.qualification}}</p>
 										</div>
 										<div class="icon-tap">
 											设计师<br/>推荐
 										</div>
 									</div>
 									<div class="p_btns m-b-15">
-										<a class="" href="javascript:;">极简风</a>
-										<a class="" href="javascript:;">欧式新派</a>
-										<a class="" href="javascript:;">中国风</a>
-										<a class="" href="javascript:;">北美风</a>
-									</div>
-									<div class="clearfix p_imgs">
-										<div class="coverImg" style="background-image: url(../images/banner1.png);"></div>
-										<div class="coverImg" style="background-image: url(../images/banner1.png);"></div>
-										<div class="coverImg" style="background-image: url(../images/banner1.png);"></div>
-										<div class="coverImg" style="background-image: url(../images/banner1.png);"></div>
-									</div>
-								</div>
-								<div>
-									<div class="flex_dom m-b-30">
-										<div class="flex_1 p-t-20">
-											<h3 class="font22 color-2d2e35">张鑫</h3>
-											<p class="font15 color-8b8b8b">XXXXX资深空间设计师</p>
-										</div>
-										<div class="icon-tap">
-											设计师<br/>推荐
-										</div>
-									</div>
-									<div class="p_btns m-b-15">
-										<a class="" href="javascript:;">极简风</a>
-										<a class="" href="javascript:;">欧式新派</a>
-										<a class="" href="javascript:;">中国风</a>
-										<a class="" href="javascript:;">北美风</a>
+										<a v-for="label in item.style_list" href="javascript:;">{{label}}</a>
 									</div>
 									<div class="clearfix p_imgs">
 										<div class="coverImg" style="background-image: url(../images/banner1.png);"></div>
@@ -174,30 +148,65 @@
 	<script type="text/javascript" src="../lib/page.js"></script>
 	<script type="text/javascript" src="../lib/jquery.waterfall.js"></script>
 	<script>
-	$(function(){
-		$(".listCtt").waterfall({
-		  itemClass: ".caseItem",
-		  minColCount: 4,
-		  spacingWidth: 4,
-		  spacingHeight: 10,
-		  resizeable: true,
-		  ajaxCallback: function(success, end) {
-		    var data = {"data": [
-		      { "src": "../images/banner1.png" }, { "src": "../images/indexCase.png" }, { "src": "../images/indexCase.png" }, { "src": "../images/indexCase.png" }, { "src": "../images/indexCase.png" }, { "src": "../images/indexCase.png" }
-		    ]};
-		    var str = "";
-		    var templ = '<div class="caseItem"><img src="{{src}}" alt="" /><div class="p-v-10"><h3 class="font15 color-2d2e35 font-w6">二居室  新派欧式  极简风</h3><div class="flex_dom"><p class="flex_1 only_line font18 font-w6">120m²</p><a class="iconShare" href="javascript:;">分享</a></div></div></div>'
-		  
-		    for(var i = 0; i < data.data.length; i++) {
-		      str += templ.replace("{{src}}", data.data[i].src);
-		    }
-		    console.log(str);
-		    $(str).appendTo($(".listCtt"));
-		    success();
-		    end();
-		  }
-		});
-	});
+		var page = 1;
+		var app = new Vue({
+			el: '#app',
+			data: {
+				designer: [],
+			},
+			mounted: function(){
+				$.ajax({
+					type:"get",
+					url: host+"/api/l/getDecommend2Designer",
+					success: function(res){
+						res = JSON.parse(res);
+						if(res.success){
+							app.designer = res.data;
+							app.bindScroll();
+						}else{
+							console.log(res.message);
+						}
+					}
+				});
+			},
+			methods: {
+				bindScroll: function(){
+					$(".listCtt").waterfall({
+					  itemClass: ".caseItem",
+					  minColCount: 4,
+					  spacingWidth: 4,
+					  spacingHeight: 10,
+					  resizeable: true,
+					  ajaxCallback: function(success, end) {
+					  	$.ajax({
+					  		type:"get",
+					  		data: {
+					  			page: page
+					  		},
+					  		url: host+"/api/l/getCaseList",
+					  		success: function(res){
+					  			res = JSON.parse(res);
+					  			if(res.success){
+					  				var data = {"data": res.data};
+								    var str = "";
+								    var templ = '<div class="caseItem"><img src="{{src}}" alt="" /><div class="p-v-10"><h3 class="font15 color-2d2e35 font-w6">{{name}}</h3><div class="flex_dom"><p class="flex_1 only_line font18 font-w6">{{area}}m²</p><a class="iconShare" href="javascript:;">分享</a></div></div></div>'
+								  	console.log(res.data.length)
+								    for(var i = 0; i < data.data.length; i++) {
+								      str += templ.replace("{{src}}", data.data[i].image).replace("{{name}}", data.data[i].name).replace("{{area}}", data.data[i].area);
+								    }
+								    $(str).appendTo($(".listCtt"));
+					  				success();
+					    			end();
+					  			}else{
+					  				console.log(res.message);
+					  			}
+					  		}
+					  	});
+					  }
+					});
+				}
+			}
+		})
 	</script>
 
 </html>
