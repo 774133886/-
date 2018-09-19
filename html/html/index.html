@@ -17,11 +17,11 @@
 		<link rel="stylesheet" type="text/css" href="../css/global.css">
 		<link rel="stylesheet" type="text/css" href="../css/ly.css"/>
 		<link rel="stylesheet" type="text/css" href="../css/pyf.css"/>
-		<link rel="stylesheet" type="text/css" href="../css/zly.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/zyl.css"/>
 	</head>
 
 	<body>
-		<div class="main">
+		<div class="main" id="app">
 			<div class="curHeader centerCon clearfix">
 				<img src="../images/headLogo.png" alt="" />
 				<a href="javascript:;" class="active">首 页</a>
@@ -37,9 +37,10 @@
 				<div class="indexSwiper min1200">
 					<div class="swiper-container">
 						<div class="swiper-wrapper">
-						    <div class="swiper-slide"><img src="../images/index-banner1.jpg" alt="" /></div>
-						    <div class="swiper-slide"><img src="../images/index-banner1.jpg" alt="" /></div>
-						    <div class="swiper-slide"><img src="../images/index-banner1.jpg" alt="" /></div>
+						    <div v-for="item in banner" class="swiper-slide"><img :alt="item.name" :src="item.image" alt="" /></div>
+						    <!--<div v-for="item in banner" class="swiper-slide">
+						    	<div class="indexBanner coverImg" :style="{backgroundImage: 'url('+item.image+')'}"></div>
+						    </div>-->
 						</div>
 						<div class="swiper-pagination"></div>
 					</div>
@@ -52,39 +53,11 @@
 					</div>
 					<div class="indexDesigner">
 						<div class="flex_dom flex_item_between">
-							<a href="javascript:;">
-								<div class="id_img" style="background-image: url(../images/designer.png);"></div>
+							<a v-for="item in designer" href="javascript:;">
+								<div class="id_img" :style="{backgroundImage: 'url('+item.photo+')'}"></div>
 								<div class="id_text">
-									<h3>曾卫平</h3>
-									<p>资深空间设计师</p>
-								</div>
-							</a>
-							<a href="javascript:;">
-								<div class="id_img" style="background-image: url(../images/designer.png);"></div>
-								<div class="id_text">
-									<h3>曾卫平</h3>
-									<p>资深空间设计师</p>
-								</div>
-							</a>
-							<a href="javascript:;">
-								<div class="id_img" style="background-image: url(../images/designer.png);"></div>
-								<div class="id_text">
-									<h3>曾卫平</h3>
-									<p>资深空间设计师</p>
-								</div>
-							</a>
-							<a href="javascript:;">
-								<div class="id_img" style="background-image: url(../images/designer.png);"></div>
-								<div class="id_text">
-									<h3>曾卫平</h3>
-									<p>资深空间设计师</p>
-								</div>
-							</a>
-							<a href="javascript:;">
-								<div class="id_img" style="background-image: url(../images/designer.png);"></div>
-								<div class="id_text">
-									<h3>曾卫平</h3>
-									<p>资深空间设计师</p>
+									<h3>{{item.name}}</h3>
+									<p>{{item.qualification}}</p>
 								</div>
 							</a>
 							<a class="flex_dom" href="javascript:;">
@@ -119,140 +92,14 @@
 						<p>最新案例</p>
 					</div>
 					<div class="flex_dom flex_wrap indexCase">
-						<a href="javascript:;">
-							<div class="coverImg" style="background-image: url(../images/indexCase.png);">
+						<a v-for="item in caseList" href="javascript:;">
+							<div class="coverImg" :style="{backgroundImage: 'url('+item.image+')'}">
 								<div class="flex_column flex_item_between">
 									<div class="flex_dom">
 										<div class="whiteLine"></div>
 										<div class="color-fff">
-											<p class="font24">新中式风格</p>
-											<span class="font16">Pastoral style</span>
-										</div>
-									</div>
-									<img class="indexCaseBtn" src="../images/icon-caseBtn.png" alt="" />
-								</div>
-							</div>
-						</a>
-						<a href="javascript:;">
-							<div class="coverImg" style="background-image: url(../images/indexCase.png);">
-								<div class="flex_column flex_item_between">
-									<div class="flex_dom">
-										<div class="whiteLine"></div>
-										<div class="color-fff">
-											<p class="font24">新中式风格</p>
-											<span class="font16">Pastoral style</span>
-										</div>
-									</div>
-									<img class="indexCaseBtn" src="../images/icon-caseBtn.png" alt="" />
-								</div>
-							</div>
-						</a>
-						<a href="javascript:;">
-							<div class="coverImg" style="background-image: url(../images/indexCase.png);">
-								<div class="flex_column flex_item_between">
-									<div class="flex_dom">
-										<div class="whiteLine"></div>
-										<div class="color-fff">
-											<p class="font24">新中式风格</p>
-											<span class="font16">Pastoral style</span>
-										</div>
-									</div>
-									<img class="indexCaseBtn" src="../images/icon-caseBtn.png" alt="" />
-								</div>
-							</div>
-						</a>
-						<a href="javascript:;">
-							<div class="coverImg" style="background-image: url(../images/indexCase.png);">
-								<div class="flex_column flex_item_between">
-									<div class="flex_dom">
-										<div class="whiteLine"></div>
-										<div class="color-fff">
-											<p class="font24">新中式风格</p>
-											<span class="font16">Pastoral style</span>
-										</div>
-									</div>
-									<img class="indexCaseBtn" src="../images/icon-caseBtn.png" alt="" />
-								</div>
-							</div>
-						</a>
-						<a href="javascript:;">
-							<div class="coverImg" style="background-image: url(../images/indexCase.png);">
-								<div class="flex_column flex_item_between">
-									<div class="flex_dom">
-										<div class="whiteLine"></div>
-										<div class="color-fff">
-											<p class="font24">新中式风格</p>
-											<span class="font16">Pastoral style</span>
-										</div>
-									</div>
-									<img class="indexCaseBtn" src="../images/icon-caseBtn.png" alt="" />
-								</div>
-							</div>
-						</a>
-						<a href="javascript:;">
-							<div class="coverImg" style="background-image: url(../images/indexCase.png);">
-								<div class="flex_column flex_item_between">
-									<div class="flex_dom">
-										<div class="whiteLine"></div>
-										<div class="color-fff">
-											<p class="font24">新中式风格</p>
-											<span class="font16">Pastoral style</span>
-										</div>
-									</div>
-									<img class="indexCaseBtn" src="../images/icon-caseBtn.png" alt="" />
-								</div>
-							</div>
-						</a>
-						<a href="javascript:;">
-							<div class="coverImg" style="background-image: url(../images/indexCase.png);">
-								<div class="flex_column flex_item_between">
-									<div class="flex_dom">
-										<div class="whiteLine"></div>
-										<div class="color-fff">
-											<p class="font24">新中式风格</p>
-											<span class="font16">Pastoral style</span>
-										</div>
-									</div>
-									<img class="indexCaseBtn" src="../images/icon-caseBtn.png" alt="" />
-								</div>
-							</div>
-						</a>
-						<a href="javascript:;">
-							<div class="coverImg" style="background-image: url(../images/indexCase.png);">
-								<div class="flex_column flex_item_between">
-									<div class="flex_dom">
-										<div class="whiteLine"></div>
-										<div class="color-fff">
-											<p class="font24">新中式风格</p>
-											<span class="font16">Pastoral style</span>
-										</div>
-									</div>
-									<img class="indexCaseBtn" src="../images/icon-caseBtn.png" alt="" />
-								</div>
-							</div>
-						</a>
-						<a href="javascript:;">
-							<div class="coverImg" style="background-image: url(../images/indexCase.png);">
-								<div class="flex_column flex_item_between">
-									<div class="flex_dom">
-										<div class="whiteLine"></div>
-										<div class="color-fff">
-											<p class="font24">新中式风格</p>
-											<span class="font16">Pastoral style</span>
-										</div>
-									</div>
-									<img class="indexCaseBtn" src="../images/icon-caseBtn.png" alt="" />
-								</div>
-							</div>
-						</a>
-						<a href="javascript:;">
-							<div class="coverImg" style="background-image: url(../images/indexCase.png);">
-								<div class="flex_column flex_item_between">
-									<div class="flex_dom">
-										<div class="whiteLine"></div>
-										<div class="color-fff">
-											<p class="font24">新中式风格</p>
-											<span class="font16">Pastoral style</span>
+											<p class="font24">{{item.name}}</p>
+											<span class="font16">{{item.name_en}}</span>
 										</div>
 									</div>
 									<img class="indexCaseBtn" src="../images/icon-caseBtn.png" alt="" />
@@ -270,47 +117,87 @@
 					</div>
 					<div class="centerCon indexInspiration">
 						<div class="flex_dom m-b-20 hgt285">
-							<div class="flex_1 m-r-20">
-								<div class="coverImg" style="background-image: url(../images/banner_2.png);"></div>
+							<div class="flex_1 m-r-20 relative">
+								<div class="coverImg" :style="{backgroundImage: 'url('+inspiration.length > 0 ? inspiration[0].image : 'none'+')'}"></div>
+								<div class="ist_mask" v-if="inspiration.length > 0">
+									<h3>{{inspiration[0].name}}</h3>
+									<p>{{inspiration[0].name_en}}</p>
+								</div>
 							</div>
 							<div class="flex_1 flex_dom">
-								<div class="flex_1 m-r-20">
-									<div class="coverImg" style="background-image: url(../images/banner_2.png);"></div>
+								<div class="flex_1 m-r-20 relative">
+									<div class="coverImg" :style="{backgroundImage: 'url('+inspiration.length > 1 ? inspiration[1].image : 'none'+')'}"></div>
+									<div class="ist_mask" v-if="inspiration.length > 1">
+										<h3>{{inspiration[1].name}}</h3>
+										<p>{{inspiration[1].name_en}}</p>
+									</div>
 								</div>
-								<div class="flex_1">
-									<div class="coverImg" style="background-image: url(../images/banner_2.png);"></div>
+								<div class="flex_1 relative">
+									<div class="coverImg" :style="{backgroundImage: 'url('+inspiration.length > 2 ? inspiration[2].image : 'none'+')'}"></div>
+									<div class="ist_mask" v-if="inspiration.length > 2">
+										<h3>{{inspiration[2].name}}</h3>
+										<p>{{inspiration[2].name_en}}</p>
+									</div>
 								</div>
 							</div>
 						</div>
 						<div class="flex_dom m-b-20 hgt285">
 							<div class="flex_1 flex_dom m-r-20">
-								<div class="flex_1 m-r-20">
-									<div class="coverImg" style="background-image: url(../images/banner_2.png);"></div>
+								<div class="flex_1 m-r-20 relative">
+									<div class="coverImg" :style="{backgroundImage: 'url('+inspiration.length > 3 ? inspiration[3].image : 'none'+')'}"></div>
+									<div class="ist_mask" v-if="inspiration.length > 3">
+										<h3>{{inspiration[3].name}}</h3>
+										<p>{{inspiration[3].name_en}}</p>
+									</div>
 								</div>
-								<div class="flex_1">
-									<div class="coverImg" style="background-image: url(../images/banner_2.png);"></div>
+								<div class="flex_1 relative">
+									<div class="coverImg" :style="{backgroundImage: 'url('+inspiration.length > 4 ? inspiration[4].image : 'none'+')'}"></div>
+									<div class="ist_mask" v-if="inspiration.length > 4">
+										<h3>{{inspiration[4].name}}</h3>
+										<p>{{inspiration[4].name_en}}</p>
+									</div>
 								</div>
 							</div>
-							<div class="flex_1">
-								<div class="coverImg" style="background-image: url(../images/banner_2.png);"></div>
+							<div class="flex_1 relative">
+								<div class="coverImg" :style="{backgroundImage: 'url('+inspiration.length > 5 ? inspiration[5].image : 'none'+')'}"></div>
+								<div class="ist_mask" v-if="inspiration.length > 5">
+									<h3>{{inspiration[5].name}}</h3>
+									<p>{{inspiration[5].name_en}}</p>
+								</div>
 							</div>
 						</div>
 						<div class="flex_dom">
 							<div class="flex_1">
 								<div class="flex_dom m-b-20 hgt300">
-									<div class="flex_1 m-r-20">
-										<div class="coverImg" style="background-image: url(../images/banner_2.png);"></div>
+									<div class="flex_1 m-r-20 relative">
+										<div class="coverImg" :style="{backgroundImage: 'url('+inspiration.length > 6 ? inspiration[6].image : 'none'+')'}"></div>
+										<div class="ist_mask" v-if="inspiration.length > 6">
+											<h3>{{inspiration[6].name}}</h3>
+											<p>{{inspiration[6].name_en}}</p>
+										</div>
 									</div>
-									<div class="flex_1">
-										<div class="coverImg" style="background-image: url(../images/banner_2.png);"></div>
+									<div class="flex_1 relative">
+										<div class="coverImg" :style="{backgroundImage: 'url('+inspiration.length > 7 ? inspiration[7].image : 'none'+')'}"></div>
+										<div class="ist_mask" v-if="inspiration.length > 7">
+											<h3>{{inspiration[7].name}}</h3>
+											<p>{{inspiration[7].name_en}}</p>
+										</div>
 									</div>
 								</div>
 								<div class="flex_dom hgt300">
-									<div class="flex_1 m-r-20">
-										<div class="coverImg" style="background-image: url(../images/banner_2.png);"></div>
+									<div class="flex_1 m-r-20 relative">
+										<div class="coverImg" :style="{backgroundImage: 'url('+inspiration.length > 8 ? inspiration[8].image : 'none'+')'}"></div>
+										<div class="ist_mask" v-if="inspiration.length > 8">
+											<h3>{{inspiration[8].name}}</h3>
+											<p>{{inspiration[8].name_en}}</p>
+										</div>
 									</div>
-									<div class="flex_1">
-										<div class="coverImg" style="background-image: url(../images/banner_2.png);"></div>
+									<div class="flex_1 relative">
+										<div class="coverImg" :style="{backgroundImage: 'url('+inspiration.length > 9 ? inspiration[9].image : 'none'+')'}"></div>
+										<div class="ist_mask" v-if="inspiration.length > 9">
+											<h3>{{inspiration[9].name}}</h3>
+											<p>{{inspiration[9].name_en}}</p>
+										</div>
 									</div>
 								</div>
 							</div>
@@ -345,9 +232,7 @@
 						</div>
 						<div class="flex_dom">
 							<div class="flex_1 flex_dom">
-								<a class="flex_1 hgt310 coverImg m-r-20" href="javascript:;" style="background-image: url(../images/banner_2.png);"></a>
-								<a class="flex_1 hgt310 coverImg m-r-20" href="javascript:;" style="background-image: url(../images/banner_2.png);"></a>
-								<a class="flex_1 hgt310 coverImg m-r-20" href="javascript:;" style="background-image: url(../images/banner_2.png);"></a>
+								<a v-for="item in diary" class="flex_1 hgt310 coverImg m-r-20" href="javascript:;" :style="{backgroundImage: 'url('+item.image+')'}"></a>
 							</div>
 							<div class="indexDayMore flex_dom flex_item_mid flex_item_around coverImg" style="background-image: url(../images/banner_2.png);">
 								<div class="color-fff">
@@ -412,20 +297,123 @@
 	<script type="text/javascript" src="../lib/swiper.min.js"></script>
 	<script type="text/javascript" src="../lib/page.js"></script>
 	<script>
-		//banner
-		var mySwiper = new Swiper('.indexSwiper .swiper-container', {
-			autoplay: 5000,//可选选项，自动滑动
-			pagination : '.indexSwiper .swiper-pagination',
-			loop : true,
+		var app = new Vue({
+			el: '#app',
+			data: {
+				banner: [],
+				designer: [],
+				designerBanner: [],
+				caseList: [],
+				inspiration: [],
+				diary: []
+			},
+			mounted: function(){
+				//获取banner
+				$.ajax({
+					type:"get",
+					url: host+"/api/l/getBanner",
+					success: function(res){
+						res = JSON.parse(res);
+						if(res.success){
+							app.banner = res.data;
+							app.$nextTick(function(){
+								var mySwiper = new Swiper('.indexSwiper .swiper-container', {
+									autoplay: 5000,//可选选项，自动滑动
+									pagination : '.indexSwiper .swiper-pagination',
+									loop : true,
+									paginationClickable :true,
+								})
+							})
+						}else{
+							console.log(res.message);
+						}
+					}
+				});
+				//获取设计师
+				$.ajax({
+					type:"get",
+					url: host+"/api/l/getDesigner2Index",
+					success: function(res){
+						res = JSON.parse(res);
+						if(res.success){
+							app.designer = res.data;
+							//app.getDesigner(res.data[0].id);
+						}else{
+							console.log(res.message);
+						}
+					}
+				});
+				//获取案例
+				$.ajax({
+					type:"get",
+					url: host+"/api/l/getCase2Index",
+					success: function(res){
+						res = JSON.parse(res);
+						if(res.success){
+							app.caseList = res.data;
+						}else{
+							console.log(res.message);
+						}
+					}
+				});
+				//获取设计灵感
+				$.ajax({
+					type:"get",
+					url: host+"/api/l/getMaterial2Index",
+					success: function(res){
+						res = JSON.parse(res);
+						if(res.success){
+							app.inspiration = res.data;
+						}else{
+							console.log(res.message);
+						}
+					}
+				});
+				//获取装修日志
+				$.ajax({
+					type:"get",
+					url: host+"/api/l/getDecorate2Index",
+					success: function(res){
+						res = JSON.parse(res);
+						if(res.success){
+							app.diary = res.data;
+						}else{
+							console.log(res.message);
+						}
+					}
+				});
+			},
+			methods: {
+				getDesigner: function(id){
+					$.ajax({
+						type:"get",
+						data: {
+							id: id
+						},
+						url: host+"/api/l/getDesignerDetail",
+						success: function(res){
+							res = JSON.parse(res);
+							if(res.success){
+								
+	//								app.$nextTick(function(){
+	//									var mySwiper = new Swiper('.id_swiper .swiper-container', {
+	//										autoplay: 5000,//可选选项，自动滑动
+	//										pagination : '.id_swiper .swiper-pagination',
+	//										loop : true,
+	//										paginationClickable :true,
+	//										prevButton:'.swiper-button-prev',
+	//										nextButton:'.swiper-button-next',
+	//									})
+	//								})
+							}else{
+								console.log(res.message);
+							}
+						}
+					});
+				}
+			}
 		})
-		//设计师
-		var mySwiper = new Swiper('.id_swiper .swiper-container', {
-			autoplay: 5000,//可选选项，自动滑动
-			pagination : '.id_swiper .swiper-pagination',
-			loop : true,
-			prevButton:'.swiper-button-prev',
-			nextButton:'.swiper-button-next',
-		})
+		
 	</script>
 
 </html>

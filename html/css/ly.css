@@ -169,7 +169,7 @@
 	background-color: #f1f2f4;
 }
 .box_s{
-	box-shadow: 0px 0px 20px rgba(0,0,0,.2);
+	box-shadow: 0px 0px 15px rgba(0,0,0,.2);
 }
 .litleHeadpic{
 	width: 100%;
@@ -230,5 +230,140 @@
 	height: 53px;
 	background-color: #ebebeb;
 }
-
-
+.queArea{
+	width: 100%;
+	min-height: 593px;
+	margin-top: 50px;
+	
+}
+.queALeft{
+	width: 334px;
+	padding: 50px 40px;
+	height: auto;
+}
+.queLine{
+	width: 100%;
+	padding: 10px 0;
+	line-height: 35px;
+	font-size: 18px;
+	border-bottom: 1px solid #d7d6d6;
+	color: #333;
+}
+.box_s2{
+	box-shadow: 5px 0px 10px rgba(0,0,0,.1);
+}
+.pb200{
+	padding-bottom: 200px;
+}
+.queARight{
+	width: calc(100% - 334px);
+	padding: 60px 90px 60px 80px;
+	height: auto;
+}
+.color-94{
+	color: #949494;
+}
+.backTop{
+	width: 104px;
+	height: 92px;
+	background-color: #fff;
+	position: fixed;
+	z-index: 999;
+    right: 2%;
+	bottom: 300px;
+	padding: 10px 0;
+	cursor: pointer;
+	display: none;
+}
+.dairyBox{
+	padding: 45px;
+	padding-bottom: 80px;
+	margin-bottom: 72px;
+}
+.dirayBg{
+	width: 100%;
+	height: auto;
+	background-image: url(../images/dirayBg.png);
+    /*background-color: #5f6269;*/
+    background-position: top center;
+    background-repeat: no-repeat;
+}
+.tTop{
+	width: 100%;
+	height: 110px;
+}
+.font88{
+	font-size: 88px;
+}
+.color-6ebdca{
+	color: #6ebdca;
+}
+.righttext{
+	width: 950px;
+}
+.ImgboxArea{
+	margin-top: 55px;
+}
+.ImgboxList{
+	width: 254px;
+	margin-right: 46px;
+}
+.ImgboxList:nth-child(4n){
+	margin-right: 0 !important;
+}
+.ImgboxPic{
+	width: 254px;
+	height: 254px;
+}
+.ImgboxBot{
+	width: 100%;
+	height: 70px;
+	padding: 10px 0;
+}
+.h100{
+	height: 100%;
+}
+.topBox{
+	border: 1px solid #dcdbdb;
+	height: 112px;
+	padding: 26px 100px;
+}
+.tleft{
+	width: 182px;
+}
+.dairycontent{
+	width: 100%;
+	height: auto;
+	padding: 35px 50px 50px 55px;
+}
+.picContent{
+	width: 950px;
+	height: auto;
+	margin-top: 32px;
+}
+.picC{
+	width: 230px;
+	height: 230px;
+	margin-right: 8px;
+}
+.picC:nth-child(4n){
+	margin-right: 0;
+}
+.pagecArea{
+	margin-top: 56px;
+	width: 100%;
+	height: auto;
+}
+.pagecbox{
+	width:600px;
+	height: auto;
+	background-color: #fff;
+}
+.pagecImg{
+	width: 100%;
+	height: 342px;
+}
+.pagecbleft{
+	width: 175px;
+	height: 60px;
+}
