@@ -221,6 +221,10 @@
 .iconpicArea{
 	width: 306px;
 	height: 108px;
+	cursor: pointer;
+}
+.iconpicArea:last-child .grayline{
+	display: none;
 }
 .l-pad40{
 	padding: 0 40px;
@@ -229,6 +233,9 @@
 	width: 2px;
 	height: 53px;
 	background-color: #ebebeb;
+	position: absolute;
+	right: 0;
+	top: 25px;
 }
 .queArea{
 	width: 100%;
@@ -248,6 +255,7 @@
 	font-size: 18px;
 	border-bottom: 1px solid #d7d6d6;
 	color: #333;
+	cursor: pointer;
 }
 .box_s2{
 	box-shadow: 5px 0px 10px rgba(0,0,0,.1);
