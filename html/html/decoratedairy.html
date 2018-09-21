@@ -21,64 +21,135 @@
 	</head>
 
 	<body>
-		<div class="main designer"id="app">
+		<div class="main designer">
 			<div class="curHeader centerCon clearfix">
 				<img src="../images/headLogo.png" alt="" />
 				<a href="javascript:;">首 页</a>
-				<a href="javascript:;">设计师</a>
+				<a href="javascript:;" class="active">设计师</a>
 				<a href="javascript:;">案例</a>
 				<a href="javascript:;">灵感</a>
 				<a href="javascript:;">装修日记</a>
-				<a href="javascript:;" class="active">常见问题</a>
+				<a href="javascript:;">常见问题</a>
 				<a href="javascript:;">关于我们</a>
 			</div>
 			<div class="border-b-e8"></div>
 			
 			<div class="container pb200 bg-f1f2f4 clearfix">
-				<div class="qusBg">
+				<div class="dirayBg">
 					<div class="center-1260 pt374">
-						<div class="qaBox box_s l-pad40 between-center bg-fff">
-							<div v-for="item in typeList" @click="getquestions(item.id)" :qId="item.id" class="column-center-b relative iconpicArea">
-								<img v-bind:src="item.image"/>
-								<span class="font22 color-2d2e35" v-text="item.name"></span>
-								<div class="grayline"></div>
+						<div class="dairyBox box_s bg-fff">
+							<div class="tTop center">
+								<div class="center">
+									<span class="font88 color-6ebdca">10</span>
+									<img src="../images/icon_day.png"/>
+								</div>
+								<div class="m-l-20 righttext">
+									<div class="font22 color-2d2e35 fw_600 l-h-35">
+										日常护理第10天
+									</div>
+									<p class="l-h-20  font15 color-94">用设计表达对生活、对美追求和理解，把全新的，健康、清新、自然、婉约的生活元素以设计的概念注入到设计中，从而满足追求时尚品味的需求，
+展现其智慧、知性、高雅、自信的内涵。</p>
+								</div>
 							</div>
-							
-							<!--<div class="column-center-b iconpicArea">
-								<img src="../images/icon_person.png"/>
-								<span class="font22 color-2d2e35">设计师问题</span>
+							<div class="ImgboxArea clearfix">
+								<div class="fl ImgboxList">
+									<p class="coverImg ImgboxPic" style="background-image: url(../images/banner3.png);"></p>
+									<div class="ImgboxBot">
+										<p class="font18 color-2d2e35">第10天</p>
+										<p class="font15 color-94">用设计表达对生活、对美追求和理解</p>
+									</div>
+								</div>
+								<div class="fl ImgboxList">
+									<p class="coverImg ImgboxPic" style="background-image: url(../images/banner3.png);"></p>
+									<div class="ImgboxBot">
+										<p class="font18 color-2d2e35">第10天</p>
+										<p class="font15 color-94">用设计表达对生活、对美追求和理解</p>
+									</div>
+								</div>
+								<div class="fl ImgboxList">
+									<p class="coverImg ImgboxPic" style="background-image: url(../images/banner3.png);"></p>
+									<div class="ImgboxBot">
+										<p class="font18 color-2d2e35">第10天</p>
+										<p class="font15 color-94">用设计表达对生活、对美追求和理解</p>
+									</div>
+								</div>
+								<div class="fl ImgboxList">
+									<p class="coverImg ImgboxPic" style="background-image: url(../images/banner3.png);"></p>
+									<div class="ImgboxBot">
+										<p class="font18 color-2d2e35">第10天</p>
+										<p class="font15 color-94">用设计表达对生活、对美追求和理解</p>
+									</div>
+								</div>
 							</div>
-							<div class="grayline"></div>
-							<div class="column-center-b iconpicArea">
-								<img src="../images/icon_aftersell.png"/>
-								<span class="font22 color-2d2e35">售后问题</span>
-							</div>
-							<div class="grayline"></div>
-							<div class="column-center-b iconpicArea">
-								<img src="../images/icon_pro.png"/>
-								<span class="font22 color-2d2e35">服务流程</span>
-							</div>-->
 						</div>
-						<div class="queArea between bg-fff box_s">
-							<div class="queALeft box_s2">
-								<div @click="getanswer(item.title,item.content)" v-for="item in questionList" class="queLine" v-cloak>
-									{{item.title}}
+						<div class="dairyBox box_s bg-fff">
+							<div class="tTop center">
+								<div class="center">
+									<span class="font88 color-6ebdca">5</span>
+									<img src="../images/icon_day.png"/>
 								</div>
-								<!--<div class="queLine">
-									遇到这个问题怎么办?
+								<div class="m-l-20 righttext">
+									<div class="font22 color-2d2e35 fw_600 l-h-35">
+										日常护理第10天
+									</div>
+									<p class="l-h-20  font15 color-94">用设计表达对生活、对美追求和理解，把全新的，健康、清新、自然、婉约的生活元素以设计的概念注入到设计中，从而满足追求时尚品味的需求，
+展现其智慧、知性、高雅、自信的内涵。</p>
 								</div>
-								<div class="queLine">
-									遇到这个问题怎么办?
-								</div>
-								<div class="queLine">
-									遇到这个问题怎么办?
-								</div>-->
 							</div>
-							<div class="queARight">
-								<div class="font18 l-h-45" v-cloak>
-									问：{{quscon}}
+							<div class="ImgboxArea clearfix">
+								<div class="fl ImgboxList">
+									<p class="coverImg ImgboxPic" style="background-image: url(../images/banner3.png);"></p>
+									<div class="ImgboxBot">
+										<p class="font18 color-2d2e35">第10天</p>
+										<p class="font15 color-94">用设计表达对生活、对美追求和理解</p>
+									</div>
 								</div>
-								<div class="l-h-30 font15 color-94" v-html="answercon"></div>
+								<div class="fl ImgboxList">
+									<p class="coverImg ImgboxPic" style="background-image: url(../images/banner3.png);"></p>
+									<div class="ImgboxBot">
+										<p class="font18 color-2d2e35">第10天</p>
+										<p class="font15 color-94">用设计表达对生活、对美追求和理解</p>
+									</div>
+								</div>
+								<div class="fl ImgboxList">
+									<p class="coverImg ImgboxPic" style="background-image: url(../images/banner3.png);"></p>
+									<div class="ImgboxBot">
+										<p class="font18 color-2d2e35">第10天</p>
+										<p class="font15 color-94">用设计表达对生活、对美追求和理解</p>
+									</div>
+								</div>
+								<div class="fl ImgboxList">
+									<p class="coverImg ImgboxPic" style="background-image: url(../images/banner3.png);"></p>
+									<div class="ImgboxBot">
+										<p class="font18 color-2d2e35">第10天</p>
+										<p class="font15 color-94">用设计表达对生活、对美追求和理解</p>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="dairyBox box_s bg-fff">
+							<div class="tTop center">
+								<div class="center">
+									<span class="font88 color-6ebdca">1</span>
+									<img src="../images/icon_day.png"/>
+								</div>
+								<div class="m-l-20 righttext">
+									<div class="font22 color-2d2e35 fw_600 l-h-35">
+										日常护理第10天
+									</div>
+									<p class="l-h-20  font15 color-94">用设计表达对生活、对美追求和理解，把全新的，健康、清新、自然、婉约的生活元素以设计的概念注入到设计中，从而满足追求时尚品味的需求，
+展现其智慧、知性、高雅、自信的内涵。</p>
+								</div>
+							</div>
+							<div class="ImgboxArea clearfix">
+								<div class="fl ImgboxList">
+									<p class="coverImg ImgboxPic" style="background-image: url(../images/banner3.png);"></p>
+									<div class="ImgboxBot">
+										<p class="font18 color-2d2e35">第10天</p>
+										<p class="font15 color-94">用设计表达对生活、对美追求和理解</p>
+									</div>
+								</div>
+								
 							</div>
 						</div>
 					</div>
@@ -154,7 +225,7 @@
 				//获取问题类型
 				$.ajax({
 					type:"get",
-					url: host+"/api/l/getProblemType",
+					url: host+"/api/l/getDecorateList",
 //					data:{page:1,num:5},
 					success: function(res){
 						res = JSON.parse(res);
@@ -196,7 +267,6 @@
 				}
 			}
 		})
-		
 		$(function(){
 		        //当滚动条的位置处于距顶部100像素以下时，跳转链接出现，否则消失
 	
