@@ -572,3 +572,33 @@
 .indexInspiration .relative:hover .ist_mask{
 	opacity: 1;
 }
+.iconShare{
+	position: relative;
+}
+.iconShare>p{
+	position: absolute;
+	bottom: 32px;
+	right: 0;
+	white-space: nowrap;
+	background-color: #FFFFFF;
+	border: 1px solid #EEEEEE;
+	border-radius: 5px;
+	display: none;
+}
+.iconShare>p:after{
+	content: '';
+	position: absolute;
+	width: 8px;
+	height: 8px;
+	border-left: 1px solid #eee;
+	border-bottom: 1px solid #eee;
+    bottom: -5px;
+    right: 44px;
+    transform: rotate(-45deg);
+    background: #fff;
+}
+.main{
+	overflow: visible !important;
+	height: auto !important;
+	min-height: 100%;
+}
