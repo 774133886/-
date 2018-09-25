@@ -375,3 +375,22 @@
 	width: 175px;
 	height: 60px;
 }
+.typelist{
+	width: 85px;
+	border: 1px solid #d6d6d6;
+	position: absolute;
+	top: 95px;
+	left: 0;
+	background-color: #fff;
+	
+}
+.typelist li{
+	height: 45px;
+	line-height: 45px;
+	color: #8a8a8a;
+	text-align: center;
+	border-bottom: 1px solid #d6d6d6;
+}
+.typelist li:last-child{
+	border-bottom: none;
+}

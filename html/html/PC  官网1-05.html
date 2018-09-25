@@ -96,17 +96,15 @@
 							</div>
 						</div>
 						<div class="wid100 littleTagArea between-center">
-							<div class="l-h-1 bg-fff box_s pad20 hgt594 wid265 clearfix relative">
-								<img class="litleHeadpic" src="../images/designer.png" alt="">
-								<p class="font22 fw_600 text-center m-t-10 color-2d2e35">曾卫平</p>
-								<p class="font15 color-8b text-center m-t-10">XXX资深设计师</p>
-								<p class="text-center color-2d2e35 font22 m-t-15">500元/<span class="font15">m<sup>2</sup></span></p>
+							<div v-for="item in Decommendlist" class="l-h-1 bg-fff box_s pad20 hgt594 wid265 clearfix relative">
+								<img class="litleHeadpic" v-bind:src="item.photo" alt="">
+								<p class="font22 fw_600 text-center m-t-10 only_line color-2d2e35" v-cloak>{{item.name}}</p>
+								<p class="font15 color-8b text-center m-t-10" v-html="item.description"></p>
+								<p class="text-center color-2d2e35 font22 m-t-15" v-cloak>{{item.fee}}元/<span class="font15">m<sup>2</sup></span></p>
 								<!-- 标签 -->
 								<div class="tag m-t-25 font0">
-									<span class="inline_div wid106 tag-item2 m-b-10">极 简 风</span>
-									<span class="inline_div wid106 tag-item2 m-b-10">欧 式 新 派</span>
-									<span class="inline_div wid106 tag-item2 m-b-10">中 国 风</span>
-									<span class="inline_div wid106 tag-item2 m-b-10">北 美 风</span>
+									<span v-for="label in item.style_list" class="inline_div wid106 tag-item2 m-b-10" v-cloak>{{label}}</span>
+									
 								</div>
 								<!-- 预约按钮 -->
 								<div class="relative wid218 order-btn  abolute">
@@ -114,60 +112,7 @@
 									<button class="font20 fw_600 color-fff wid100 hgt45 l-h-45">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;立即预约&nbsp;&nbsp;></button>
 								</div>
 							</div>
-							<div class="l-h-1 bg-fff box_s pad20 hgt594 wid265 clearfix relative">
-								<img class="litleHeadpic" src="../images/designer.png" alt="">
-								<p class="font22 fw_600 text-center m-t-10 color-2d2e35">曾卫平</p>
-								<p class="font15 color-8b text-center m-t-10">XXX资深设计师</p>
-								<p class="text-center color-2d2e35 font22 m-t-15">500元/<span class="font15">m<sup>2</sup></span></p>
-								<!-- 标签 -->
-								<div class="tag m-t-25 font0">
-									<span class="inline_div wid106 tag-item2 m-b-10">极 简 风</span>
-									<span class="inline_div wid106 tag-item2 m-b-10">欧 式 新 派</span>
-									<span class="inline_div wid106 tag-item2 m-b-10">中 国 风</span>
-									<span class="inline_div wid106 tag-item2 m-b-10">北 美 风</span>
-								</div>
-								<!-- 预约按钮 -->
-								<div class="relative wid218 order-btn  abolute">
-									<!-- <img class="time abolute" src="../images/icon_time.png" alt=""> -->
-									<button class="font20 fw_600 color-fff wid100 hgt45 l-h-45">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;立即预约&nbsp;&nbsp;></button>
-								</div>
-							</div>
-							<div class="l-h-1 bg-fff box_s pad20 hgt594 wid265 clearfix relative">
-								<img class="litleHeadpic" src="../images/designer.png" alt="">
-								<p class="font22 fw_600 text-center m-t-10 color-2d2e35">曾卫平</p>
-								<p class="font15 color-8b text-center m-t-10">XXX资深设计师</p>
-								<p class="text-center color-2d2e35 font22 m-t-15">500元/<span class="font15">m<sup>2</sup></span></p>
-								<!-- 标签 -->
-								<div class="tag m-t-25 font0">
-									<span class="inline_div wid106 tag-item2 m-b-10">极 简 风</span>
-									<span class="inline_div wid106 tag-item2 m-b-10">欧 式 新 派</span>
-									<span class="inline_div wid106 tag-item2 m-b-10">中 国 风</span>
-									<span class="inline_div wid106 tag-item2 m-b-10">北 美 风</span>
-								</div>
-								<!-- 预约按钮 -->
-								<div class="relative wid218 order-btn  abolute">
-									<!-- <img class="time abolute" src="../images/icon_time.png" alt=""> -->
-									<button class="font20 fw_600 color-fff wid100 hgt45 l-h-45">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;立即预约&nbsp;&nbsp;></button>
-								</div>
-							</div>
-							<div class="l-h-1 bg-fff box_s pad20 hgt594 wid265 clearfix relative">
-								<img class="litleHeadpic" src="../images/designer.png" alt="">
-								<p class="font22 fw_600 text-center m-t-10 color-2d2e35">曾卫平</p>
-								<p class="font15 color-8b text-center m-t-10">XXX资深设计师</p>
-								<p class="text-center color-2d2e35 font22 m-t-15">500元/<span class="font15">m<sup>2</sup></span></p>
-								<!-- 标签 -->
-								<div class="tag m-t-25 font0">
-									<span class="inline_div wid106 tag-item2 m-b-10">极 简 风</span>
-									<span class="inline_div wid106 tag-item2 m-b-10">欧 式 新 派</span>
-									<span class="inline_div wid106 tag-item2 m-b-10">中 国 风</span>
-									<span class="inline_div wid106 tag-item2 m-b-10">北 美 风</span>
-								</div>
-								<!-- 预约按钮 -->
-								<div class="relative wid218 order-btn  abolute">
-									<!-- <img class="time abolute" src="../images/icon_time.png" alt=""> -->
-									<button class="font20 fw_600 color-fff wid100 hgt45 l-h-45">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;立即预约&nbsp;&nbsp;></button>
-								</div>
-							</div>
+						
 						</div>
 					</div>
 				</div>
@@ -228,7 +173,8 @@
 			var app = new Vue({
 			el: '#app',
 			data: {
-				banner: []
+				DesignerList: [],
+				Decommendlist:[]
 			},
 			mounted: function(){
 				//获取banner
@@ -239,7 +185,8 @@
 					success: function(res){
 						res = JSON.parse(res);
 						if(res.success){
-							app.banner = res.data;
+							app.DesignerList = res.data;
+							console.log(app.DesignerList)
 							app.$nextTick(function(){
 								var mySwiper = new Swiper('.indexSwiper .swiper-container', {
 									autoplay: 5000,//可选选项，自动滑动
@@ -248,6 +195,21 @@
 									paginationClickable :true,
 								})
 							})
+						}else{
+							console.log(res.message);
+						}
+					}
+				});
+					//获取推荐设计师
+				$.ajax({
+					type:"get",
+					url: host+"/api/l/getDecommend2Designer",
+//					data:{page:1,num:5},
+					success: function(res){
+						res = JSON.parse(res);
+						if(res.success){
+							app.Decommendlist = res.data;
+							console.log(app.DecorateType)
 						}else{
 							console.log(res.message);
 						}

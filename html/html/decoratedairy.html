@@ -21,14 +21,18 @@
 	</head>
 
 	<body>
-		<div class="main designer">
+		<div class="main designer" id="app">
 			<div class="curHeader centerCon clearfix">
 				<img src="../images/headLogo.png" alt="" />
 				<a href="javascript:;">首 页</a>
-				<a href="javascript:;" class="active">设计师</a>
+				<a href="javascript:;">设计师</a>
 				<a href="javascript:;">案例</a>
 				<a href="javascript:;">灵感</a>
-				<a href="javascript:;">装修日记</a>
+				<a href="javascript:;" class="active relative">装修日记
+					<ul class="typelist">
+						<li v-for="item in DecorateType" @click="getdairy(item.id)" class="font14 only_line" v-cloak>{{item.type}}</li>
+					</ul>
+				</a>
 				<a href="javascript:;">常见问题</a>
 				<a href="javascript:;">关于我们</a>
 			</div>
@@ -37,7 +41,7 @@
 			<div class="container pb200 bg-f1f2f4 clearfix">
 				<div class="dirayBg">
 					<div class="center-1260 pt374">
-						<div class="dairyBox box_s bg-fff">
+						<div v-for="item in dairyList" class="dairyBox box_s bg-fff">
 							<div class="tTop center">
 								<div class="center">
 									<span class="font88 color-6ebdca">10</span>
@@ -82,7 +86,7 @@
 								</div>
 							</div>
 						</div>
-						<div class="dairyBox box_s bg-fff">
+						<!--<div class="dairyBox box_s bg-fff">
 							<div class="tTop center">
 								<div class="center">
 									<span class="font88 color-6ebdca">5</span>
@@ -151,7 +155,7 @@
 								</div>
 								
 							</div>
-						</div>
+						</div>-->
 					</div>
 				</div>
 			</div>
@@ -216,8 +220,8 @@
 		var app = new Vue({
 			el: '#app',
 			data: {
-				typeList: [],
-				questionList: [],
+				DecorateType: [],
+				dairyList: [],
 				quscon:'',
 				answercon:'',
 			},
@@ -225,14 +229,14 @@
 				//获取问题类型
 				$.ajax({
 					type:"get",
-					url: host+"/api/l/getDecorateList",
+					url: host+"/api/l/getDecorateType",
 //					data:{page:1,num:5},
 					success: function(res){
 						res = JSON.parse(res);
 						if(res.success){
-							app.typeList = res.data;
-							app.getquestions(res.data[0].id);
-							console.log(app.typeList)
+							app.DecorateType = res.data;
+							app.getdairy(res.data[0].id);
+							console.log(app.DecorateType)
 						}else{
 							console.log(res.message);
 						}
@@ -240,19 +244,19 @@
 				});
 			},
 			methods: {
-				getquestions:function(id){
+				getdairy:function(id){
 				//获取问题列表
 					$.ajax({
 						type:"get",
-						url: host+"/api/l/getProblemList",
+						url: host+"/api/l/getDecorateList",
 						data:{
 //							page:1,num:5,
-							problems_ids:id
+							type_id:id
 						},
 						success: function(res){
 							res = JSON.parse(res);
 							if(res.success){
-								app.questionList = res.data;
+								app.dairyList = res.data;
 								app.quscon = res.data[0].title;
 								app.answercon = res.data[0].content;
 							}else{
