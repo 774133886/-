@@ -38,17 +38,17 @@
 			
 			<div class="container m-b-40">
 				<div class="centerCon">
-					<div class="designerCtt">
+					<div class="designerCtt" v-cloak>
 						<div class="clearfix">
 							<div class="desHeadLeft">
-								<div class="coverImg" style="background-image: url(../images/banner1.png);"></div>
+								<div class="coverImg" v-if="bannercase.id" :style="{backgroundImage: 'url('+bannercase.image+')'}"></div>
 								<div class="desHeadText">
 									<div class="flex_dom flex_item_mid">
 										<div class="flex_1">
-											<h3 class="font24">二居室  新派欧式  极简风</h3>
-											<p class="font14">美式荧幕中，黑白灰的温文尔雅  89m²小宅设计婉约的生活元素以设计的概念注入到设计中。</p>
+											<h3 class="font24">{{bannercase.name}}</h3>
+											<p class="font14 only_line jianjie" v-html="bannercase.description"></p>
 										</div>
-										<a class="iconShare m-t-10" href="javascript:;">分享</a>
+										<a class="iconShare m-t-10" onblur="unShare(this)" onfocus="share(this,null,'标题','描述')" href="javascript:;">分享<p></p></a>
 									</div>
 								</div>
 							</div>
@@ -67,17 +67,14 @@
 										<a v-for="label in item.style_list" href="javascript:;">{{label}}</a>
 									</div>
 									<div class="clearfix p_imgs">
-										<div class="coverImg" style="background-image: url(../images/banner1.png);"></div>
-										<div class="coverImg" style="background-image: url(../images/banner1.png);"></div>
-										<div class="coverImg" style="background-image: url(../images/banner1.png);"></div>
-										<div class="coverImg" style="background-image: url(../images/banner1.png);"></div>
+										<div v-if="idx < 4" @click="changeBanner(img)" v-for="(img,idx) in item.case" class="coverImg" :style="{backgroundImage: 'url('+img.image.split(',')[0]+')'}"></div>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
 					<div class="listCtt relative">
-						<div class="caseItem">
+						<!--<div class="caseItem">
 							<img src="../images/indexCase.png" alt="" />
 							<div class="p-v-10">
 								<h3 class="font15 color-2d2e35 font-w6">二居室  新派欧式  极简风</h3>
@@ -86,7 +83,7 @@
 									<a class="iconShare" href="javascript:;">分享</a>
 								</div>
 							</div>
-						</div>
+						</div>-->
 					</div>
 					<div class="text-center loadDiv">
 						<img src="../images/icon-pageDown.png" alt="" />
@@ -156,6 +153,7 @@
 			el: '#app',
 			data: {
 				designer: [],
+				bannercase: {}
 			},
 			mounted: function(){
 				$.ajax({
@@ -165,6 +163,9 @@
 						res = JSON.parse(res);
 						if(res.success){
 							app.designer = res.data;
+							if(res.data.length > 0 && res.data[0].case.length > 0){
+								app.changeBanner(res.data[0].case[0]);
+							}
 							app.bindScroll();
 						}else{
 							console.log(res.message);
@@ -173,8 +174,11 @@
 				});
 			},
 			methods: {
+				changeBanner: function(bannercase){
+					bannercase.image = bannercase.image.split(',')[0];
+					app.bannercase = bannercase;
+				},
 				bindScroll: function(){
-					
 					$(".listCtt").waterfall({
 					  itemClass: ".caseItem",
 					  minColCount: 4,
@@ -206,9 +210,9 @@
 					  				}
 								    var str = "";
 								    var templ = '<div class="caseItem"><img src="{{src}}" alt="" /><div class="p-v-10"><h3 class="font15 color-2d2e35 font-w6">{{name}}</h3><div class="flex_dom"><p class="flex_1 only_line font18 font-w6">{{area}}m²</p><a class="iconShare" onblur="unShare(this)" onfocus="share(this,null,\'标题\',\'描述\')" href="javascript:;">分享<p></p></a></div></div></div>'
-								  	console.log(res.data.length)
+								  	
 								    for(var i = 0; i < data.data.length; i++) {
-								      str += templ.replace("{{src}}", data.data[i].image).replace("{{name}}", data.data[i].name).replace("{{area}}", data.data[i].area);
+								      str += templ.replace("{{src}}", data.data[i].image.split(',')[0]).replace("{{name}}", data.data[i].name).replace("{{area}}", data.data[i].area);
 								    }
 								    $(str).appendTo($(".listCtt"));
 					  				success();

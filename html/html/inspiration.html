@@ -148,33 +148,77 @@
 	<script type="text/javascript" src="../lib/page.js"></script>
 	<script type="text/javascript" src="../lib/jquery.waterfall.js"></script>
 	<script>
-	$(function(){
-		$(".listCtt").waterfall({
-		  itemClass: ".caseItem",
-		  minColCount: 4,
-		  spacingWidth: 4,
-		  spacingHeight: 10,
-		  resizeable: true,
-		  ajaxCallback: function(success, end) {
-		    var data = {"data": [
-		      { "src": "../images/banner1.png" }, { "src": "../images/indexCase.png" }, { "src": "../images/indexCase.png" }, { "src": "../images/indexCase.png" }, { "src": "../images/indexCase.png" }, { "src": "../images/indexCase.png" }
-		    ]};
-		    var str = "";
-		    var templ = '<div class="caseItem"><img src="{{src}}" alt="" /><div class="p-v-10"><h3 class="font15 color-2d2e35 font-w6">二居室  新派欧式  极简风</h3><div class="flex_dom"><p class="flex_1 only_line font18 font-w6">120m²</p><a class="iconShare" href="javascript:;">分享</a></div></div></div>'
-		  
-		    for(var i = 0; i < data.data.length; i++) {
-		      str += templ.replace("{{src}}", data.data[i].src);
-		    }
-		    console.log(str);
-		    $(str).appendTo($(".listCtt"));
-		    success();
-		    end();
-		  }
-		});
-	});
-
-		
-
+		var app = new Vue({
+			el: '#app',
+			data: {
+				
+			},
+			mounted: function(){
+				$.ajax({
+					type:"get",
+					url: host+"/api/l/getMaterialType",
+					success: function(res){
+						res = JSON.parse(res);
+						if(res.success){
+							
+						}else{
+							console.log(res.message);
+						}
+					}
+				});
+				getList();
+			},
+			methods: {
+				
+			}
+		})
+		function getList(){
+			$(".listCtt").waterfall({
+			  itemClass: ".caseItem",
+			  minColCount: 4,
+			  spacingWidth: 4,
+			  spacingHeight: 10,
+			  resizeable: true,
+			  ajaxCallback: function(success, end) {
+			  	if(!hasData){
+					return;
+				}
+			  	hasData = false;
+			  	$.ajax({
+			  		type:"get",
+			  		data: {
+			  			page: page
+			  		},
+			  		url: host+"/api/l/getMaterialList",
+			  		success: function(res){
+			  			res = JSON.parse(res);
+			  			if(res.success){
+			  				page++;
+			  				var data = {"data": res.data};
+			  				if(res.data.length == 0) {
+			  					hasData = false;
+			  					$('.loadDiv').hide();
+			  					return;
+			  				}else{
+			  					hasData = true;
+			  				}
+						    var str = "";
+						    var templ = '<div class="caseItem"><img src="{{src}}" alt="" /><div class="p-v-10"><h3 class="font15 color-2d2e35 font-w6">{{name}}</h3><div class="flex_dom"><p class="flex_1 only_line font18 font-w6">{{area}}m²</p><a class="iconShare" onblur="unShare(this)" onfocus="share(this,null,\'标题\',\'描述\')" href="javascript:;">分享<p></p></a></div></div></div>'
+						  	
+						    for(var i = 0; i < data.data.length; i++) {
+						      str += templ.replace("{{src}}", data.data[i].image.split(',')[0]).replace("{{name}}", data.data[i].name).replace("{{area}}", data.data[i].area);
+						    }
+						    $(str).appendTo($(".listCtt"));
+			  				success();
+			    			end();
+			  			}else{
+			  				console.log(res.message);
+			  			}
+			  		}
+			  	});
+			  }
+			});
+		}
 	</script>
 
 </html>

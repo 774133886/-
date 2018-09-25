@@ -117,7 +117,18 @@
                 scrollTimer = setTimeout(function() {
                     var $last = $($this.options.itemClass).last(),
                         scrollTop = $window.scrollTop() + $window.height();
-
+					if(!$last.length){
+						$this.ajaxLoading = true;
+                        $this.options.ajaxCallback && $this.options.ajaxCallback(
+                            // reposition all the brick element after successful load ajax data
+                            function() {
+                                $this._positionAll();
+                            },
+                            function() {
+                                $this.ajaxLoading = false;
+                            }
+                        );
+					}
                     if(!$this.ajaxLoading && scrollTop > $last.offset().top + $last.outerHeight() / 2) {
                         $this.ajaxLoading = true;
                         $this.options.ajaxCallback && $this.options.ajaxCallback(
