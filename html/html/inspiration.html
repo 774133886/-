@@ -44,34 +44,19 @@
 				<div class="centerCon inspirationCtt m-b-40">
 					<div class="inspirationFilter">
 						<div class="inspirationSearch">
-							<form onsubmit="return false;" class="flex_dom">
-								<input class="flex_1 placeholder999" type="text" placeholder="搜索关键字" />
+							<form @submit.prevent="search" class="flex_dom">
+								<input class="flex_1 placeholder999" type="text" v-model="keywords" placeholder="搜索关键字" />
 								<button type="submit"></button>
 							</form>
 						</div>
 						<div class="insFilterIcon">
 							<div class="insFilterIcon1 m-b-10">
-								<a href="javascript:;">欧式（20）</a>
-								<a href="javascript:;">中式（20）</a>
-								<a href="javascript:;">厨房（10）</a>
-								<a href="javascript:;">办公室（10）</a>
-								<a href="javascript:;">卫生间（30）</a>
-								<a href="javascript:;">100m²（10）</a>
-								<a href="javascript:;">50m²（10）</a>
+								<a href="javascript:;" @click="choiceType($event,item)" v-cloak v-for="item in materialType">{{item.type}}</a>
 							</div>
 							<div class="insFilterIcon2 flex_dom flex_item_mid">
-								<span class="m-r-15">颜色</span>
+								<span class="m-r-60">颜色</span>
 								<div class="colors flex_1 flex_dom flex_item_mid">
-									<a style="background-color: #bf1a20;" href="javascript:;"></a>
-									<a style="background-color: #f5ac61;" href="javascript:;"></a>
-									<a style="background-color: #efea4b;" href="javascript:;"></a>
-									<a class="active" style="background-color: #6cc3c3;" href="javascript:;"></a>
-									<a style="background-color: #63b62f;" href="javascript:;"></a>
-									<a style="background-color: #4169a0;" href="javascript:;"></a>
-									<a style="background-color: #8764a3;" href="javascript:;"></a>
-									<a style="background-color: #865224;" href="javascript:;"></a>
-									<a style="background-color: #adadac;" href="javascript:;"></a>
-									<a style="background-color: #040000;" href="javascript:;"></a>
+									<a href="javascript:;" @click="choiceColor($event,key)" v-cloak v-for="(val, key, index) in types.color">{{val}}</a>
 								</div>
 							</div>
 						</div>
@@ -155,7 +140,12 @@
 			el: '#app',
 			data: {
 				types: [],
-				list: []
+				materialType: [],
+				list: [],
+				keywords: '',
+				type_name: '',
+				type_id: '',
+				material_type: ''
 			},
 			mounted: function(){
 				$.ajax({
@@ -164,69 +154,117 @@
 					success: function(res){
 						res = JSON.parse(res);
 						if(res.success){
-							
+							app.materialType = res.data;
 						}else{
 							console.log(res.message);
 						}
 					}
 				});
-				getList();
+				$.ajax({
+					type:"get",
+					url: host+"/api/l/getTypeList",
+					success: function(res){
+						res = JSON.parse(res);
+						if(res.success){
+							app.types = res.data;
+						}else{
+							console.log(res.message);
+						}
+					}
+				});
+				this.getList();
 			},
 			methods: {
-				
+				//搜索
+				search: function(){
+					page = 1;
+					hasData = true;
+					$(".listCtt").html('');
+					$('.loadDiv').show();
+					$(".listCtt").html('').css('height','0px');
+					$(window).scrollTop($(window).scrollTop()+1);
+					$(window).scrollTop($(window).scrollTop()-1);
+				},
+				//选择类型
+				choiceType: function(e,item){
+					$(e.target).addClass('active').siblings().removeClass('active');
+					page = 1;
+					hasData = true;
+					$(".listCtt").html('').css('height','0px');
+					$(window).scrollTop($(window).scrollTop()+1);
+					$(window).scrollTop($(window).scrollTop()-1);
+					$('.loadDiv').show();
+					this.type_id = item.id;
+					this.type_name = item.type;
+				},
+				//选择颜色
+				choiceColor: function(e,key){
+					page = 1;
+					hasData = true;
+					$(".listCtt").html('').css('height','0px');
+					$(window).scrollTop($(window).scrollTop()+1);
+					$(window).scrollTop($(window).scrollTop()-1);
+					$('.loadDiv').show();
+					$(e.target).addClass('active').siblings().removeClass('active');
+					this.material_type = key;
+				},
+				getList: function(){
+					var that = this;
+					$(".listCtt").waterfall({
+					  itemClass: ".caseItem",
+					  minColCount: 4,
+					  spacingWidth: 4,
+					  spacingHeight: 10,
+					  resizeable: true,
+					  ajaxCallback: function(success, end) {
+					  	if(!hasData){
+							return;
+						}
+					  	hasData = false;
+					  	$.ajax({
+					  		type:"get",
+					  		data: {
+					  			page: page,
+					  			num: 10,
+					  			keywords: that.keywords,
+					  			type_name: that.type_name,
+					  			type_id: that.type_id,
+					  			material_type: that.material_type
+					  		},
+					  		url: host+"/api/l/getMaterialList",
+					  		success: function(res){
+					  			res = JSON.parse(res);
+					  			if(res.success){
+					  				page++;
+					  				var data = {"data": res.data};
+					  				if(res.data.length == 0) {
+					  					hasData = false;
+					  					$('.loadDiv').hide();
+					  					return;
+					  				}else{
+					  					hasData = true;
+					  				}
+								    var str = "";
+								    var templ = '<div class="caseItem"><img src="{{src}}" alt="" /><div class="p-v-10"><h3 class="font15 color-2d2e35 font-w6">{{name}}</h3><div class="flex_dom"><p class="flex_1 only_line font18 font-w6">{{area}}</p><a class="iconShare" onblur="unShare(this)" onfocus="share(this,null,\'{{name}}\',\'{{area}}\',\'{{src}}\')" href="javascript:;">分享<p></p></a></div></div></div>'
+								  	
+								    for(var i = 0; i < data.data.length; i++) {
+								      str += templ.replace("{{src}}", data.data[i].image.split(',')[0]).replace("{{name}}", data.data[i].name).replace("{{area}}", JSON.stringify(data.data[i].space).split('"')[3]+'m²');
+								    }
+								    $(str).appendTo($(".listCtt"));
+					  				success();
+					    			end();
+					  			}else{
+					  				console.log(res.message);
+					  			}
+					  		}
+					  	});
+					  }
+					});
+				}
 			}
 		})
 		function getList(){
-			$(".listCtt").waterfall({
-			  itemClass: ".caseItem",
-			  minColCount: 4,
-			  spacingWidth: 4,
-			  spacingHeight: 10,
-			  resizeable: true,
-			  ajaxCallback: function(success, end) {
-			  	if(!hasData){
-					return;
-				}
-			  	hasData = false;
-			  	$.ajax({
-			  		type:"get",
-			  		data: {
-			  			page: page,
-			  			num: 10,
-			  			keywords: '',
-			  			type_name: '',
-			  			type_id: '',
-			  			material_type: ''
-			  		},
-			  		url: host+"/api/l/getMaterialList",
-			  		success: function(res){
-			  			res = JSON.parse(res);
-			  			if(res.success){
-			  				page++;
-			  				var data = {"data": res.data};
-			  				if(res.data.length == 0) {
-			  					hasData = false;
-			  					$('.loadDiv').hide();
-			  					return;
-			  				}else{
-			  					hasData = true;
-			  				}
-						    var str = "";
-						    var templ = '<div class="caseItem"><img src="{{src}}" alt="" /><div class="p-v-10"><h3 class="font15 color-2d2e35 font-w6">{{name}}</h3><div class="flex_dom"><p class="flex_1 only_line font18 font-w6">{{area}}m²</p><a class="iconShare" onblur="unShare(this)" onfocus="share(this,null,\'标题\',\'描述\')" href="javascript:;">分享<p></p></a></div></div></div>'
-						  	
-						    for(var i = 0; i < data.data.length; i++) {
-						      str += templ.replace("{{src}}", data.data[i].image.split(',')[0]).replace("{{name}}", data.data[i].name).replace("{{area}}", data.data[i].area);
-						    }
-						    $(str).appendTo($(".listCtt"));
-			  				success();
-			    			end();
-			  			}else{
-			  				console.log(res.message);
-			  			}
-			  		}
-			  	});
-			  }
-			});
+			
 		}
 	</script>
 

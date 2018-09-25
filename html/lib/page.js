@@ -27,6 +27,9 @@ $(function(){
 				$('#footTel').text('TEL：+86 '+res.data.tel);
 				$('#footMail').text('TEL：+86 '+res.data.email);
 				$('.footCode img').attr('src',res.data.wx_qr);
+				if($('#aboutCtt').length){
+					$('#aboutCtt').html(res.data.description);
+				}
 			}else{
 				console.log(res.message);
 			}
@@ -39,7 +42,7 @@ $(function(){
 
 //分享
 function share(dom,url,title,desc,image){
-	console.log(213);
+	console.log(dom);
 	//一键分享相关配置
  	var $config = {
       	url                 : url ? url : window.location.href,// 网址，默认使用 window.location.href
@@ -59,6 +62,5 @@ function share(dom,url,title,desc,image){
 	}
 }
 function unShare(dom){
-	console.log(dom);
 	$(dom).find('p').fadeOut(300);
 }

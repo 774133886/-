@@ -79,31 +79,35 @@
                 minIndex;
 
             this._getColumnCount();
-            this.colHeightArray = [];
+            //this.colHeightArray = [];
             var cttLeft = $('.listCtt').offset().left;
 
             $item.each(function(index) {
-                $(this).css("position", "absolute");
-                if(index < $this.cols) {
-                    $(this).css("top", 0);
-                    $(this).css("left", $this.leftOffset + index * $this.itemWidth + index * $this.options.spacingWidth);
-                    $this.colHeightArray.push($(this).outerHeight());
-                } else {
-                    minHeight = Math.min.apply(null, $this.colHeightArray);
-                    minIndex = $.inArray(minHeight, $this.colHeightArray);
-
-                    $(this).css("top", minHeight + $this.options.spacingHeight);
-                    $(this).css("left", $item.eq(minIndex).offset().left - cttLeft);
-                    $this.colHeightArray[minIndex] += $(this).outerHeight() + $this.options.spacingHeight;
-                }
-
-                if($this.options.isFadeIn) {
-                    $(this).animate({"opacity": 1}, 300);
-                }
-                
+            	$(this).find('img').load(function(){
+            		var dom = $(this).parent();
+            		var idx = $(this).parent().index();
+	                dom.css("position", "absolute");
+	                if(idx < $this.cols) {
+	                    dom.css("top", 0);
+	                    dom.css("left", $this.leftOffset + index * $this.itemWidth + index * $this.options.spacingWidth);
+	                    
+	                    $this.colHeightArray.push(dom.outerHeight());
+	                } else {
+	                    minHeight = Math.min.apply(null, $this.colHeightArray);
+	                    minIndex = $.inArray(minHeight, $this.colHeightArray);
+			
+	                    dom.css("top", minHeight + $this.options.spacingHeight);
+	                    dom.css("left", $item.eq(minIndex).offset().left - cttLeft);
+	                    $this.colHeightArray[minIndex] += dom.outerHeight() + $this.options.spacingHeight;
+	                }
+	
+	                if($this.options.isFadeIn) {
+	                    dom.animate({"opacity": 1}, 300);
+	                }
+	            	$this.$element.css("height", Math.max.apply(null, $this.colHeightArray));
+                })
             });
 
-            this.$element.css("height", Math.max.apply(null, $this.colHeightArray));
         },
         _doScroll: function () {
             var $this = this,
@@ -141,7 +145,7 @@
                             }
                         );
                     }
-                }, 100);
+                }, 0);
             });
         }
     }

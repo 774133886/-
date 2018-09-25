@@ -38,7 +38,7 @@
 			
 			<div class="container m-b-40">
 				<div class="centerCon">
-					<div class="designerCtt" v-cloak>
+					<div class="designerCtt">
 						<div class="clearfix">
 							<div class="desHeadLeft">
 								<div class="coverImg" v-if="bannercase.id" :style="{backgroundImage: 'url('+bannercase.image+')'}"></div>
@@ -48,7 +48,7 @@
 											<h3 class="font24">{{bannercase.name}}</h3>
 											<p class="font14 only_line jianjie" v-html="bannercase.description"></p>
 										</div>
-										<a class="iconShare m-t-10" onblur="unShare(this)" onfocus="share(this,null,'标题','描述')" href="javascript:;">分享<p></p></a>
+										<a class="iconShare m-t-10" onblur="unShare(this)" onfocus="share(this,null,'123','13')" href="javascript:;">分享<p></p></a>
 									</div>
 								</div>
 							</div>
@@ -209,10 +209,10 @@
 					  					hasData = true;
 					  				}
 								    var str = "";
-								    var templ = '<div class="caseItem"><img src="{{src}}" alt="" /><div class="p-v-10"><h3 class="font15 color-2d2e35 font-w6">{{name}}</h3><div class="flex_dom"><p class="flex_1 only_line font18 font-w6">{{area}}m²</p><a class="iconShare" onblur="unShare(this)" onfocus="share(this,null,\'标题\',\'描述\')" href="javascript:;">分享<p></p></a></div></div></div>'
+								    var templ = '<div class="caseItem"><img src="{{src}}" alt="" /><div class="p-v-10"><h3 class="font15 color-2d2e35 font-w6">{{name}}</h3><div class="flex_dom"><p class="flex_1 only_line font18 font-w6">{{area}}</p><a class="iconShare" onblur="unShare(this)" onfocus="share(this,null,\'{{name}}\',\'{{area}}\',\'{{src}}\')" href="javascript:;">分享<p></p></a></div></div></div>'
 								  	
 								    for(var i = 0; i < data.data.length; i++) {
-								      str += templ.replace("{{src}}", data.data[i].image.split(',')[0]).replace("{{name}}", data.data[i].name).replace("{{area}}", data.data[i].area);
+								      str += templ.replace(/{{src}}/g, data.data[i].image.split(',')[0]).replace(/{{name}}/g, data.data[i].name).replace(/{{area}}/g, data.data[i].area+'m²');
 								    }
 								    $(str).appendTo($(".listCtt"));
 					  				success();

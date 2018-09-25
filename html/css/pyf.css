@@ -491,21 +491,28 @@
 	margin-right: 60px;
 	margin-bottom: 10px;
 }
+.insFilterIcon1 a:hover{
+	color: #6ebdca;
+}
 .insFilterIcon1 a.active{
-	color: #2d2e35;
+	color: #6ebdca;
 }
 .insFilterIcon2 span{
 	color: #6f6e77;
 }
 .colors a{
-	width: 115px;
-	height: 10px;
+	display: inline-block;
+	color: #6f6e77;
+	font-size: 15px;
+	margin-top: 10px;
+	margin-right: 60px;
+	margin-bottom: 10px;
 }
 .colors a:hover{
-	height: 16px;
+	color: #6ebdca;
 }
 .colors a.active{
-	height: 16px;
+	color: #6ebdca;
 }
 .m-b-50{
 	margin-bottom: 50px;
@@ -643,4 +650,13 @@
 }
 .foot-weChat:hover .footCode{
 	display: block;
+}
+.aboutItemCtt{
+	padding: 20px;
+}
+button[type=submit]{
+	cursor: pointer;
+}
+.m-r-60{
+	margin-right: 60px;
 }
