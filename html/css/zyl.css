@@ -59,7 +59,7 @@
 .index .swiper-pagination-bullet-active{
     background-color: #6ebdca !important;
 }
-.index .swiper-button-next, .swiper-button-prev{
+.index .swiper-button-next,.index .swiper-button-prev{
     transform: translate(0 ,-50%);
     -webkit-transform: translate(0 ,-50%);
     background-size: 50px 90px;

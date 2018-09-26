@@ -218,22 +218,22 @@
 					<div class="indexTitle">
 						<img src="../images/icon-down.png" alt="" />
 						<h1>DECORATION DIARY</h1>
-						<p>装修日记</p>
+						<p>简色日记</p>
 					</div>
 					<div class="centerCon indexDay" v-cloak>
-						<div class="flex_dom m-b-30">
+						<div class="flex_dom m-b-30" v-if="dayNode">
 							<div class="indexDayNum flex_dom">
-								<span>10</span>
+								<span>{{dayNode.node_time}}</span>
 								<i>Day</i>
 							</div>
 							<div class="flex_1 indexDayText">
-								<h3>日常护理第10天</h3>
-								<p>用设计表达对生活、对美追求和理解，把全新的，健康、清新、自然、婉约的生活元素以设计的概念注入到设计中，从而满足都市人追求时尚品味的需求， 展现其智慧、知性、高雅、自信的内涵。</p>
+								<h3>{{dayNode.node_title}}</h3>
+								<p v-if="dayNode.node_description">{{dayNode.node_description | getText}}</p>
 							</div>
 						</div>
 						<div class="flex_dom">
 							<div class="flex_1 flex_dom">
-								<a v-for="item in diary" class="flex_1 hgt310 coverImg m-r-20" href="javascript:;" :style="{backgroundImage: 'url('+item.image+')'}"></a>
+								<a v-for="item in diary" @mouseover="dayNode = item.node" class="flex_1 hgt310 coverImg m-r-20" href="javascript:;" :style="{backgroundImage: 'url('+item.image+')'}"></a>
 							</div>
 							<div class="indexDayMore flex_dom flex_item_mid flex_item_around coverImg" style="background-image: url(../images/banner_2.png);">
 								<div class="color-fff">
@@ -309,24 +309,30 @@
 				designerBanner: [],
 				caseList: [],
 				inspiration: [],
-				diary: []
+				diary: [],
+				dayNode: {}
 			},
 			watch: {
 				'idIndex': function(){
 					setTimeout(function(){
-						if(!idSwiper){
 							idSwiper = new Swiper('.id_swiper .swiper-container', {
 								autoplay: 5000,//可选选项，自动滑动
 								pagination : '.id_swiper .swiper-pagination',
 								loop : true,
+								observer:true,
 								paginationClickable :true,
 								prevButton:'.swiper-button-prev',
 								nextButton:'.swiper-button-next',
 							})
-						}else{
-							idSwiper.update();
-						}
+						
 					},0)
+				}
+			},
+			filters: {
+				getText: function(value){
+					var dd=value.replace(/<\/?.+?>/g,"");
+ 					var dds=dd.replace(/ /g,"");
+ 					return dds;
 				}
 			},
 			mounted: function(){
@@ -413,6 +419,7 @@
 						res = JSON.parse(res);
 						if(res.success){
 							app.diary = res.data;
+							app.dayNode = res.data[0].node;
 						}else{
 							console.log(res.message);
 						}

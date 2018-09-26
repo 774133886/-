@@ -43,52 +43,35 @@
 						<div class="filter-search bg-fff m-t-170 flex_dom around-center">
 							<!-- 筛选 -->
 							<div class="filter flex_dom around-center">
-								<div class="filter-item flex_1 text-center font15 fw_600 pointer">
-									风格
+								<div class="filter-item flex_1 text-center font15 fw_600 pointer" v-cloak>
+									{{param.style ? styleName : '风格'}}
 									<img class="angle m-l-5" src="../images/icon_angle.png" alt="">
 									<ul class="abolute hide select-wrap color-000">
-										<li v-for="(val, key, index) in types.style">{{val}}</li>
+										<li @click="choiceStyle($event,val,key)" v-for="(val, key, index) in types.style">{{val}}</li>
 									</ul>
 								</div>
 								<div class="vert-line hgt20"></div>
-								<div class="filter-item flex_1 text-center font15 fw_600 pointer">
-									户型
+								<div class="filter-item flex_1 text-center font15 fw_600 pointer" v-cloak>
+									{{param.house_type ? houseName : '户型'}}
 									<img class="angle m-l-5" src="../images/icon_angle.png" alt="">
 									<ul class="abolute hide select-wrap color-000">
-										<li v-for="(val, key, index) in types.housetype">{{val}}</li>
+										<li @click="choiceHousetype($event,val,key)" v-for="(val, key, index) in types.housetype">{{val}}</li>
 									</ul>
 								</div>
 								<div class="vert-line hgt20"></div>
-								<div class="filter-item flex_1 text-center font15 fw_600 pointer">
-									颜色
-									<img class="angle m-l-5" src="../images/icon_angle.png" alt="">
-									<ul class="abolute hide select-wrap color-000">
-										<li v-for="(val, key, index) in types.color">{{val}}</li>
-									</ul>
-								</div>
-								<div class="vert-line hgt20"></div>
-								<div class="filter-item flex_1 text-center font15 fw_600 pointer">
-									素材元素
-									<img class="angle m-l-5" src="../images/icon_angle.png" alt="">
-									<ul class="abolute hide select-wrap color-000">
-										<li v-for="(val, key, index) in types.element">{{val}}</li>
-									</ul>
-								</div>
-								<div class="vert-line hgt20"></div>
-								<div class="filter-item flex_1 text-center font15 fw_600 pointer">
-									素材空间
-									<img class="angle m-l-5" src="../images/icon_angle.png" alt="">
-									<ul class="abolute hide select-wrap color-000">
-										<li v-for="(val, key, index) in types.space">{{val}}</li>
-									</ul>
-								</div>
-								<div class="vert-line hgt20"></div>
-								<div class="filter-item flex_1 text-center font15 fw_600 pointer">
+								<div class="numberBox flex_1 text-center font15 fw_600">
 									面积
-									<img class="angle m-l-5" src="../images/icon_angle.png" alt="">
-									<ul class="abolute hide select-wrap color-000">
-										<li v-for="(val, key, index) in types.area">{{val}}m²</li>
-									</ul>
+									<input type="number" v-model="minArea" />
+									-
+									<input type="number" v-model="maxArea" />
+								</div>
+								<div class="vert-line hgt20"></div>
+								<div class="numberBox flex_1 text-center font15 fw_600">
+									价格
+									<input type="number" v-model="minFee" />
+									-
+									<input type="number" v-model="maxFee" />
+									m²
 								</div>
 								<!--<div class="vert-line hgt20"></div>
 								<div class="filter-item flex_1 text-center font15 fw_600 pointer">
@@ -110,26 +93,43 @@
 								</div>-->
 							</div>
 							<div class="search flex_1 relative">
-								<input class="font15 placeholderccc" placeholder="搜索关键字" type="text">
-								<button class="search-btn"></button>
+								<input class="font15 placeholderccc" v-model="param.keywords" placeholder="搜索关键字" type="text">
+								<button class="search-btn" @click="search()"></button>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-			<div class="bg-f1f2f4 container">
+			<div class="bg-f1f2f4 container" style="min-height: 300px;">
 				<div class="center-1260 p-t-10 p-b-70 flex_dom flex_wrap">
 					<!-- 模板 -->
 					<div v-for="item in list" class="case-item relative">
-						<div class="wid100 hgt250 overflow_hide"><img style="width: 100%; height: 250px" class="block works" src="item.image" alt=""></div>
-						<p class="font14 color-8b m-t-15">{{item.name_en}}</p>
-						<p class="font18 color-221714 m-t-10 fw_600"><span>{{item.name}}</p>
-						<p class="m-t-15 font12 color-8b flex_dom flex_item_mid">
-							<img class="avator m-r-10" src="item.designer.photo" alt="">
+						<div class="wid100 hgt250 overflow_hide"><img style="width: 100%; height: 250px" @click="openMask(item.image)" class="block works pointer" :src="item.image.split(',')[0]" alt=""></div>
+						<div class="font14 color-8b m-t-15 only_line" v-if="item.description">{{item.description | getText}}</div>
+						<p class="font18 color-221714 m-t-10 fw_600">{{item.name}}</p>
+						<p class="m-t-15 font12 color-8b flex_dom flex_item_mid pointer" @click="goDesigner(item.designer.id)">
+							<img class="avator m-r-10" :src="item.designer.photo" alt="">
 							{{item.designer.name}}
 						</p>
 						<img class="new" src="../images/new.png" alt="">
 					</div>
+				</div>
+				<div class="text-center loadDiv">
+					<img src="../images/icon-pageDown.png" alt="" />
+					<p class="color-2d2e35 font18 m-t-5 m-b-40">向下滚动加载更多</p>
+					<img src="../images/loading.gif" alt="" />
+				</div>
+			</div>
+			<!--mask-->
+			<div class="caseMask" @click="closeMask()"></div>
+			<div class="caseSwiper">
+				<div class="swiper-container" v-if="caseImg">
+					<div class="swiper-wrapper">
+					    <div class="swiper-slide" v-for="item in caseImg"><img :src="item" alt="" /></div>
+					</div>
+				    <div class="swiper-button-prev swiper-button-white"></div>
+				    <div class="swiper-button-next swiper-button-white"></div>
+					<div class="swiper-pagination"></div>
 				</div>
 			</div>
 			</div>
@@ -185,24 +185,39 @@
 	<script type="text/javascript" src="../lib/swiper.min.js"></script>
 	<script type="text/javascript" src="../lib/page.js"></script>
 	<script>
+		var caseSwiper = null;
 		var app = new Vue({
 			el: '#app',
 			data: {
 				types: [],
 				list: [],
+				caseImg: [],
 				param: {
 					page: 1,
 					num: 10,
 					keywords: '',
-					designer_id: '',
 					style: '',
 					house_type: '',
 					area: '',
 					fee: ''
 				},
+				minArea: '',
+				maxArea: '',
+				minFee: '',
+				maxFee: '',
+				styleName: '',
+				houseName: '',
 				hasData: true
 			},
+			filters: {
+				getText: function(value){
+					var dd=value.replace(/<\/?.+?>/g,"");
+ 					var dds=dd.replace(/ /g,"");
+ 					return dds;
+				}
+			},
 			mounted: function(){
+				
 				//获取类型
 				$.ajax({
 					type:"get",
@@ -220,6 +235,70 @@
 				this.getList();
 			},
 			methods: {
+				goDesigner: function(id){
+					location.href = 'designerWork.html?id='+id
+				},
+				//点击图片
+				openMask: function(imgs){
+					app.caseImg = imgs.split(',');
+					$('.caseMask,.caseSwiper').fadeIn(0);
+					app.$nextTick(function(){
+						if(caseSwiper){
+							caseSwiper.update();
+						}else{
+							caseSwiper = new Swiper('.caseSwiper .swiper-container', {
+								pagination : '.caseSwiper .swiper-pagination',
+								loop : true,
+								observer:true,
+								paginationClickable :true,
+								prevButton:'.swiper-button-prev',
+								nextButton:'.swiper-button-next',
+							})
+						}
+					});
+				},
+				closeMask: function(){
+					$('.caseMask,.caseSwiper').fadeOut(300);
+				},
+				//选择风格
+				choiceStyle: function(e,val,key){
+					app.param.style = key;
+					app.styleName = val;
+					$('.loadDiv').show();
+					app.hasData = true;
+					app.param.page = 1;
+					app.getList();
+				},
+				//选择户型
+				choiceHousetype: function(e,val,key){
+					app.param.house_type = key;
+					app.houseName = val;
+					$('.loadDiv').show();
+					app.hasData = true;
+					app.param.page = 1;
+					app.getList();
+				},
+				//搜索
+				search: function(){
+					if(app.minArea && !app.maxArea){
+						app.param.area = app.minArea + "_0";
+					}else if(!app.minArea && app.maxArea){
+						app.param.area = "0_" + app.maxArea;
+					}else{
+						app.param.area = '';
+					}
+					if(app.minFee && !app.maxFee){
+						app.param.fee = app.minFee + "_0";
+					}else if(!app.minFee && app.maxFee){
+						app.param.fee = "0_" + app.maxFee;
+					}else{
+						app.param.fee = '';
+					}
+					$('.loadDiv').show();
+					app.hasData = true;
+					app.param.page = 1;
+					app.getList();
+				},
 				//获取列表
 				getList: function(){
 					var that = this;
@@ -235,6 +314,8 @@
 							res = JSON.parse(res);
 							if(res.data.length == 0){
 								app.hasData = false;
+								$('.loadDiv').hide();
+								return;
 							}else{
 								app.hasData = true;
 							}

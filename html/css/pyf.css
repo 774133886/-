@@ -210,7 +210,7 @@
 .id_swiper .swiper-container-horizontal>.swiper-pagination-bullets, .swiper-pagination-custom, .swiper-pagination-fraction{
 	bottom: 20px;
 }
-.id_swiper .swiper-button-next, .swiper-button-prev{
+.id_swiper .swiper-button-next,.id_swiper .swiper-button-prev{
 	width: 50px;
 	height: 95px;	
 	background-size: 100% 100%;
@@ -659,4 +659,49 @@ button[type=submit]{
 }
 .m-r-60{
 	margin-right: 60px;
+}
+.numberBox{
+	padding: 0 8px;
+}
+.numberBox input{
+	border: 1px solid #EEEEEE;
+	width: 60px;
+	height: 26px;
+}
+input::-webkit-outer-spin-button,input::-webkit-inner-spin-button{
+	-webkit-appearance: none !important;
+}
+input[type="number"]{
+	-moz-appearance: textfield;
+}
+.caseMask{
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0,0,0,.4);
+	display: none;
+}
+.caseSwiper{
+	width: 1200px;
+	max-height: 100%;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	-webkit-transform: translate(-50%,-50%);
+	transform: translate(-50%,-50%);
+	display: none;
+	text-align: center;
+}
+.caseSwiper .swiper-pagination-bullet{
+	background: #FFFFFF;
+	opacity: 1;
+}
+.caseSwiper .swiper-pagination-bullet-active{
+	background: #6ebdca;
+}
+.caseSwiper img{
+	max-width: 100%;
+	max-height: 100%;
 }
