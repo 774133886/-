@@ -243,12 +243,10 @@
 					app.caseImg = imgs.split(',');
 					$('.caseMask,.caseSwiper').fadeIn(0);
 					app.$nextTick(function(){
-						if(caseSwiper){
-							caseSwiper.update();
-						}else{
+						if(!caseSwiper){
 							caseSwiper = new Swiper('.caseSwiper .swiper-container', {
 								pagination : '.caseSwiper .swiper-pagination',
-								loop : true,
+								loop : false,
 								observer:true,
 								paginationClickable :true,
 								prevButton:'.swiper-button-prev',

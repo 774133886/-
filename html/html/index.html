@@ -368,11 +368,12 @@
 							app.designer = res.data;
 							//app.getDesigner(res.data[0].id);
 							app.$nextTick(function(){
-								if($('.id_swiper .swiper-wrapper').length != 0){
+								if($('.id_swiper .swiper-wrapper').length == 0){
 									idSwiper = new Swiper('.id_swiper .swiper-container', {
 										autoplay: 5000,//可选选项，自动滑动
 										pagination : '.id_swiper .swiper-pagination',
 										loop : true,
+										observer:true,
 										paginationClickable :true,
 										prevButton:'.swiper-button-prev',
 										nextButton:'.swiper-button-next',
