@@ -37,13 +37,21 @@
 			<div class="container bg-f1f2f4 clearfix">
 				<div class="designerBg">
 					<div class="center-1260 pt374">
-						<div v-for="item in Decommendlist" class="designerBox clearfix box_s l-pad70 bg-fff">
-							<div class="dbLeft">
-								<img class="mainPic" src="../images/banner1.png"/>
+						<div v-for="(item,index) in Decommendlist" class="designerBox clearfix box_s l-pad70 bg-fff">
+							<div class="dbLeft" v-if="item.case.length">
+								<div :class="'rd_swiper'+index">
+									<div class="swiper-container">
+										<div class="swiper-wrapper">
+											<div class="swiper-slide" v-for="img in item.case">
+												<img class="mainPic" :src="img.img"/>
+											</div>
+										</div>
+									</div>
+								</div>
 								<div class="dspicList around-center">
-									<div class="center">
-										<p class="coverImg listPic" style="background-image: url(../images/banner1.png);"></p>
-										<p class="coverImg listPic" style="background-image: url(../images/banner1.png);"></p>
+									<div :class="'center swiper-pagination '+'rd_page'+index">
+										<!--<p class="coverImg listPic" style="background-image: url(../images/banner1.png);"></p>
+										<p class="coverImg listPic" style="background-image: url(../images/banner1.png);"></p>-->
 									</div>
 								</div>
 							</div>
@@ -153,8 +161,7 @@
 					success: function(res){
 						res = JSON.parse(res);
 						if(res.success){
-							app.DesignerList = res.data.slice(0,4);;
-							console.log(app.DesignerList)
+							app.DesignerList = res.data.slice(0,4);
 							
 						}else{
 							console.log(res.message);
@@ -169,9 +176,30 @@
 					success: function(res){
 						res = JSON.parse(res);
 						if(res.success){
+							//<p class="coverImg listPic" style="background-image: url(../images/banner1.png);"></p>
+							res.data.forEach(function(item){
+								item.case.forEach(function(item){
+									item.img = item.image.split(',')[0];
+								});
+							});
 							app.Decommendlist = res.data;
-							
-							console.log(app.DecorateType)
+							app.$nextTick(function(){
+								var mySwiper = new Swiper('.rd_swiper0 .swiper-container', {
+									autoplay: 5000,//可选选项，自动滑动
+									pagination : '.dspicList .rd_page0',
+									loop : true,
+									paginationClickable :true,
+									paginationBulletRender: function (swiper, index, className) {
+									      return '<p class="coverImg listPic '+className+'" style="background-image: url('+res.data[0].case[index].img+');"></p>';
+									  }
+								});
+								var mySwiper = new Swiper('.rd_swiper1 .swiper-container', {
+									autoplay: 5000,//可选选项，自动滑动
+									pagination : '.dspicList .rd_page1',
+									loop : true,
+									paginationClickable :true,
+								})
+							})
 						}else{
 							console.log(res.message);
 						}
@@ -182,14 +210,14 @@
 				
 			}
 		})
-		var mySwiper = new Swiper('.swiper-container', {
-			// autoplay: 5000,//可选选项，自动滑动
-			pagination : '.swiper-pagination',
-			paginationType: 'bullets',
-			prevButton:'.swiper-button-prev',
-			nextButton:'.swiper-button-next',
-			simulateTouch: false
-		})		
+//		var mySwiper = new Swiper('.swiper-container', {
+//			// autoplay: 5000,//可选选项，自动滑动
+//			pagination : '.swiper-pagination',
+//			paginationType: 'bullets',
+//			prevButton:'.swiper-button-prev',
+//			nextButton:'.swiper-button-next',
+//			simulateTouch: false
+//		})		
 			
 	</script>
 

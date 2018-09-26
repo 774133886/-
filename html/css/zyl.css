@@ -239,12 +239,16 @@
     width: 315px;
     height: 220px;
     position: fixed;
-    right: 0;
+    right: -240px;
     top: 300px;
     background-color: #fff;
-    z-index: 1;
+    z-index: 111;
     border: 1px solid #eee;
-    transform: translateX(190px)
+    -webkit-transition: all .3s ease;
+    transition: all .3s ease;
+}
+.fix-box:focus{
+	right: 0;
 }
 .fix-box .order-btn{
     background-color: #6e6e6e;
@@ -268,8 +272,13 @@
     background: url(../images/qq.png) no-repeat center center;
     background-size: 21px 24px;
 }
-
-
+.dspicList .swiper-pagination-bullet{
+	opacity: .6;
+	border-radius: 0;
+}
+.dspicList .swiper-pagination-bullet-active{
+	opacity: 1;
+}
 
 
 

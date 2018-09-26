@@ -705,3 +705,10 @@ input[type="number"]{
 	max-width: 100%;
 	max-height: 100%;
 }
+.wx .footCode{
+	background-color: #ccc;
+	left: 20px;
+}
+.wx .footCode:after{
+	border-top: 8px solid #ccc;
+}
