@@ -30,6 +30,7 @@ $(function(){
 				if($('#aboutCtt').length){
 					$('#aboutCtt').html(res.data.description);
 				}
+				fixbox(res.data.tel,res.data.wx_qr,'123456789');
 			}else{
 				console.log(res.message);
 			}
@@ -37,6 +38,30 @@ $(function(){
 	});
 });
 
+function fixbox(phone,wechat,qq){
+var html = '<a class="fix-box font15 color-6f6e77" href="javascript:;">'+
+		'<div><button class="font32 fw_600 color-fff wid100 hgt65 l-h-65 order-btn">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;立即预约&nbsp;&nbsp;></button></div>'+
+		'<p class="font38 color-2d2e35 text-center fw_600">'+phone+'</p>'+
+		'<div class="flex_dom flex_item_mid flex_item_between m-t-5">'+
+			'<div>'+
+				'<div class="wx flex_dom flex_item_mid foot-weChat relative">'+
+					'<i class="wx-logo"></i>'+
+					'WeChat'+
+					'<div class="footCode"><img src="'+wechat+'"></div>'+
+				'</div>'+
+				'<div class="qq flex_dom flex_item_mid m-t-10" onclick="window.open(\'http://wpa.qq.com/msgrd?v=3&uin='+qq+'\',\'_blank\')">'+
+					'<i class="qq-logo"></i>'+
+					'QQ客服'+
+				'</div>'+
+			'</div>'+
+			'<div class="m-r-40">'+
+				'<img style="width: 56px;" src="../images/icon_msg.png" alt="">'+
+				'<p>在线客服</p>'+
+			'</div>'+
+		'</div>'+
+	'</a>'
+	$('body').append(html);
+}
 
 //获取url参数
 function GetRequest() {
