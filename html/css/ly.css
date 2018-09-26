@@ -394,3 +394,34 @@
 .typelist li:last-child{
 	border-bottom: none;
 }
+.designerBox:nth-child(2n) .dbLeft{
+	float: left;
+}
+.designerBox:nth-child(2n) .hgt594{
+	float: right;
+}
+.designerBox:nth-child(2n+1) .dbLeft{
+	float: right;
+}
+.designerBox:nth-child(2n+1) .hgt594{
+	float: left;
+}
+.designerBox{
+	padding-top: 65px;
+}
+.litleHeadpic1{
+	width: 100%;
+	height: 318px;
+}
+.orderBtn{
+	background-color: #6fbdca;
+	padding: 0 46px;
+    cursor: pointer;
+}
+.libox{
+	margin-right: 66px;
+}
+.libox:nth-child(4){
+	float: right !important;
+	margin-right: 0 !important;
+}
