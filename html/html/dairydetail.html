@@ -48,33 +48,33 @@
 									<img src="../images/icon_day.png"/>
 								</div>
 								<div class="m-l-20 flex_1 m-t-30">
-									<div class="font22 color-2d2e35 fw_600 l-h-35">
+									<div class="font22 color-2d2e35 fw_600 l-h-35" v-cloak>
 										{{item.node_title}}
 									</div>
-									<p class="l-h-20  font15 color-94">{{item.node_description | getText}}</p>
+									<p class="l-h-20  font15 color-94" v-cloak>{{item.node_description | getText}}</p>
 									<div  class="picContent clearfix">
 										<p v-for="pic in item.imglist" class="coverImg fl picC" :style="{backgroundImage: 'url('+pic+')'}"></p>
 									</div>
-									<p class="l-h-20 m-t-25 font15 color-94">{{item.node_description | getText}}</p>
+									<p class="l-h-20 m-t-25 font15 color-94" v-cloak>{{item.node_description | getText}}</p>
 									
 								</div>
 							</div>
 						</div>
 						<div class="between-center pagecArea">
-							<div class="pagecbox column-between">
+							<div v-if="prevDataNode.length" class="pagecbox column-between">
 								<p class="coverImg fl pagecImg" :style="{backgroundImage: 'url('+prevData.image+')'}"></p>
 								<div class="hgt60 wid100 l-pad20 center">
 									<a :href="'dairydetail.html?id='+prevData.id+'=typeid='+typeid" class="center pagecbleft">
 										<img src="../images/icon_prev.png"/>
 										<span class="color-2d2e35 m-l-15 font22">上一篇</span>
 									</a>
-									<p style="flex: 1;" class="l-h-20 line2 font15 color-94">{{prevDataNode.node_description | getText}}</p>
+									<p style="flex: 1;" class="l-h-20 line2 font15 color-94" v-cloak>{{prevDataNode[0].node_description | getText}}</p>
 								</div>
 							</div>
-							<div class="pagecbox column-between">
+							<div v-if="nextDataNode.length" class="pagecbox column-between">
 								<p class="coverImg fl pagecImg" :style="{backgroundImage: 'url('+nextData.image+')'}"></p>
 								<div class="hgt60 wid100 l-pad20 center">
-									<p style="flex: 1;" class="l-h-20 line2 font15 color-94">{{nextDataNode.node_description | getText}}</p>
+									<p style="flex: 1;" class="l-h-20 line2 font15 color-94" v-cloak>{{nextDataNode[0].node_description | getText}}</p>
 									<a :href="'dairydetail.html?id='+nextData.id+'=typeid='+typeid" class="center-end pagecbleft">
 										<span class="color-2d2e35 m-r-15 font22">下一篇</span>
 										<img src="../images/icon_next.png"/>
@@ -194,8 +194,10 @@
 					success: function(res){
 						res = JSON.parse(res);
 						if(res.success){
-							app.prevData = res.data;
-							app.prevDataNode = res.data.node[0];
+							if(res.data!=null){
+								app.prevData = res.data;
+								app.prevDataNode = res.data.node;
+							}
 						}else{
 							console.log(res.message);
 						}
@@ -209,8 +211,10 @@
 					success: function(res){
 						res = JSON.parse(res);
 						if(res.success){
-							app.nextData = res.data;
-							app.nextDataNode = res.data.node[0];
+							if(res.data!=null){
+								app.nextData = res.data;
+								app.nextDataNode = res.data.node;
+							}
 						}else{
 							console.log(res.message);
 						}
