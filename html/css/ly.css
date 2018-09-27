@@ -382,7 +382,8 @@
 	top: 95px;
 	left: 0;
 	background-color: #fff;
-	
+	z-index: 99;
+	display: none;
 }
 .typelist li{
 	height: 45px;

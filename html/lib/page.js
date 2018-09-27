@@ -36,11 +36,37 @@ $(function(){
 			}
 		}
 	});
+	
+	//获取日志分类
+	$.ajax({
+		type:"get",
+		url: host+"/api/l/getDecorateType",
+		success: function(res){
+			res = JSON.parse(res);
+			if(res.success){
+				app.DecorateType = res.data;
+				var html = '';
+				html += '<ul class="typelist">';
+				res.data.forEach(function(item){
+					html +=		'<li onclick="location.href=\'decoratedairy.html?id='+item.id+'\'" class="font14 only_line">'+item.type+'</li>'
+				})
+				html += '</ul>'
+				$('.headDairy').append(html);
+				$('.headDairy').hover(function(){
+					$(this).find('ul').fadeIn(300);
+				},function(){
+					$(this).find('ul').fadeOut(300);
+				})
+			}else{
+				console.log(res.message);
+			}
+		}
+	});
 });
 
 function fixbox(phone,wechat,qq){
 var html = '<a class="fix-box font15 color-6f6e77" href="javascript:;">'+
-		'<div><button class="font32 fw_600 color-fff wid100 hgt65 l-h-65 order-btn">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;立即预约&nbsp;&nbsp;></button></div>'+
+		'<div><div class="font32 fw_600 color-fff wid100 hgt65 l-h-65 order-btn">立即预约&nbsp;&nbsp;></div></div>'+
 		'<p class="font38 color-2d2e35 text-center fw_600">'+phone+'</p>'+
 		'<div class="flex_dom flex_item_mid flex_item_between m-t-5">'+
 			'<div>'+

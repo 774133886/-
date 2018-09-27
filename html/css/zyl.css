@@ -255,6 +255,7 @@
     background: url(../images/icon_time2.png) no-repeat 63px center #6ebdca;
     background-size: 34px 34px;
     cursor: pointer;
+    padding-left: 110px;
 }
 .fix-box .wx, .fix-box .qq{
     padding-left: 30px;
