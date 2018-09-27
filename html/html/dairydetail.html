@@ -53,7 +53,7 @@
 									</div>
 									<p class="l-h-20  font15 color-94">{{item.node_description | getText}}</p>
 									<div  class="picContent clearfix">
-										<p v-for="pic in item.node_description | getPic" class="coverImg fl picC" :style="{backgroundImage: 'url('+pic+')'}"></p>
+										<p v-for="pic in item.imglist" class="coverImg fl picC" :style="{backgroundImage: 'url('+pic+')'}"></p>
 									</div>
 									<p class="l-h-20 m-t-25 font15 color-94">{{item.node_description | getText}}</p>
 									
@@ -62,25 +62,23 @@
 						</div>
 						<div class="between-center pagecArea">
 							<div class="pagecbox column-between">
-								<p class="coverImg fl pagecImg" style="background-image: url(../images/banner3.png);"></p>
+								<p class="coverImg fl pagecImg" :style="{backgroundImage: 'url('+prevData.image+')'}"></p>
 								<div class="hgt60 wid100 l-pad20 center">
-									<div class="center pagecbleft">
+									<a :href="'dairydetail.html?id='+prevData.id+'=typeid='+typeid" class="center pagecbleft">
 										<img src="../images/icon_prev.png"/>
 										<span class="color-2d2e35 m-l-15 font22">上一篇</span>
-									</div>
-									<p style="flex: 1;" class="l-h-20 line2 font15 color-94">用设计表达对生活、对美追求和理解，把全新的，健康、清新、自然、婉约的生活元素以设计的概念注入到设计中，从而满足追求时尚品味的需求，
-展现其智慧、知性、高雅、自信的内涵。</p>
+									</a>
+									<p style="flex: 1;" class="l-h-20 line2 font15 color-94">{{prevDataNode.node_description | getText}}</p>
 								</div>
 							</div>
 							<div class="pagecbox column-between">
-								<p class="coverImg fl pagecImg" style="background-image: url(../images/banner3.png);"></p>
+								<p class="coverImg fl pagecImg" :style="{backgroundImage: 'url('+nextData.image+')'}"></p>
 								<div class="hgt60 wid100 l-pad20 center">
-									<p style="flex: 1;" class="l-h-20 line2 font15 color-94">用设计表达对生活、对美追求和理解，把全新的，健康、清新、自然、婉约的生活元素以设计的概念注入到设计中，从而满足追求时尚品味的需求，
-展现其智慧、知性、高雅、自信的内涵。</p>
-									<div class="center-end pagecbleft">
+									<p style="flex: 1;" class="l-h-20 line2 font15 color-94">{{nextDataNode.node_description | getText}}</p>
+									<a :href="'dairydetail.html?id='+nextData.id+'=typeid='+typeid" class="center-end pagecbleft">
 										<span class="color-2d2e35 m-r-15 font22">下一篇</span>
 										<img src="../images/icon_next.png"/>
-									</div>
+									</a>
 								</div>
 							</div>
 						</div>
@@ -151,9 +149,12 @@
 		var app = new Vue({
 			el: '#app',
 			data: {
-				DecorateType: [],
+				prevData: {},
+				prevDataNode: {},
 				dairyList: [],
-				dayNode: {}
+				nextData: {},
+				nextDataNode: {},
+				typeid:typeid
 			},
 			mounted: function(){
 				//获取详情数据
@@ -165,6 +166,20 @@
 						res = JSON.parse(res);
 						if(res.success){
 							app.dairyList = res.data.node;
+							
+					        
+							for (var i = 0;i<app.dairyList.length;i++) {
+								
+					            var value = app.dairyList[i].node_description;
+								var reg = new RegExp("(<img.*src=\"\.*?\>)");  //正则表达式
+							    value.match(reg);
+							    var re = /src="([^"]*)"/g;  
+							    var pic=[];
+							    while (arr = re.exec(value)) {
+									pic.push(arr[1]);
+							    }
+								app.dairyList[i].imglist = pic;
+							}
 							console.log(app.dairyList)
 						}else{
 							console.log(res.message);
@@ -179,7 +194,8 @@
 					success: function(res){
 						res = JSON.parse(res);
 						if(res.success){
-							app.DecorateType = res.data;
+							app.prevData = res.data;
+							app.prevDataNode = res.data.node[0];
 						}else{
 							console.log(res.message);
 						}
@@ -193,7 +209,8 @@
 					success: function(res){
 						res = JSON.parse(res);
 						if(res.success){
-							app.DecorateType = res.data;
+							app.nextData = res.data;
+							app.nextDataNode = res.data.node[0];
 						}else{
 							console.log(res.message);
 						}
