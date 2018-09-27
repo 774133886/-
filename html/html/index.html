@@ -24,13 +24,13 @@
 		<div class="main" id="app">
 			<div class="curHeader centerCon clearfix">
 				<img src="../images/headLogo.png" alt="" />
-				<a href="javascript:;" class="active">首 页</a>
-				<a href="javascript:;">设计师</a>
-				<a href="javascript:;">案例</a>
-				<a href="javascript:;">灵感</a>
-				<a href="javascript:;">装修日记</a>
-				<a href="javascript:;">常见问题</a>
-				<a href="javascript:;">关于我们</a>
+				<a href="index.html" class="active">首 页</a>
+				<a href="recommendDesigner.html">设计师</a>
+				<a href="case.html">案例</a>
+				<a href="inspiration.html">灵感</a>
+				<a href="decoratedairy.html" class="relative headDairy">装修日记</a>
+				<a href="question&answer.html">常见问题</a>
+				<a href="aboutus.html">关于我们</a>
 			</div>
 			
 			<div class="container">
@@ -60,7 +60,7 @@
 									<p>{{item.qualification}}</p>
 								</div>
 							</a>
-							<a class="flex_dom" href="javascript:;">
+							<a class="flex_dom" href="recommendDesigner.html">
 								<div class="id_img id_goMore flex_dom flex_item_mid flex_item_around">
 									<div class="text-center">
 										<p class="color-fff"><span class="font20">MORE</span> <i class="font18">+</i></p>
@@ -208,7 +208,7 @@
 									</div>
 								</div>
 								<div class="inspirationBox hgt300">
-									<a class="inspirationBtn" href="javascript:;">MORE +</a>
+									<a class="inspirationBtn" href="inspiration.html">MORE +</a>
 								</div>
 							</div>
 						</div>
@@ -235,7 +235,7 @@
 							<div class="flex_1 flex_dom">
 								<a v-for="item in diary" @mouseover="dayNode = item.node" class="flex_1 hgt310 coverImg m-r-20" href="javascript:;" :style="{backgroundImage: 'url('+item.image+')'}"></a>
 							</div>
-							<div class="indexDayMore flex_dom flex_item_mid flex_item_around coverImg" style="background-image: url(../images/banner_2.png);">
+							<div class="indexDayMore flex_dom flex_item_mid flex_item_around coverImg pointer" onclick="location.href='decoratedairy.html'" style="background-image: url(../images/banner_2.png);">
 								<div class="color-fff">
 									<h3 class="font20">MORE +</h3>
 									<p class="font15">査看往日</p>
