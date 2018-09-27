@@ -41,7 +41,7 @@
 			<div class="container pb200 bg-f1f2f4 clearfix">
 				<div class="dirayBg">
 					<div class="center-1260 pt374">
-						<div v-for="item in dairyList" class="dairyBox box_s bg-fff">
+						<a :href="'dairydetail.html?id='+item.id+'=typeid='+typeid" v-for="item in dairyList" class="dairyBox block box_s bg-fff">
 							<div class="tTop center">
 								<div class="center">
 									<span class="font88 color-6ebdca">10</span>
@@ -55,7 +55,7 @@
 								</div>
 							</div>
 							<div class="ImgboxArea clearfix">
-								<div @mouseover="dayNode = item.node" v-for="node in item.node" class="fl pointer ImgboxList">
+								<div  @mouseover="dayNode = item.node" v-for="node in item.node" class="fl pointer ImgboxList">
 									<!--<p class="coverImg ImgboxPic" :style="{backgroundImage: 'url('+node_description | getPic+')'}"></p>-->
 									<img class="ImgboxPic" v-bind:src="node.node_description | getPic"/>
 									<div class="ImgboxBot">
@@ -64,7 +64,7 @@
 									</div>
 								</div>
 							</div>
-						</div>
+						</a>
 						
 					</div>
 				</div>
@@ -131,6 +131,7 @@
 			el: '#app',
 			data: {
 				DecorateType: [],
+				typeid:'',
 				dairyList: [],
 				dayNode: {}
 			},
@@ -144,7 +145,8 @@
 						res = JSON.parse(res);
 						if(res.success){
 							app.DecorateType = res.data;
-							app.getdairy(res.data[0].id);
+							app.typeid = res.data[0].id
+							app.getdairy(app.typeid);
 							console.log(app.DecorateType)
 						}else{
 							console.log(res.message);
@@ -173,12 +175,13 @@
 			methods: {
 				getdairy:function(id){
 				//获取问题列表
+				app.typeid = id
 					$.ajax({
 						type:"get",
 						url: host+"/api/l/getDecorateList",
 						data:{
 //							page:1,num:5,
-							type_id:id
+							type_id:app.typeid
 						},
 						success: function(res){
 							res = JSON.parse(res);
