@@ -1,67 +1,69 @@
 
-var host = 'http://jssj.crecohe.com/admin';
+var host = 'http://132.232.61.218/admin';
 
 //头部效果
 $(function(){
-	var left = $('.curHeader a.active').offset().left;
-	var hdLeft = $('.curHeader').offset().left;
-	$('.curHeader').prepend('<i></i>');
-	$('.curHeader i').css('left',left-hdLeft).show();
-	$('.curHeader a').hover(function(){
-		var l = $(this).offset().left;
-		var hdl = $('.curHeader').offset().left;
-		$('.curHeader i').css('left',l-hdl);
-	},function(){
-		var l = $('.curHeader a.active').offset().left;
-		var hdl = $('.curHeader').offset().left;
-		$('.curHeader i').css('left',l-hdl);
-	});
-	
-	//底部二维码
-	$.ajax({
-		type:"get",
-		url: host+"/api/l/getUs",
-		success: function(res){
-			res = JSON.parse(res);
-			if(res.success){
-				$('#footTel').text('TEL：+86 '+res.data.tel);
-				$('#footMail').text('TEL：+86 '+res.data.email);
-				$('.footCode img').attr('src',res.data.wx_qr);
-				if($('#aboutCtt').length){
-					$('#aboutCtt').html(res.data.description);
+	setTimeout(function(){
+		var left = $('.curHeader a.active').offset().left;
+		var hdLeft = $('.curHeader').offset().left;
+		$('.curHeader').prepend('<i></i>');
+		$('.curHeader i').css('left',left-hdLeft).show();
+		$('.curHeader a').hover(function(){
+			var l = $(this).offset().left;
+			var hdl = $('.curHeader').offset().left;
+			$('.curHeader i').css('left',l-hdl);
+		},function(){
+			var l = $('.curHeader a.active').offset().left;
+			var hdl = $('.curHeader').offset().left;
+			$('.curHeader i').css('left',l-hdl);
+		});
+		
+		//底部二维码
+		$.ajax({
+			type:"get",
+			url: host+"/api/l/getUs",
+			success: function(res){
+				res = JSON.parse(res);
+				if(res.success){
+					$('#footTel').text('TEL：+86 '+res.data.tel);
+					$('#footMail').text('TEL：+86 '+res.data.email);
+					$('.footCode img').attr('src',res.data.wx_qr);
+					if($('#aboutCtt').length){
+						$('#aboutCtt').html(res.data.description);
+					}
+					fixbox(res.data.tel,res.data.wx_qr,'123456789');
+				}else{
+					console.log(res.message);
 				}
-				fixbox(res.data.tel,res.data.wx_qr,'123456789');
-			}else{
-				console.log(res.message);
 			}
-		}
-	});
-	
-	//获取日志分类
-	$.ajax({
-		type:"get",
-		url: host+"/api/l/getDecorateType",
-		success: function(res){
-			res = JSON.parse(res);
-			if(res.success){
-				app.DecorateType = res.data;
-				var html = '';
-				html += '<ul class="typelist">';
-				res.data.forEach(function(item){
-					html +=		'<li onclick="location.href=\'decoratedairy.html?id='+item.id+'\'" class="font14 only_line">'+item.type+'</li>'
-				})
-				html += '</ul>'
-				$('.headDairy').append(html);
-				$('.headDairy').hover(function(){
-					$(this).find('ul').fadeIn(300);
-				},function(){
-					$(this).find('ul').fadeOut(300);
-				})
-			}else{
-				console.log(res.message);
+		});
+		
+		//获取日志分类
+		$.ajax({
+			type:"get",
+			url: host+"/api/l/getDecorateType",
+			success: function(res){
+				res = JSON.parse(res);
+				if(res.success){
+					app.DecorateType = res.data;
+					var html = '';
+					html += '<ul class="typelist">';
+					res.data.forEach(function(item){
+						html +=		'<li onclick="location.href=\'decoratedairy.html?id='+item.id+'\'" class="font14 only_line">'+item.type+'</li>'
+					})
+					html += '</ul>'
+					$('.headDairy').append(html);
+					$('.headDairy').hover(function(){
+						$(this).find('ul').fadeIn(300);
+					},function(){
+						$(this).find('ul').fadeOut(300);
+					})
+				}else{
+					console.log(res.message);
+				}
 			}
-		}
-	});
+		});
+	},0);
 });
 
 function fixbox(phone,wechat,qq){

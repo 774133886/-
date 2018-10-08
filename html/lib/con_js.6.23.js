@@ -312,7 +312,7 @@ $(function() {
 	
 	/************模拟select下拉 ，select_more属性，select_ul属性纯CSS实现*************/
 	function select_creat(){
-		$("[select_more").not("_inited").each(function(){
+		$("[select_more]").not("_inited").each(function(){
 			var select_dom=$(this);
 			select_dom.attr("selected_val",select_dom.find("label:first-child>*").not('input').text())
 			select_dom.find("label input").click(function(){
