@@ -40,23 +40,23 @@
 						<a :href="'dairydetail.html?id='+item.id+'=typeid='+typeid" v-for="item in dairyList" class="dairyBox block box_s bg-fff">
 							<div class="tTop center">
 								<div class="center">
-									<span class="font88 color-6ebdca">10</span>
+									<span class="font88 color-6ebdca" v-cloak>{{item.node[0].node_time}}</span>
 									<img src="../images/icon_day.png"/>
 								</div>
 								<div class="m-l-20 righttext">
-									<div class="font22 color-2d2e35 fw_600 l-h-35">
-										日常护理第10天
+									<div class="font22 color-2d2e35 fw_600 l-h-35" v-cloak>
+										{{item.node[0].node_title}}
 									</div>
-									<p class="l-h-20  font15 color-94">uwsghaYUWGS8AWGHW</p>
+									<p class="l-h-20  font15 color-94" v-cloak>{{item.node[0].node_description | getText}}</p>
 								</div>
 							</div>
 							<div class="ImgboxArea clearfix">
-								<div  @mouseover="dayNode = item.node" v-for="node in item.node" class="fl pointer ImgboxList">
+								<div v-for="node in item.node" class="fl pointer ImgboxList">
 									<!--<p class="coverImg ImgboxPic" :style="{backgroundImage: 'url('+node_description | getPic+')'}"></p>-->
 									<img class="ImgboxPic" v-bind:src="node.node_description | getPic"/>
 									<div class="ImgboxBot">
-										<p class="font18 color-2d2e35">第{{node.node_time}}天</p>
-										<p class="font15 color-94 only_line">{{node.node_description | getText}}</p>
+										<p class="font18 color-2d2e35" v-cloak>第{{node.node_time}}天</p>
+										<p class="font15 color-94 only_line" v-cloak>{{node.node_description | getText}}</p>
 									</div>
 								</div>
 							</div>
