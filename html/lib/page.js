@@ -52,6 +52,11 @@ $(function(){
 						html +=		'<li onclick="location.href=\'decoratedairy.html?id='+item.id+'\'" class="font14 only_line">'+item.type+'</li>'
 					})
 					html += '</ul>'
+					var html2 = '';
+					res.data.forEach(function(item){
+						html2 +=		'<a href="decoratedairy.html?id=+'+item.id+'" class="font14 only_line">'+item.type+'</a>'
+					})
+					$('.footTab').append(html2);
 					$('.headDairy').append(html);
 					$('.headDairy').hover(function(){
 						$(this).find('ul').fadeIn(300);
@@ -65,6 +70,46 @@ $(function(){
 		});
 	},0);
 });
+
+//通用弹出层
+function swiperMark(list,name,index){
+	if(typeof(list) == 'string'){
+		list = list.split(',');
+	}
+	var html = '';
+	html += '<div class="con_swiper">';
+	html += '	<div class="closeSwiper"></div>';
+	html += '	<div class="cen_swiper">';
+	html += '		<div class="swiper-container">';
+	html += '			<div class="swiper-wrapper">';
+	for(var i = 0;i < list.length;i++){
+		html += '				<div class="swiper-slide">';
+		html += '					<div class="con_swiper_img">';
+		html += '						<img src="'+list[i]+'" alt="">';
+		html += '						<p>'+name+'</p>';
+		html += '					</div>';
+		html += '				</div>';
+	}
+	html += '			</div>';
+	html += '			<div class="swiper-button-prev"></div>';
+	html += '			<div class="swiper-button-next"></div>';
+	html += '		</div>';
+	html += '	</div>';
+	html += '</div>';
+	$('body').append(html);
+	var cen_swiper = new Swiper('.cen_swiper .swiper-container', {
+		//autoplay: 5000,//可选选项，自动滑动
+		loop : false,
+		initialSlide: index ? index : 0,
+		paginationClickable :true,
+		prevButton:'.cen_swiper .swiper-button-prev',
+		nextButton:'.cen_swiper .swiper-button-next',
+	});
+	$('.con_swiper .closeSwiper').click(function(e){
+		$('.con_swiper').remove();
+		return false;
+	})
+}
 
 function fixbox(phone,wechat,qq){
 var html = '<a class="fix-box font15 color-6f6e77" href="javascript:;">'+

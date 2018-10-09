@@ -27,10 +27,10 @@
 				<div class="curHeader centerCon clearfix">
 					<img src="../images/headLogo.png" alt="" />
 					<a href="index.html">首 页</a>
-					<a href="recommendDesigner.html" class="active">设计师</a>
+					<a href="recommendDesigner.html">设计师</a>
 					<a href="case.html">案例</a>
-					<a href="inspiration.html">灵感</a>
-					<a href="decoratedairy.html" class="relative headDairy">装修日记</a>
+					<a href="inspiration.html" class="active">灵感</a>
+					<a href="javascript:;" class="relative headDairy">简色日记</a>
 					<a href="question&answer.html">常见问题</a>
 					<a href="aboutus.html">关于我们</a>
 				</div>
@@ -46,7 +46,7 @@
 									<div class="flex_dom flex_item_mid">
 										<div class="flex_1">
 											<h3 class="font24">{{bannercase.name}}</h3>
-											<p class="font14 only_line jianjie" v-html="bannercase.description"></p>
+											<p class="font14 only_line jianjie" v-html="bannercase.name"></p>
 										</div>
 										<a class="iconShare m-t-10" onblur="unShare(this)" onfocus="share(this,null,'123','13')" href="javascript:;">分享<p></p></a>
 									</div>
@@ -67,7 +67,7 @@
 										<a v-for="(val,key,index) in item.style_list" @click="goCase(key)" href="javascript:;">{{val}}</a>
 									</div>
 									<div class="clearfix p_imgs">
-										<div v-if="idx < 4" @click="changeBanner(img)" v-for="(img,idx) in item.case" class="coverImg" :style="{backgroundImage: 'url('+img.image.split(',')[0]+')'}"></div>
+										<div v-if="idx < 4" @click="openSwiper(img)" v-for="(img,idx) in item.case" class="coverImg" :style="{backgroundImage: 'url('+img.img+')'}"></div>
 									</div>
 								</div>
 							</div>
@@ -100,7 +100,7 @@
 							<a href="index.html">首页</a>
 							<a href="case.html">案例</a>
 							<a href="inspiration.html">灵感</a>
-							<a href="decoratedairy.html">装修日记</a>
+							<a href="javascript:;" class="footTab clearfix"></a>
 							<a href="question&answer.html">常见问题</a>
 							<a href="aboutus.html">关于我们</a>
 						</div>
@@ -150,6 +150,7 @@
 	
 	<script>
 		var page = 1,hasData = true;
+		var urlParam = GetRequest();
 		var app = new Vue({
 			el: '#app',
 			data: {
@@ -159,14 +160,35 @@
 			mounted: function(){
 				$.ajax({
 					type:"get",
+					data:{
+						id: urlParam.id
+					},
+					url: host+"/api/l/getMaterialDetail",
+					success: function(res){
+						res = JSON.parse(res);
+						if(res.success){
+							app.bannercase = res.data;
+						}else{
+							console.log(res.message);
+						}
+					}
+				});
+				$.ajax({
+					type:"get",
 					url: host+"/api/l/getDecommend2Designer",
 					success: function(res){
 						res = JSON.parse(res);
 						if(res.success){
-							app.designer = res.data;
-							if(res.data.length > 0 && res.data[0].case.length > 0){
-								app.changeBanner(res.data[0].case[0]);
+							if(res.data.length > 0){
+								for(var i = 0;i < res.data.length;i++){
+									if(res.data[i].case.length){
+										for(var j = 0;j < res.data[i].case.length;j++){
+											res.data[i].case[j].img = res.data[i].case[j].image.split(',')[0];
+										}
+									}
+								}
 							}
+							app.designer = res.data;
 							app.bindScroll();
 						}else{
 							console.log(res.message);
@@ -181,6 +203,13 @@
 				changeBanner: function(bannercase){
 					bannercase.image = bannercase.image.split(',')[0];
 					app.bannercase = bannercase;
+				},
+				openSwiper: function(item){
+					var image = item.image;
+					var name = item.description;
+					name=name.replace(/<\/?.+?>/g,"");
+					name=name.replace(/ /g,"");
+					swiperMark(image,name);
 				},
 				bindScroll: function(){
 					$(".listCtt").waterfall({

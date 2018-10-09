@@ -28,7 +28,7 @@
 				<a href="recommendDesigner.html">设计师</a>
 				<a href="case.html" class="active">案例</a>
 				<a href="inspiration.html">灵感</a>
-				<a href="decoratedairy.html" class="relative headDairy">装修日记</a>
+				<a href="javascript:;" class="relative headDairy">简色日记</a>
 				<a href="question&answer.html">常见问题</a>
 				<a href="aboutus.html">关于我们</a>
 			</div>
@@ -104,7 +104,7 @@
 				<div class="center-1260 p-t-10 p-b-70 flex_dom flex_wrap">
 					<!-- 模板 -->
 					<div v-for="item in list" class="case-item relative">
-						<div class="wid100 hgt250 overflow_hide"><img style="width: 100%; height: 250px" @click="openMask(item.image)" class="block works pointer" :src="item.image.split(',')[0]" alt=""></div>
+						<div class="wid100 hgt250 overflow_hide"><img style="width: 100%; height: 250px" @click="openSwiper(item)" class="block works pointer" :src="item.image.split(',')[0]" alt=""></div>
 						<div class="font14 color-8b m-t-15 only_line" v-if="item.description">{{item.description | getText}}</div>
 						<p class="font18 color-221714 m-t-10 fw_600">{{item.name}}</p>
 						<p class="m-t-15 font12 color-8b flex_dom flex_item_mid pointer" @click="goDesigner(item.designer.id)">
@@ -140,7 +140,7 @@
 							<a href="index.html">首页</a>
 							<a href="case.html">案例</a>
 							<a href="inspiration.html">灵感</a>
-							<a href="decoratedairy.html">装修日记</a>
+							<a href="javascript:;" class="footTab clearfix"></a>
 							<a href="question&answer.html">常见问题</a>
 							<a href="aboutus.html">关于我们</a>
 						</div>
@@ -247,6 +247,13 @@
 				});
 			},
 			methods: {
+				openSwiper: function(item){
+					var image = item.image;
+					var name = item.description;
+					name=name.replace(/<\/?.+?>/g,"");
+					name=name.replace(/ /g,"");
+					swiperMark(image,name);
+				},
 				goDesigner: function(id){
 					location.href = 'designerWork.html?id='+id
 				},

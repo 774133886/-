@@ -29,7 +29,7 @@
 				<a href="recommendDesigner.html">设计师</a>
 				<a href="case.html">案例</a>
 				<a href="inspiration.html" class="active">灵感</a>
-				<a href="decoratedairy.html" class="relative headDairy">装修日记</a>
+				<a href="javascript:;" class="relative headDairy">简色日记</a>
 				<a href="question&answer.html">常见问题</a>
 				<a href="aboutus.html">关于我们</a>
 			</div>
@@ -82,48 +82,49 @@
 			</div>
 			
 			<div class="curFooter">
-				<div class="centerCon clearfix">
-					<div class="foot-l">
-						<div class="clearfix m-b-15">
-							<a href="javascript:;">首页</a>
-							<a href="javascript:;">案例</a>
-							<a href="javascript:;">灵感</a>
-							<a href="javascript:;">装修日记</a>
-							<a href="javascript:;">常见问题</a>
-							<a href="javascript:;">关于我们</a>
+					<div class="centerCon clearfix">
+						<div class="foot-l">
+							<div class="clearfix m-b-15">
+								<a href="index.html">首页</a>
+								<a href="case.html">案例</a>
+								<a href="inspiration.html">灵感</a>
+								<a href="javascript:;" class="footTab clearfix"></a>
+								<a href="question&answer.html">常见问题</a>
+								<a href="aboutus.html">关于我们</a>
+							</div>
+							<div class="m-b-15 color-fff font14 clearfix">
+								<p class="fl m-r-30" id="footTel">TEL：+86 400-008-0000</p>
+								<p class="fl" id="footMail">E-mail：jobs@126.com</p>
+							</div>
+							<p class="color-fff font14">©2016 i2edu.cn. All rights reserved.</p>
 						</div>
-						<div class="m-b-15 color-fff font14 clearfix">
-							<p class="fl m-r-30">TEL：+86 400-008-0000</p>
-							<p class="fl">E-mail：jobs@126.com</p>
+						<div class="foot-r clearfix">
+							<img class="fr" src="../images/foot-logo.png" alt="" />
+							<div class="clearfix fr">
+								<a class="relative foot-weChat" href="javascript:;">
+									<img src="../images/foot-weChat.png" alt="" />
+									<p>WeChat</p>
+									<div class="footCode"><img src="../images/foot-logo.png"/></div>
+								</a>
+								<a href="https://weibo.com" target="_blank">
+									<img src="../images/foot-blog.png" alt="" />
+									<p>blog</p>
+								</a>
+								<a href="https://www.zhihu.com" target="_blank">
+									<img src="../images/foot-zhihu.png" alt="" />
+									<p>Zhihu</p>
+								</a>
+								<a href="http://focus.tianya.cn" target="_blank">
+									<img src="../images/foot-tianya.png" alt="" />
+									<p>tianyan</p>
+								</a>
+								<a href="question&answer.html">
+									<img src="../images/foot-FAQ.png" alt="" />
+									<p>FAQ</p>
+								</a>
+							</div>
 						</div>
-						<p class="color-fff font14">©2016 i2edu.cn. All rights reserved.</p>
 					</div>
-					<div class="foot-r clearfix">
-						<img class="fr" src="../images/foot-logo.png" alt="" />
-						<div class="clearfix fr">
-							<a href="javascript:;">
-								<img src="../images/foot-weChat.png" alt="" />
-								<p>WeChat</p>
-							</a>
-							<a href="javascript:;">
-								<img src="../images/foot-blog.png" alt="" />
-								<p>blog</p>
-							</a>
-							<a href="javascript:;">
-								<img src="../images/foot-zhihu.png" alt="" />
-								<p>Zhihu</p>
-							</a>
-							<a href="javascript:;">
-								<img src="../images/foot-tianya.png" alt="" />
-								<p>tianyan</p>
-							</a>
-							<a href="javascript:;">
-								<img src="../images/foot-FAQ.png" alt="" />
-								<p>FAQ</p>
-							</a>
-						</div>
-					</div>
-				</div>
 			</div>
 		</div>
 	</body>
@@ -245,10 +246,10 @@
 					  					hasData = true;
 					  				}
 								    var str = "";
-								    var templ = '<div class="caseItem"><img src="{{src}}" alt="" /><div class="p-v-10"><h3 class="font15 color-2d2e35 font-w6">{{name}}</h3><div class="flex_dom"><p class="flex_1 only_line font18 font-w6">{{area}}</p><a class="iconShare" onblur="unShare(this)" onfocus="share(this,null,\'{{name}}\',\'{{area}}\',\'{{src}}\')" href="javascript:;">分享<p></p></a></div></div></div>'
+								    var templ = '<div class="caseItem"><img class="pointer" onclick="location.href=\'designer.html?id={{id}}\'" src="{{src}}" alt="" /><div class="p-v-10"><h3 class="font15 color-2d2e35 font-w6">{{name}}</h3><div class="flex_dom"><p class="flex_1 only_line font18 font-w6">{{area}}</p><a class="iconShare" onblur="unShare(this)" onfocus="share(this,null,\'{{name}}\',\'{{area}}\',\'{{src}}\')" href="javascript:;">分享<p></p></a></div></div></div>'
 								  	
 								    for(var i = 0; i < data.data.length; i++) {
-								      str += templ.replace("{{src}}", data.data[i].image.split(',')[0]).replace("{{name}}", data.data[i].name).replace("{{area}}", JSON.stringify(data.data[i].space).split('"')[3]+'m²');
+								      str += templ.replace('{{id}}',data.data[i].id).replace("{{src}}", data.data[i].image.split(',')[0]).replace("{{name}}", data.data[i].name).replace("{{area}}", JSON.stringify(data.data[i].space).split('"')[3]+'m²');
 								    }
 								    $(str).appendTo($(".listCtt"));
 					  				success();

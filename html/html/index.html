@@ -28,7 +28,7 @@
 				<a href="recommendDesigner.html">设计师</a>
 				<a href="case.html">案例</a>
 				<a href="inspiration.html">灵感</a>
-				<a href="decoratedairy.html" class="relative headDairy">装修日记</a>
+				<a href="javascript:;" class="relative headDairy">简色日记</a>
 				<a href="question&answer.html">常见问题</a>
 				<a href="aboutus.html">关于我们</a>
 			</div>
@@ -53,8 +53,8 @@
 					</div>
 					<div class="indexDesigner" v-cloak>
 						<div class="flex_dom flex_item_between">
-							<a v-for="(item,index) in designer" @click="idIndex = index" :class="idIndex == index ? 'active' : ''" href="javascript:;">
-								<div class="id_img" :style="{backgroundImage: 'url('+item.photo+')'}"></div>
+							<a v-for="(item,index) in designer" @mouseover="idIndex = index" :class="idIndex == index ? 'active' : ''" href="javascript:;">
+								<div class="id_img pointer" @click="goDesignerDetail(item.id)" :style="{backgroundImage: 'url('+item.photo+')'}"></div>
 								<div class="id_text">
 									<h3>{{item.name}}</h3>
 									<p>{{item.qualification}}</p>
@@ -75,7 +75,7 @@
 					<div class="id_swiper">
 						<div class="swiper-container" v-if="designer[idIndex] && designer[idIndex].case_image">
 							<div class="swiper-wrapper">
-							    <div class="swiper-slide" v-for="item in designer[idIndex].case_image.split(',')"><img :src="item" alt="" /></div>
+							    <div class="swiper-slide pointer" v-for="(item,index) in designer[idIndex].case_image.split(',')" @click="openSwiper(index)"><img :src="item" alt="" /></div>
 							</div>
 						    <div class="swiper-button-prev"></div>
 						    <div class="swiper-button-next"></div>
@@ -233,7 +233,7 @@
 						</div>
 						<div class="flex_dom">
 							<div class="flex_1 flex_dom">
-								<a v-for="item in diary" @mouseover="dayNode = item.node" class="flex_1 hgt310 coverImg m-r-20" href="javascript:;" :style="{backgroundImage: 'url('+item.image+')'}"></a>
+								<a v-for="item in diary" @click="goDairyDetail(item.id,item.type_id)" @mouseover="dayNode = item.node" class="flex_1 hgt310 coverImg m-r-20" href="javascript:;" :style="{backgroundImage: 'url('+item.image+')'}"></a>
 							</div>
 							<div class="indexDayMore flex_dom flex_item_mid flex_item_around coverImg pointer" onclick="location.href='decoratedairy.html'" style="background-image: url(../images/banner_2.png);">
 								<div class="color-fff">
@@ -253,7 +253,7 @@
 							<a href="index.html">首页</a>
 							<a href="case.html">案例</a>
 							<a href="inspiration.html">灵感</a>
-							<a href="decoratedairy.html">装修日记</a>
+							<a href="javascript:;" class="footTab clearfix"></a>
 							<a href="question&answer.html">常见问题</a>
 							<a href="aboutus.html">关于我们</a>
 						</div>
@@ -324,7 +324,6 @@
 								prevButton:'.swiper-button-prev',
 								nextButton:'.swiper-button-next',
 							})
-						
 					},0)
 				}
 			},
@@ -428,6 +427,19 @@
 				});
 			},
 			methods: {
+				goDairyDetail: function(id,typeId){
+					location.href = 'dairydetail.html?id='+id+'&typeid='+typeId;
+				},
+				goDesignerDetail: function(id){
+					location.href='designerWork.html?id='+id;
+				},
+				openSwiper: function(idx){
+					var image = app.designer[app.idIndex].case_image;
+					var name = app.designer[app.idIndex].description;
+					name=name.replace(/<\/?.+?>/g,"");
+					name=name.replace(/ /g,"");
+					swiperMark(image,name,idx);
+				},
 				getDesigner: function(id){
 					$.ajax({
 						type:"get",
