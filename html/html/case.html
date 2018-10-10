@@ -105,8 +105,12 @@
 					<!-- 模板 -->
 					<div v-for="item in list" class="case-item relative">
 						<div class="wid100 hgt250 overflow_hide"><img style="width: 100%; height: 250px" @click="openSwiper(item)" class="block works pointer" :src="item.image.split(',')[0]" alt=""></div>
-						<div class="font14 color-8b m-t-15 only_line" v-if="item.description">{{item.description | getText}}</div>
-						<p class="font18 color-221714 m-t-10 fw_600">{{item.name}}</p>
+						<!--<div class="font14 color-8b m-t-15 only_line" v-if="item.description">{{item.description | getText}}</div>-->
+						<div class="font14 color-8b m-t-15 only_line" v-if="item.description">{{item.name}}</div>
+						<p class="color-221714 m-t-10 font0">
+							<i class="font18 fw_600 m-r-5 pointer" @click="changeType(key,val)" v-for="(val,key,index) in item.housetype">{{val}}</i>
+							<i class="font18 fw_600 m-r-5 pointer" @click="changeStyle(key,val)" v-for="(val,key,index) in item.styles">{{val}}</i>
+						</p>
 						<p class="m-t-15 font12 color-8b flex_dom flex_item_mid pointer" @click="goDesigner(item.designer.id)">
 							<img class="avator m-r-10" :src="item.designer.photo" alt="">
 							{{item.designer.name}}
@@ -247,6 +251,22 @@
 				});
 			},
 			methods: {
+				changeType: function(key,val){
+					app.houseName = key;
+					app.param.house_type = key;
+					$('.loadDiv').show();
+					app.hasData = true;
+					app.param.page = 1;
+					app.getList();
+				},
+				changeStyle: function(key,val){
+					app.param.style = key;
+					app.styleName = val;
+					$('.loadDiv').show();
+					app.hasData = true;
+					app.param.page = 1;
+					app.getList();
+				},
 				openSwiper: function(item){
 					var image = item.image;
 					var name = item.description;
