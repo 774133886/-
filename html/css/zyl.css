@@ -202,6 +202,10 @@
     text-align: center;
     font-size: 15px;
 }
+.designer .d-info .tag .tag-item:hover{
+	background-color: #6ebdca;
+	color: #FFFFFF !important;
+}
 .designer .order{
     right: 75px;
     bottom: 100px;

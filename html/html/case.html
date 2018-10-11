@@ -106,8 +106,8 @@
 					<div v-for="item in list" class="case-item relative">
 						<div class="wid100 hgt250 overflow_hide"><img style="width: 100%; height: 250px" @click="openSwiper(item)" class="block works pointer" :src="item.image.split(',')[0]" alt=""></div>
 						<!--<div class="font14 color-8b m-t-15 only_line" v-if="item.description">{{item.description | getText}}</div>-->
-						<div class="font14 color-8b m-t-15 only_line" v-if="item.description">{{item.name}}</div>
-						<p class="color-221714 m-t-10 font0">
+						<div style="width: calc(100% - 50px);" class="font14 color-8b m-t-15 only_line" v-if="item.description">{{item.name}}</div>
+						<p style="width: calc(100% - 50px);" class="color-221714 m-t-10 font0">
 							<i class="font18 fw_600 m-r-5 pointer" @click="changeType(key,val)" v-for="(val,key,index) in item.housetype">{{val}}</i>
 							<i class="font18 fw_600 m-r-5 pointer" @click="changeStyle(key,val)" v-for="(val,key,index) in item.styles">{{val}}</i>
 						</p>
@@ -269,9 +269,9 @@
 				},
 				openSwiper: function(item){
 					var image = item.image;
-					var name = item.description;
-					name=name.replace(/<\/?.+?>/g,"");
-					name=name.replace(/ /g,"");
+					var name = item.name;
+//					name=name.replace(/<\/?.+?>/g,"");
+//					name=name.replace(/ /g,"");
 					swiperMark(image,name);
 				},
 				goDesigner: function(id){

@@ -51,12 +51,23 @@
 						</div>
 						<div class="insFilterIcon">
 							<div class="insFilterIcon1 m-b-10">
-								<a href="javascript:;" @click="choiceType($event,item)" v-cloak v-for="item in materialType">{{item.type}}</a>
+								<a href="javascript:;" @click="choiceType($event,item)" :class="item.id == material_type ? 'active' : ''" v-cloak v-for="item in materialType">{{item.type}}</a>
 							</div>
 							<div class="insFilterIcon2 flex_dom flex_item_mid">
-								<span class="m-r-60">颜色</span>
+								<span class="m-r-30">颜色</span>
 								<div class="colors flex_1 flex_dom flex_item_mid">
-									<a href="javascript:;" @click="choiceColor($event,key)" v-cloak v-for="(val, key, index) in types.color">{{val}}</a>
+									<a href="javascript:;" @click="choiceColor($event,8)" style="background-color: #FF4D00;"></a>
+									<a href="javascript:;" @click="choiceColor($event,9)" style="background-color: #FF7900;"></a>
+									<a href="javascript:;" @click="choiceColor($event,19)" style="background-color: #FFEC00;"></a>
+									<a href="javascript:;" @click="choiceColor($event,10)" style="background-color: #00FFEF;"></a>
+									<a href="javascript:;" @click="choiceColor($event,1004)" style="background-color: #00FF43;"></a>
+									<a href="javascript:;" @click="choiceColor($event,1005)" style="background-color: #0025FF;"></a>
+									<a href="javascript:;" @click="choiceColor($event,1006)" style="background-color: #7000CC;"></a>
+									<a href="javascript:;" @click="choiceColor($event,1007)" style="background-color: #4C2A1A;"></a>
+									<a href="javascript:;" @click="choiceColor($event,1008)" style="background-color: #CCCCCC;"></a>
+									<a href="javascript:;" @click="choiceColor($event,1009)" style="background-color: #000000;"></a>
+									<a href="javascript:;" @click="choiceColor($event,1010)" style="background-color: #FFFFFF;"></a>
+									<!--<a href="javascript:;" @click="choiceColor($event,key)" v-cloak v-for="(val, key, index) in types.color">{{val}}</a>-->
 								</div>
 							</div>
 						</div>
@@ -156,6 +167,10 @@
 						res = JSON.parse(res);
 						if(res.success){
 							app.materialType = res.data;
+							var urlParam = GetRequest();
+							if(urlParam.id){
+								app.material_type = urlParam.id;
+							}
 						}else{
 							console.log(res.message);
 						}
@@ -188,15 +203,13 @@
 				},
 				//选择类型
 				choiceType: function(e,item){
-					$(e.target).addClass('active').siblings().removeClass('active');
 					page = 1;
 					hasData = true;
 					$(".listCtt").html('').css('height','0px');
 					$(window).scrollTop($(window).scrollTop()+1);
 					$(window).scrollTop($(window).scrollTop()-1);
 					$('.loadDiv').show();
-					this.type_id = item.id;
-					this.type_name = item.type;
+					this.material_type = item.id;
 				},
 				//选择颜色
 				choiceColor: function(e,key){
@@ -207,7 +220,8 @@
 					$(window).scrollTop($(window).scrollTop()-1);
 					$('.loadDiv').show();
 					$(e.target).addClass('active').siblings().removeClass('active');
-					this.material_type = key;
+					this.type_name = 'color';
+					this.type_id = key;
 				},
 				getList: function(){
 					var that = this;
@@ -246,10 +260,14 @@
 					  					hasData = true;
 					  				}
 								    var str = "";
-								    var templ = '<div class="caseItem"><img class="pointer" onclick="location.href=\'designer.html?id={{id}}\'" src="{{src}}" alt="" /><div class="p-v-10"><h3 class="font15 color-2d2e35 font-w6">{{name}}</h3><div class="flex_dom"><p class="flex_1 only_line font18 font-w6">{{area}}</p><a class="iconShare" onblur="unShare(this)" onfocus="share(this,null,\'{{name}}\',\'{{area}}\',\'{{src}}\')" href="javascript:;">分享<p></p></a></div></div></div>'
+								    var templ = '<div class="caseItem"><img class="pointer" onclick="location.href=\'designer.html?id={{id}}\'" src="{{src}}" alt="" /><div class="p-v-10"><h3 class="font15 color-2d2e35 font-w6">{{label}}</h3><div class="flex_dom"><p class="flex_1 only_line font18 font-w6">{{area}}</p><a class="iconShare" onblur="unShare(this)" onfocus="share(this,null,\'{{name}}\',\'{{area}}\',\'{{src}}\')" href="javascript:;">分享<p></p></a></div></div></div>'
 								  	
 								    for(var i = 0; i < data.data.length; i++) {
-								      str += templ.replace('{{id}}',data.data[i].id).replace("{{src}}", data.data[i].image.split(',')[0]).replace("{{name}}", data.data[i].name).replace("{{area}}", JSON.stringify(data.data[i].space).split('"')[3]+'m²');
+								    	var label = '';
+								    	for(var l in data.data[i].type){
+								    		label += '<i class="pointer m-r-5" onclick="changeLabel('+l+')">'+data.data[i].type[l]+'</i>';
+								    	}
+								      	str += templ.replace('{{id}}',data.data[i].id).replace(/{{src}}/g, data.data[i].image.split(',')[0]).replace("{{label}}", label).replace("{{name}}", data.data[i].name).replace(/{{area}}/g, JSON.stringify(data.data[i].space).split('"')[3]+'m²');
 								    }
 								    $(str).appendTo($(".listCtt"));
 					  				success();
@@ -264,8 +282,14 @@
 				}
 			}
 		})
-		function getList(){
-			
+		function changeLabel(key){
+			page = 1;
+			hasData = true;
+			$(".listCtt").html('').css('height','0px');
+			$(window).scrollTop($(window).scrollTop()+1);
+			$(window).scrollTop($(window).scrollTop()-1);
+			$('.loadDiv').show();
+			app.material_type = key;
 		}
 	</script>
 

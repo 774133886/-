@@ -90,14 +90,14 @@
 						<p>最新案例</p>
 					</div>
 					<div class="flex_dom flex_wrap indexCase" v-cloak>
-						<a v-for="item in caseList" href="javascript:;">
+						<a v-for="item in caseList" href="javascript:;" @click="goCase(item)">
 							<div class="coverImg" :style="{backgroundImage: 'url('+item.image+')'}">
 								<div class="flex_column flex_item_between">
 									<div class="flex_dom">
 										<div class="whiteLine"></div>
 										<div class="color-fff">
-											<p class="font24">{{item.name}}</p>
-											<span class="font16">{{item.name_en}}</span>
+											<p class="font24">{{item.type_name}}</p>
+											<span class="font16">{{item.type_name_en}}</span>
 										</div>
 									</div>
 									<img class="indexCaseBtn" src="../images/icon-caseBtn.png" alt="" />
@@ -427,6 +427,9 @@
 				});
 			},
 			methods: {
+				goCase: function(item){
+					location.href = 'case.html?style='+item.id;
+				},
 				goDairyDetail: function(id,typeId){
 					location.href = 'dairydetail.html?id='+id+'&typeid='+typeId;
 				},
@@ -435,9 +438,9 @@
 				},
 				openSwiper: function(idx){
 					var image = app.designer[app.idIndex].case_image;
-					var name = app.designer[app.idIndex].description;
-					name=name.replace(/<\/?.+?>/g,"");
-					name=name.replace(/ /g,"");
+					var name = app.designer[app.idIndex].name;
+//					name=name.replace(/<\/?.+?>/g,"");
+//					name=name.replace(/ /g,"");
 					swiperMark(image,name,idx);
 				},
 				getDesigner: function(id){

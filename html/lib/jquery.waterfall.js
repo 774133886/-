@@ -36,6 +36,7 @@
         this._init();
     }
 
+	
     Waterfall.prototype = {
         constructor: Waterfall,
 
@@ -79,15 +80,24 @@
                 minIndex;
 
             this._getColumnCount();
-            //this.colHeightArray = [];
+            this.colHeightArray = [];
             var cttLeft = $('.listCtt').offset().left;
-
-            $item.each(function(index) {
-            	$(this).find('img').load(function(){
-            		var dom = $(this).parent();
-            		var idx = $(this).parent().index();
+			var imgLen = $('.caseItem img').not('.load').length;
+//          $item.each(function(index) {
+            	$('.caseItem img[class=pointer]').load(function(){
+            		imgLen--;
+            		$('.caseItem img').eq(imgLen).addClass('load');
+            		if(imgLen == 0){
+            			
+            		}else{
+            			return true;
+            		}
+            		//$this.colHeightArray = [];
+            		$item.each(function(index) {
+            		var dom = $(this);
+            		var idx = $(this).index();
 	                dom.css("position", "absolute");
-	                if(idx < $this.cols) {
+	                if(index < $this.cols) {
 	                    dom.css("top", 0);
 	                    dom.css("left", $this.leftOffset + index * $this.itemWidth + index * $this.options.spacingWidth);
 	                    
@@ -95,7 +105,7 @@
 	                } else {
 	                    minHeight = Math.min.apply(null, $this.colHeightArray);
 	                    minIndex = $.inArray(minHeight, $this.colHeightArray);
-			
+						
 	                    dom.css("top", minHeight + $this.options.spacingHeight);
 	                    dom.css("left", $item.eq(minIndex).offset().left - cttLeft);
 	                    $this.colHeightArray[minIndex] += dom.outerHeight() + $this.options.spacingHeight;
@@ -105,8 +115,9 @@
 	                    dom.animate({"opacity": 1}, 300);
 	                }
 	            	$this.$element.css("height", Math.max.apply(null, $this.colHeightArray));
+	            	});
                 })
-            });
+//          });
 
         },
         _doScroll: function () {

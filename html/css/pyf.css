@@ -419,6 +419,10 @@
 	color: #221714;
 	font-size: 14px;
 }
+.p_btns a:hover{
+	background-color: #6ebdca;
+	color: #FFFFFF !important;
+}
 .p_btns a:nth-child(4n+4){
 	margin-right: 0;
 }
@@ -510,18 +514,14 @@
 	color: #6f6e77;
 }
 .colors a{
-	display: inline-block;
-	color: #6f6e77;
-	font-size: 15px;
-	margin-top: 10px;
-	margin-right: 60px;
-	margin-bottom: 10px;
+	height: 10px;
+	width: 115px;
 }
 .colors a:hover{
-	color: #6ebdca;
+	height: 18px;
 }
 .colors a.active{
-	color: #6ebdca;
+	height: 18px;
 }
 .m-b-50{
 	margin-bottom: 50px;

@@ -41,11 +41,11 @@
 					<div class="designerCtt">
 						<div class="clearfix">
 							<div class="desHeadLeft">
-								<div class="coverImg" v-if="bannercase.id" :style="{backgroundImage: 'url('+bannercase.image+')'}"></div>
+								<div class="coverImg" v-if="bannercase.id" @click="openMask()" :style="{backgroundImage: 'url('+bannercase.img+')'}"></div>
 								<div class="desHeadText">
 									<div class="flex_dom flex_item_mid">
 										<div class="flex_1">
-											<h3 class="font24">{{bannercase.name}}</h3>
+											<h3 class="font24"><i class="pointer m-r-5" @click="goInspiration(key)" v-for="(val,key,index) in bannercase.type">{{val}}</i></h3>
 											<p class="font14 only_line jianjie" v-html="bannercase.name"></p>
 										</div>
 										<a class="iconShare m-t-10" onblur="unShare(this)" onfocus="share(this,null,'123','13')" href="javascript:;">分享<p></p></a>
@@ -168,6 +168,8 @@
 						res = JSON.parse(res);
 						if(res.success){
 							app.bannercase = res.data;
+							app.bannercase.img = res.data.image.split(',')[0];
+							app.bindScroll();
 						}else{
 							console.log(res.message);
 						}
@@ -189,7 +191,6 @@
 								}
 							}
 							app.designer = res.data;
-							app.bindScroll();
 						}else{
 							console.log(res.message);
 						}
@@ -197,18 +198,28 @@
 				});
 			},
 			methods: {
+				openMask: function(){
+					var image = app.bannercase.image;
+					var name = app.bannercase.name;
+//					name=name.replace(/<\/?.+?>/g,"");
+//					name=name.replace(/ /g,"");
+					swiperMark(image,name);
+				},
+				goInspiration: function(key){
+					changeLabel(key);
+				},
 				goCase: function(key){
 					location.href = 'case.html?style='+key;
 				},
 				changeBanner: function(bannercase){
-					bannercase.image = bannercase.image.split(',')[0];
+					bannercase.img = bannercase.image.split(',')[0];
 					app.bannercase = bannercase;
 				},
 				openSwiper: function(item){
 					var image = item.image;
-					var name = item.description;
-					name=name.replace(/<\/?.+?>/g,"");
-					name=name.replace(/ /g,"");
+					var name = item.name;
+//					name=name.replace(/<\/?.+?>/g,"");
+//					name=name.replace(/ /g,"");
 					swiperMark(image,name);
 				},
 				bindScroll: function(){
@@ -226,9 +237,14 @@
 					  	$.ajax({
 					  		type:"get",
 					  		data: {
-					  			page: page
+					  			page: page,
+					  			num: 10,
+					  			keywords: '',
+					  			type_name: '',
+					  			type_id: '',
+					  			material_type: ''
 					  		},
-					  		url: host+"/api/l/getCaseList",
+					  		url: host+"/api/l/getMaterialList",
 					  		success: function(res){
 					  			res = JSON.parse(res);
 					  			if(res.success){
@@ -242,10 +258,15 @@
 					  					hasData = true;
 					  				}
 								    var str = "";
-								    var templ = '<div class="caseItem"><img src="{{src}}" alt="" /><div class="p-v-10"><h3 class="font15 color-2d2e35 font-w6">{{name}}</h3><div class="flex_dom"><p class="flex_1 only_line font18 font-w6">{{area}}</p><a class="iconShare" onblur="unShare(this)" onfocus="share(this,null,\'{{name}}\',\'{{area}}\',\'{{src}}\')" href="javascript:;">分享<p></p></a></div></div></div>'
+								    var templ = '<div class="caseItem"><img class="pointer" onclick="location.href=\'designer.html?id={{id}}\'" src="{{src}}" alt="" /><div class="p-v-10"><h3 class="font15 color-2d2e35 font-w6">{{label}}</h3><div class="flex_dom"><p class="flex_1 only_line font18 font-w6">{{area}}</p><a class="iconShare" onblur="unShare(this)" onfocus="share(this,null,\'{{name}}\',\'{{area}}\',\'{{src}}\')" href="javascript:;">分享<p></p></a></div></div></div>'
 								  	
 								    for(var i = 0; i < data.data.length; i++) {
-								      str += templ.replace(/{{src}}/g, data.data[i].image.split(',')[0]).replace(/{{name}}/g, data.data[i].name).replace(/{{area}}/g, data.data[i].area+'m²');
+								    	var label = '';
+								    	for(var l in data.data[i].type){
+								    		label += '<i class="pointer m-r-5" onclick="changeLabel('+l+')">'+data.data[i].type[l]+'</i>';
+								    	}
+								    	console.log(label)
+								      str += templ.replace('{{id}}',data.data[i].id).replace(/{{src}}/g, data.data[i].image.split(',')[0]).replace('{{label}}',label).replace(/{{name}}/g, data.data[i].name).replace(/{{area}}/g, JSON.stringify(data.data[i].space).split('"')[3]+'m²');
 								    }
 								    $(str).appendTo($(".listCtt"));
 					  				success();
@@ -260,7 +281,9 @@
 				}
 			}
 		})
-		
+		function changeLabel(id){
+			location.href = 'inspiration.html?id='+id;
+		}
 	</script>
 
 </html>
