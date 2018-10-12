@@ -19,11 +19,7 @@
 		<link rel="stylesheet" type="text/css" href="../css/pyf.css"/>
 		<link rel="stylesheet" type="text/css" href="../css/zyl.css"/>
 		<style type="text/css">
-			.main {
-			    overflow: auto !important;
-			    height: 100% !important;
-			    min-height: inherit;
-			}
+			
 			
 		</style>
 	</head>
@@ -71,6 +67,11 @@
 						</a>
 						
 					</div>
+				</div>
+				<div class="text-center loadDiv" style="margin-top: 30px;">
+					<img src="../images/icon-pageDown.png" alt="" />
+					<p class="color-2d2e35 font18 m-t-5 m-b-40">向下滚动加载更多</p>
+					<img src="../images/loading.gif" alt="" />
 				</div>
 			</div>
 			<div id="back-to-top" class="backTop">
@@ -138,7 +139,9 @@
 				DecorateType: [],
 				typeid:'',
 				dairyList: [],
-				dayNode: {}
+				dayNode: {},
+				page: 1,
+				hasData: true
 			},
 			mounted: function(){
 				//获取问题类型
@@ -179,19 +182,36 @@
 			},
 			methods: {
 				getdairy:function(id){
+					var that = this;
+					if(!that.hasData){
+						return;
+					}
+					that.hasData = false;
 				//获取问题列表
 				app.typeid = id
 					$.ajax({
 						type:"get",
 						url: host+"/api/l/getDecorateList",
 						data:{
-//							page:1,num:5,
+							page:that.page,num:5,
 							type_id:app.typeid
 						},
 						success: function(res){
 							res = JSON.parse(res);
+							if(res.data.length == 0){
+								app.hasData = false;
+								$('.loadDiv').hide();
+								return;
+							}else{
+								app.hasData = true;
+							}
 							if(res.success){
-								app.dairyList = res.data;
+								if(that.page == 1){
+									that.dairyList = res.data;
+								}else{
+									that.dairyList = that.dairyList.concat(res.data);
+								}
+								that.page++;
 //								console.log(app.dayNode)
 //                             var obj = {dayNode:''};
 //								for (var i=0;i<app.dairyList.length;i++) {
@@ -213,9 +233,19 @@
 		})
 		$(function(){
 		        //当滚动条的位置处于距顶部100像素以下时，跳转链接出现，否则消失
-
-	            $(".main").scroll(function(){
-	                if ($(".main").scrollTop()>100){
+	
+	            $(window).scroll(function(){
+	            	//已经滚动到上面的页面高度
+				    var scrollTop = $(this).scrollTop();
+				    //页面高度
+				    var scrollHeight = $(document).height();
+			       	//浏览器窗口高度
+			     	var windowHeight = $(this).height();
+			      	//此处是滚动条到底部时候触发的事件，在这里写要加载的数据，或者是拉动滚动条的操作
+			      	if (scrollTop + windowHeight >= scrollHeight-250) {
+			        	app.getdairy();
+			       	}
+	                if ($(window).scrollTop()>100){
 	                    $("#back-to-top").fadeIn(500);
 	                }
 	                else
@@ -227,13 +257,13 @@
 	            //当点击跳转链接后，回到页面顶部位置
 	            $("#back-to-top").click(function(){
 	                //$('body,html').animate({scrollTop:0},1000);
-			        if ($('.main').scrollTop()) {
-			                $('.main').animate({ scrollTop: 0 }, 1000);
+			        if ($(window).scrollTop()) {
+			                $('html,body').animate({ scrollTop: 0 }, 1000);
 			                return false;
 			            }
-			            $('.main').animate({ scrollTop: 0 }, 1000);
+			            $('html,body').animate({ scrollTop: 0 }, 1000);
 			                 return false;            
-	           });       
+	           });        
 
 		});
 	</script>

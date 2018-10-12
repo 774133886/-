@@ -251,7 +251,7 @@
     -webkit-transition: all .3s ease;
     transition: all .3s ease;
 }
-.fix-box:focus{
+.fix-box:focus,.fix-box:active,.fix-box:visited,.fix-box:hover {
 	right: 0;
 }
 .fix-box .order-btn{
