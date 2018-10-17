@@ -153,11 +153,11 @@ function GetRequest() {
 
 //分享
 function share(dom,url,title,desc,image){
-	console.log(dom);
+	
 	//一键分享相关配置
  	var $config = {
       	url                 : url ? url : window.location.href,// 网址，默认使用 window.location.href
-      	source              : 'http://jssj.crecohe.com', // 来源（QQ空间会用到）, 默认读取head标签：<meta name="site" content="http://overtrue" />
+      	source              : url ? url : window.location.href, // 来源（QQ空间会用到）, 默认读取head标签：<meta name="site" content="http://overtrue" />
       	title               : title, // 标题，默认读取 document.title 或者 <meta name="title" content="share.js" />
       	description         : desc, // 描述, 默认读取head标签：<meta name="description" content="PHP弱类型的实现原理分析" />
       	image               : image, // 图片, 默认取网页中第一个img标签

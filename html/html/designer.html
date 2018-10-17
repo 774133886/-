@@ -6,6 +6,7 @@
 		<title>设计师</title>
 		<meta name="keywords" content="">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<!--<meta name="viewport" content="user-scalable=yes">-->
 		<!--<meta name="apple-mobile-web-app-capable" content="yes">
 		<meta name="apple-mobile-web-app-status-bar-style" content="black">-->
 		<!--分享使用-->
@@ -38,7 +39,7 @@
 			
 			<div class="container m-b-40">
 				<div class="centerCon">
-					<div class="designerCtt">
+					<div class="designerCtt" v-cloak>
 						<div class="clearfix">
 							<div class="desHeadLeft">
 								<div class="coverImg" v-if="bannercase.id" @click="openMask()" :style="{backgroundImage: 'url('+bannercase.img+')'}"></div>
@@ -48,7 +49,7 @@
 											<h3 class="font24"><i class="pointer m-r-5" @click="goInspiration(key)" v-for="(val,key,index) in bannercase.type">{{val}}</i></h3>
 											<p class="font14 only_line jianjie" v-html="bannercase.name"></p>
 										</div>
-										<a class="iconShare m-t-10" onblur="unShare(this)" onfocus="share(this,null,'123','13')" href="javascript:;">分享<p></p></a>
+										<a class="iconShare m-t-10" onblur="unShare(this)" onclick="$(this).focus()" onfocus="share(this,null,'123','13')" href="javascript:;">分享<p></p></a>
 									</div>
 								</div>
 							</div>
@@ -56,7 +57,7 @@
 								<div v-for="item in designer">
 									<div class="flex_dom m-b-30">
 										<div class="flex_1 p-t-20">
-											<h3 class="font22 color-2d2e35">{{item.name}}</h3>
+											<h3 class="font22 color-2d2e35 pointer" @click="goDesigner(item.id)">{{item.name}}</h3>
 											<p class="font15 color-8b8b8b">{{item.qualification}}</p>
 										</div>
 										<div class="icon-tap">
@@ -198,6 +199,9 @@
 				});
 			},
 			methods: {
+				goDesigner: function(id){
+					location.href = 'designerWork.html?id='+id;
+				},
 				openMask: function(){
 					var image = app.bannercase.image;
 					var name = app.bannercase.name;
@@ -258,7 +262,7 @@
 					  					hasData = true;
 					  				}
 								    var str = "";
-								    var templ = '<div class="caseItem"><img class="pointer" onclick="location.href=\'designer.html?id={{id}}\'" src="{{src}}" alt="" /><div class="p-v-10"><h3 class="font15 color-2d2e35 font-w6">{{label}}</h3><div class="flex_dom"><p class="flex_1 only_line font18 font-w6">{{area}}</p><a class="iconShare" onblur="unShare(this)" onfocus="share(this,null,\'{{name}}\',\'{{area}}\',\'{{src}}\')" href="javascript:;">分享<p></p></a></div></div></div>'
+								    var templ = '<div class="caseItem"><img class="pointer" onclick="location.href=\'designer.html?id={{id}}\'" src="{{src}}" alt="" /><div class="p-v-10"><h3 class="font15 color-2d2e35 font-w6">{{label}}</h3><div class="flex_dom"><p class="flex_1 only_line font18 font-w6">{{area}}</p><a class="iconShare" onblur="unShare(this)" onclick="$(this).focus()" onfocus="share(this,null,\'{{name}}\',\'{{area}}\',\'{{src}}\')" href="javascript:;">分享<p></p></a></div></div></div>'
 								  	
 								    for(var i = 0; i < data.data.length; i++) {
 								    	var label = '';

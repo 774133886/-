@@ -115,7 +115,7 @@
 					</div>
 					<div class="centerCon indexInspiration" v-cloak>
 						<div class="flex_dom m-b-20 hgt285">
-							<div class="flex_1 m-r-20 relative">
+							<div class="flex_1 m-r-20 relative pointer" @click="goInspiration()">
 								<div class="coverImg" :style="{backgroundImage: 'url('+(inspiration.length > 0 ? inspiration[0].image : '')+')'}"></div>
 								<div class="ist_mask" v-if="inspiration.length > 0">
 									<h3>{{inspiration[0].name}}</h3>
@@ -123,14 +123,14 @@
 								</div>
 							</div>
 							<div class="flex_1 flex_dom">
-								<div class="flex_1 m-r-20 relative">
+								<div class="flex_1 m-r-20 relative pointer" @click="goInspiration()">
 									<div class="coverImg" :style="{backgroundImage: 'url('+(inspiration.length > 1 ? inspiration[1].image : '')+')'}"></div>
 									<div class="ist_mask" v-if="inspiration.length > 1">
 										<h3>{{inspiration[1].name}}</h3>
 										<p>{{inspiration[1].name_en}}</p>
 									</div>
 								</div>
-								<div class="flex_1 relative">
+								<div class="flex_1 relative pointer" @click="goInspiration()">
 									<div class="coverImg" :style="{backgroundImage: 'url('+(inspiration.length > 2 ? inspiration[2].image : '')+')'}"></div>
 									<div class="ist_mask" v-if="inspiration.length > 2">
 										<h3>{{inspiration[2].name}}</h3>
@@ -141,14 +141,14 @@
 						</div>
 						<div class="flex_dom m-b-20 hgt285">
 							<div class="flex_1 flex_dom m-r-20">
-								<div class="flex_1 m-r-20 relative">
+								<div class="flex_1 m-r-20 relative pointer" @click="goInspiration()">
 									<div class="coverImg" :style="{backgroundImage: 'url('+(inspiration.length > 3 ? inspiration[3].image : '')+')'}"></div>
 									<div class="ist_mask" v-if="inspiration.length > 3">
 										<h3>{{inspiration[3].name}}</h3>
 										<p>{{inspiration[3].name_en}}</p>
 									</div>
 								</div>
-								<div class="flex_1 relative">
+								<div class="flex_1 relative pointer" @click="goInspiration()">
 									<div class="coverImg" :style="{backgroundImage: 'url('+(inspiration.length > 4 ? inspiration[4].image : '')+')'}"></div>
 									<div class="ist_mask" v-if="inspiration.length > 4">
 										<h3>{{inspiration[4].name}}</h3>
@@ -156,7 +156,7 @@
 									</div>
 								</div>
 							</div>
-							<div class="flex_1 relative">
+							<div class="flex_1 relative pointer" @click="goInspiration()">
 								<div class="coverImg" :style="{backgroundImage: 'url('+(inspiration.length > 5 ? inspiration[5].image : '')+')'}"></div>
 								<div class="ist_mask" v-if="inspiration.length > 5">
 									<h3>{{inspiration[5].name}}</h3>
@@ -167,14 +167,14 @@
 						<div class="flex_dom">
 							<div class="flex_1">
 								<div class="flex_dom m-b-20 hgt300">
-									<div class="flex_1 m-r-20 relative">
+									<div class="flex_1 m-r-20 relative pointer" @click="goInspiration()">
 										<div class="coverImg" :style="{backgroundImage: 'url('+(inspiration.length > 6 ? inspiration[6].image : '')+')'}"></div>
 										<div class="ist_mask" v-if="inspiration.length > 6">
 											<h3>{{inspiration[6].name}}</h3>
 											<p>{{inspiration[6].name_en}}</p>
 										</div>
 									</div>
-									<div class="flex_1 relative">
+									<div class="flex_1 relative pointer" @click="goInspiration()">
 										<div class="coverImg" :style="{backgroundImage: 'url('+(inspiration.length > 7 ? inspiration[7].image : '')+')'}"></div>
 										<div class="ist_mask" v-if="inspiration.length > 7">
 											<h3>{{inspiration[7].name}}</h3>
@@ -183,14 +183,14 @@
 									</div>
 								</div>
 								<div class="flex_dom hgt300">
-									<div class="flex_1 m-r-20 relative">
+									<div class="flex_1 m-r-20 relative pointer" @click="goInspiration()">
 										<div class="coverImg" :style="{backgroundImage: 'url('+(inspiration.length > 8 ? inspiration[8].image : '')+')'}"></div>
 										<div class="ist_mask" v-if="inspiration.length > 8">
 											<h3>{{inspiration[8].name}}</h3>
 											<p>{{inspiration[8].name_en}}</p>
 										</div>
 									</div>
-									<div class="flex_1 relative">
+									<div class="flex_1 relative pointer" @click="goInspiration()">
 										<div class="coverImg" :style="{backgroundImage: 'url('+(inspiration.length > 9 ? inspiration[9].image : '')+')'}"></div>
 										<div class="ist_mask" v-if="inspiration.length > 9">
 											<h3>{{inspiration[9].name}}</h3>
@@ -200,7 +200,7 @@
 								</div>
 							</div>
 							<div class="wid295 m-l-20 flex_column">
-								<div class="flex_1 color-fff font17 hgt300 m-b-20 relative">
+								<div class="flex_1 color-fff font17 hgt300 m-b-20 relative pointer" @click="goInspiration()">
 									<div class="coverImg" :style="{backgroundImage: 'url('+(inspiration.length > 10 ? inspiration[10].image : '')+')'}"></div>
 									<div class="ist_mask" v-if="inspiration.length > 10">
 										<h3>{{inspiration[10].name}}</h3>
@@ -427,6 +427,9 @@
 				});
 			},
 			methods: {
+				goInspiration: function(){
+					location.href = 'inspiration.html';
+				},
 				goCase: function(item){
 					location.href = 'case.html?style='+item.id;
 				},
