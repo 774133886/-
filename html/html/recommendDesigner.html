@@ -39,7 +39,7 @@
 					<div class="center-1260 pt374">
 						<div v-for="(item,index) in Decommendlist" class="designerBox clearfix box_s l-pad70 bg-fff">
 							<div class="dbLeft" v-if="item.case.length">
-								<div :class="'rd_swiper'+index">
+								<a v-bind:href="'designerWork.html?id='+item.id" :class="'rd_swiper'+index">
 									<div class="swiper-container">
 										<div class="swiper-wrapper">
 											<div class="swiper-slide" v-for="img in item.case">
@@ -47,7 +47,7 @@
 											</div>
 										</div>
 									</div>
-								</div>
+								</a>
 								<div class="dspicList around-center">
 									<div :class="'center swiper-pagination '+'rd_page'+index">
 										<!--<p class="coverImg listPic" style="background-image: url(../images/banner1.png);"></p>

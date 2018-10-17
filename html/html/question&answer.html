@@ -41,40 +41,16 @@
 					<div class="center-1260 pt374">
 						<div class="qaBox box_s l-pad40 between-center bg-fff">
 							<div v-for="item in typeList" @click="getquestions(item.id)" :qId="item.id" class="column-center-b relative iconpicArea">
-								<img v-bind:src="item.image"/>
+								<img style="width: 60px;height: auto;" v-bind:src="item.image"/>
 								<span class="font22 color-2d2e35" v-text="item.name"></span>
 								<div class="grayline"></div>
 							</div>
-							
-							<!--<div class="column-center-b iconpicArea">
-								<img src="../images/icon_person.png"/>
-								<span class="font22 color-2d2e35">设计师问题</span>
-							</div>
-							<div class="grayline"></div>
-							<div class="column-center-b iconpicArea">
-								<img src="../images/icon_aftersell.png"/>
-								<span class="font22 color-2d2e35">售后问题</span>
-							</div>
-							<div class="grayline"></div>
-							<div class="column-center-b iconpicArea">
-								<img src="../images/icon_pro.png"/>
-								<span class="font22 color-2d2e35">服务流程</span>
-							</div>-->
 						</div>
 						<div class="queArea between bg-fff box_s">
 							<div class="queALeft box_s2">
 								<div @click="getanswer(item.title,item.content)" v-for="item in questionList" class="queLine" v-cloak>
 									{{item.title}}
 								</div>
-								<!--<div class="queLine">
-									遇到这个问题怎么办?
-								</div>
-								<div class="queLine">
-									遇到这个问题怎么办?
-								</div>
-								<div class="queLine">
-									遇到这个问题怎么办?
-								</div>-->
 							</div>
 							<div class="queARight">
 								<div class="font18 l-h-45" v-cloak>
