@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>首页</title>
+		<meta name="keywords" content="">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<!--<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">-->
+		<!--分享使用-->
+		<meta itemprop="name" content="" />
+		<meta itemprop="description" name="description" content="" />
+		<meta itemprop="image" content="img_url" />
+		<meta name="format-detection" content="telephone=no" />
+		<link rel="stylesheet" type="text/css" href="../css/swiper.min.css">
+		<link rel="stylesheet" type="text/css" href="../css/global.css">
+		<link rel="stylesheet" type="text/css" href="../css/ly.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/pyf.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/zyl.css"/>
+	</head>
+
+	<body>
+		<div class="main index">
+			<div class="curHeader centerCon clearfix">
+				<img src="../images/headLogo.png" alt="" />
+				<a href="javascript:;" class="active">首 页</a>
+				<a href="javascript:;">设计师</a>
+				<a href="javascript:;">案例</a>
+				<a href="javascript:;">灵感</a>
+				<a href="javascript:;">装修日记</a>
+				<a href="javascript:;">常见问题</a>
+				<a href="javascript:;">关于我们</a>
+			</div>
+			<div class="border-b-e8"></div>
+			
+			<div class="container center-1200 p-t-50 clearfix">
+				<!-- swiper轮播 -->
+				<div class="swiper-container fl relative">
+					<div class="swiper-wrapper">
+						<div style="background: url(../images/banner1.png)" class="swiper-slide"></div>
+						<div style="background: url(../images/banner1.png)" class="swiper-slide"></div>
+						<div style="background: url(../images/banner1.png)" class="swiper-slide"></div>
+						<div style="background: url(../images/banner1.png)" class="swiper-slide"></div>
+					</div>
+					<div class="swiper-button-prev swiper-button-white"></div>
+					<div class="swiper-button-next swiper-button-white"></div>
+					<div class="swiper-pagination"></div>
+				</div>
+				<!-- 设计师信息 立即预约 -->
+				<div class="fr l-h-1 hgt560 wid255 clearfix relative">
+					<img class="avator block" src="../images/designer.png" alt="">
+					<p class="font22 fw_600 text-center m-t-10 color-2d2e35">曾卫平</p>
+					<p class="font15 color-8b text-center m-t-10">XXX资深设计师</p>
+					<p class="text-center color-2d2e35 font22 m-t-15">500元/<span class="font15">m<sup>2</sup></span></p>
+					<!-- 标签 -->
+					<div class="tag m-t-25 font0">
+						<span class="inline_div tag-item m-b-10">极 简 风</span>
+						<span class="inline_div tag-item m-b-10">欧 式 新 派</span>
+						<span class="inline_div tag-item m-b-10">中 国 风</span>
+						<span class="inline_div tag-item m-b-10">北 美 风</span>
+					</div>
+					<!-- 预约按钮 -->
+					<div class="relative order-btn abolute">
+						<!-- <img class="time abolute" src="../images/icon_time.png" alt=""> -->
+						<button class="font20 fw_600 color-fff wid100 hgt45 l-h-45">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;立即预约&nbsp;&nbsp;></button>
+					</div>
+				</div>
+			</div>
+			
+			<div class="curFooter">
+				<div class="centerCon clearfix">
+					<div class="foot-l">
+						<div class="clearfix m-b-15">
+							<a href="javascript:;">首页</a>
+							<a href="javascript:;">案例</a>
+							<a href="javascript:;">灵感</a>
+							<a href="javascript:;">装修日记</a>
+							<a href="javascript:;">常见问题</a>
+							<a href="javascript:;">关于我们</a>
+						</div>
+						<div class="m-b-15 color-fff font14 clearfix">
+							<p class="fl m-r-30">TEL：+86 400-008-0000</p>
+							<p class="fl">E-mail：jobs@126.com</p>
+						</div>
+						<p class="color-fff font14">©2016 i2edu.cn. All rights reserved.</p>
+					</div>
+					<div class="foot-r clearfix">
+						<img class="fr" src="../images/foot-logo.png" alt="" />
+						<div class="clearfix fr">
+							<a href="javascript:;">
+								<img src="../images/foot-weChat.png" alt="" />
+								<p>WeChat</p>
+							</a>
+							<a href="javascript:;">
+								<img src="../images/foot-blog.png" alt="" />
+								<p>blog</p>
+							</a>
+							<a href="javascript:;">
+								<img src="../images/foot-zhihu.png" alt="" />
+								<p>Zhihu</p>
+							</a>
+							<a href="javascript:;">
+								<img src="../images/foot-tianya.png" alt="" />
+								<p>tianyan</p>
+							</a>
+							<a href="javascript:;">
+								<img src="../images/foot-FAQ.png" alt="" />
+								<p>FAQ</p>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="../lib/jquery.1.11.3.min.js"></script>
+	<script type="text/javascript" src="../lib/con_js.6.23.js"></script>
+	<script type="text/javascript" src="../lib/vue.js"></script>
+	<script type="text/javascript" src="../lib/swiper.min.js"></script>
+	<script type="text/javascript" src="../lib/page.js"></script>
+	<script>
+
+		var mySwiper = new Swiper('.swiper-container', {
+			// autoplay: 5000,//可选选项，自动滑动
+			pagination : '.swiper-pagination',
+			paginationType: 'bullets',
+			prevButton:'.swiper-button-prev',
+			nextButton:'.swiper-button-next',
+			simulateTouch: false
+		})		
+
+	</script>
+
+</html>

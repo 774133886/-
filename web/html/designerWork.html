@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>案例</title>
+		<meta name="keywords" content="">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<!--<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">-->
+		<!--分享使用-->
+		<meta itemprop="name" content="" />
+		<meta itemprop="description" name="description" content="" />
+		<meta itemprop="image" content="img_url" />
+		<meta name="format-detection" content="telephone=no" />
+		<link rel="stylesheet" type="text/css" href="../css/swiper.min.css">
+		<link rel="stylesheet" type="text/css" href="../css/global.css">
+		<link rel="stylesheet" type="text/css" href="../css/ly.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/pyf.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/zyl.css"/>
+	</head>
+
+	<body>
+		<div class="designer main" id="app">
+			<div class="curHeader centerCon clearfix">
+				<img src="../images/headLogo.png" alt="" />
+				<a href="index.html">首 页</a>
+				<a href="recommendDesigner.html" class="active">设计师</a>
+				<a href="case.html">案例</a>
+				<a href="inspiration.html">灵感</a>
+				<a href="javascript:;" class="relative headDairy">简色日记</a>
+				<a href="question&answer.html">常见问题</a>
+				<a href="aboutus.html">关于我们</a>
+			</div>
+			<!-- 最新案例banner 功能导航 -->
+			<div class="banner">
+				<div class="mask-100">
+					<div class="center-1260 p-t-110">
+						<p class="color-fff font44 fw_600 p-l-20">DESIGNER</p>
+						<p class="color-fff font28 p-l-20">设计师</p>
+					</div>
+				</div>
+			</div>
+			<div class="bg-f1f2f4 container">
+				<div class="center-1260 main-wrapper" v-cloak>
+					<!-- 设计师信息 -->
+					<div class="d-info hgt295 bg-fff p-t-50 p-b-70 relative">
+						<!-- 信息 -->
+						<div class="p-l-65 flex_dom">
+							<img class="avator m-r-25" :src="designer.photo" alt="">
+							<div class="flex_column flex_item_center wid550">
+								<p><span class="font22 color-2d2e35 m-r-15 fw_600">{{designer.name}}</span><span class="font15 color-8b">{{designer.qualification}}</span></p>
+								<p class="tag m-t-15 font0">
+									<span @click="goCase(key)" class="tag-item color-2d2e35 m-r-5 fw_600 pointer" v-for="(val,key,index) in designer.style_list">{{val}}</span>
+								</p>
+								<p class="font15 color-8b m-t-10" v-if="designer.description">{{designer.description | getText}}</p>
+							</div>
+						</div>
+						<!-- 预约 -->
+						<div class="wid230 abolute order">
+							<p class="font28 text-center">{{designer.fee}}元/<span class="font20">m<sup>2</sup></span></p>
+							<button onclick="$('.fix-box').focus()" class="order-btn font20 fw_600 color-fff wid100 hgt45 l-h-45 m-t-10">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;立即预约&nbsp;&nbsp;></button>
+						</div>
+					</div>
+					<!-- 原创设计作品 -->
+					<div class="p_both70 bg-fff m-t-70 overflow_hide">
+						<p class="text-center m-t-40"><img style="width: 11px" src="../images/icon_angle2.png" alt=""></p>
+						<p class="text-center font32 color-2d2e35 m-t-5 m-b-30">原创设计作品</p>
+						<div>
+							<!-- 原创作品模板 -->
+							<div class="case-item" v-for="item in list">
+								<img :src="item.img" class="block pointer" @click="openMask(item.image,item.name)" alt="">
+								<div class="relative">
+									<p class="font18 color-2d2e35 fw_600 m-t-20 p-l-10">{{item.name}}</p>
+									<p class="font14 color-8b m-t-10 p-l-10 wid970">{{item.description | getText}}</p>
+									<img class="new" src="../images/new.png" alt="">
+								</div>
+							</div>
+						</div>
+						<div class="text-center loadDiv">
+							<img src="../images/icon-pageDown.png" alt="" />
+							<p class="color-2d2e35 font18 m-t-5 m-b-40">向下滚动加载更多</p>
+							<img src="../images/loading.gif" alt="" />
+						</div>
+						<!--<div class="p-t-90">
+							<p class="text-center"><img style="width: 30px" src="../images/icon_angle3.png" alt=""></p>
+							<p class="font18 color-2d2e35 fw_600 text-center m-t-10">向 下 滚 动 加 载 更 多</p>
+						</div>
+						<div class="text-center p-t-50 p-b-50"><img style="width: 59px" src="../images/loading.png" alt=""></div>-->
+					</div>
+				</div>
+			</div>
+			<div class="curFooter">
+				<div class="centerCon clearfix">
+					<div class="foot-l">
+						<div class="clearfix m-b-15">
+							<a href="index.html">首页</a>
+							<a href="case.html">案例</a>
+							<a href="inspiration.html">灵感</a>
+							<a href="javascript:;" class="footTab clearfix"></a>
+							<a href="question&answer.html">常见问题</a>
+							<a href="aboutus.html">关于我们</a>
+						</div>
+						<div class="m-b-15 color-fff font14 clearfix">
+							<p class="fl m-r-30" id="footTel">TEL：+86 400-008-0000</p>
+							<p class="fl" id="footMail">E-mail：jobs@126.com</p>
+						</div>
+						<p class="color-fff font14">©2016 i2edu.cn. All rights reserved.</p>
+					</div>
+					<div class="foot-r clearfix">
+						<img class="fr" src="../images/foot-logo.png" alt="" />
+						<div class="clearfix fr">
+							<a class="relative foot-weChat" href="javascript:;">
+								<img src="../images/foot-weChat.png" alt="" />
+								<p>WeChat</p>
+								<div class="footCode"><img src="../images/foot-logo.png"/></div>
+							</a>
+							<a href="https://weibo.com" target="_blank">
+								<img src="../images/foot-blog.png" alt="" />
+								<p>blog</p>
+							</a>
+							<a href="https://www.zhihu.com" target="_blank">
+								<img src="../images/foot-zhihu.png" alt="" />
+								<p>Zhihu</p>
+							</a>
+							<a href="http://focus.tianya.cn" target="_blank">
+								<img src="../images/foot-tianya.png" alt="" />
+								<p>tianyan</p>
+							</a>
+							<a href="question&answer.html">
+								<img src="../images/foot-FAQ.png" alt="" />
+								<p>FAQ</p>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="../lib/jquery.1.11.3.min.js"></script>
+	<script type="text/javascript" src="../lib/con_js.6.23.js"></script>
+	<script type="text/javascript" src="../lib/vue.js"></script>
+	<script type="text/javascript" src="../lib/swiper.min.js"></script>
+	<script type="text/javascript" src="../lib/page.js"></script>
+	<script>
+		var urlParam = GetRequest();
+		var app = new Vue({
+			el: '#app',
+			data: {
+				list: [],
+				designer: {},
+				param: {
+					page: 1,
+					num: 5,
+					designer_id: urlParam.id
+				},
+				hasData: true
+			},
+			filters: {
+				getText: function(value){
+					var dd=value.replace(/<\/?.+?>/g,"");
+ 					var dds=dd.replace(/ /g,"");
+ 					return dds;
+				}
+			},
+			mounted: function(){
+				$.ajax({
+					type:"get",
+					data: {
+						id: urlParam.id
+					},
+					url: host+"/api/l/getDesignerDetail",
+					success: function(res){
+						res = JSON.parse(res);
+						if(res.success){
+							app.designer = res.data;
+						}else{
+							console.log(res.message);
+						}
+					}
+				});
+				this.getList();
+			},
+			methods: {
+				openMask: function(image,name){
+					swiperMark(image,name);
+				},
+				goCase: function(key){
+					location.href = 'case.html?style='+key;
+				},
+				//获取列表
+				getList: function(){
+					var that = this;
+					if(!that.hasData){
+						return;
+					}
+					that.hasData = false;
+					$.ajax({
+						type:"get",
+						url: host+"/api/l/getCaseList",
+						data: that.param,
+						success: function(res){
+							res = JSON.parse(res);
+							if(res.data.length == 0){
+								app.hasData = false;
+								$('.loadDiv').hide();
+								return;
+							}else{
+								app.hasData = true;
+							}
+							for(var i = 0;i < res.data.length;i++){
+								res.data[i].img = res.data[i].image.split(',')[0];
+							}
+							if(res.success){
+								if(that.param.page == 1){
+									that.list = res.data;
+								}else{
+									that.list = that.list.concat(res.data);
+								}
+								that.param.page++;
+							}else{
+								console.log(res.message);
+							}
+						}
+					});
+				}
+			}
+		})
+		$(window).scroll(function () {
+		    //已经滚动到上面的页面高度
+		    var scrollTop = $(this).scrollTop();
+		    //页面高度
+		    var scrollHeight = $(document).height();
+	       	//浏览器窗口高度
+	     	var windowHeight = $(this).height();
+	      	//此处是滚动条到底部时候触发的事件，在这里写要加载的数据，或者是拉动滚动条的操作
+	      	if (scrollTop + windowHeight >= scrollHeight-200) {
+	        	app.getList();
+	       	}
+		});
+	</script>
+
+</html>

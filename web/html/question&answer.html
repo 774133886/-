@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>设计师</title>
+		<meta name="keywords" content="">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<!--<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">-->
+		<!--分享使用-->
+		<meta itemprop="name" content="" />
+		<meta itemprop="description" name="description" content="" />
+		<meta itemprop="image" content="img_url" />
+		<meta name="format-detection" content="telephone=no" />
+		<link rel="stylesheet" type="text/css" href="../css/swiper.min.css">
+		<link rel="stylesheet" type="text/css" href="../css/global.css">
+		<link rel="stylesheet" type="text/css" href="../css/ly.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/pyf.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/zyl.css"/>
+		<style type="text/css">
+		</style>
+	</head>
+
+	<body>
+		<div class="main designer"id="app">
+			<div class="curHeader centerCon clearfix">
+				<img src="../images/headLogo.png" alt="" />
+				<a href="index.html">首 页</a>
+				<a href="recommendDesigner.html">设计师</a>
+				<a href="case.html">案例</a>
+				<a href="inspiration.html">灵感</a>
+				<a href="javascript:;" class="relative headDairy">简色日记</a>
+				<a href="question&answer.html" class="active">常见问题</a>
+				<a href="aboutus.html">关于我们</a>
+			</div>
+			<div class="border-b-e8"></div>
+			
+			<div class="container pb200 bg-f1f2f4 clearfix">
+				<div class="qusBg">
+					<div class="center-1260 pt374">
+						<div class="qaBox box_s l-pad40 between-center bg-fff">
+							<div v-for="item in typeList" @click="getquestions(item.id)" :qId="item.id" class="column-center-b relative iconpicArea">
+								<img style="width: 60px;height: auto;" v-bind:src="item.image"/>
+								<span class="font22 color-2d2e35" v-text="item.name"></span>
+								<div class="grayline"></div>
+							</div>
+						</div>
+						<div class="queArea between bg-fff box_s">
+							<div class="queALeft box_s2">
+								<div @click="getanswer(item.title,item.content)" v-for="item in questionList" class="queLine" v-cloak>
+									{{item.title}}
+								</div>
+							</div>
+							<div class="queARight">
+								<div class="font18 l-h-45" v-cloak>
+									问：{{quscon}}
+								</div>
+								<div class="l-h-30 font15 color-94" v-html="answercon"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id="back-to-top" class="backTop">
+				<div class="column-center-c wid100 h100">
+					<img src="../images/icon_backTop.png"/>
+					<p class="color-2d2e35 font15">回到顶部</p>
+				</div>
+			</div>
+			<div class="curFooter">
+				<div class="centerCon clearfix">
+					<div class="foot-l">
+						<div class="clearfix m-b-15">
+							<a href="index.html">首页</a>
+							<a href="case.html">案例</a>
+							<a href="inspiration.html">灵感</a>
+							<a href="javascript:;" class="footTab clearfix"></a>
+							<a href="question&answer.html">常见问题</a>
+							<a href="aboutus.html">关于我们</a>
+						</div>
+						<div class="m-b-15 color-fff font14 clearfix">
+							<p class="fl m-r-30" id="footTel">TEL：+86 400-008-0000</p>
+							<p class="fl" id="footMail">E-mail：jobs@126.com</p>
+						</div>
+						<p class="color-fff font14">©2016 i2edu.cn. All rights reserved.</p>
+					</div>
+					<div class="foot-r clearfix">
+						<img class="fr" src="../images/foot-logo.png" alt="" />
+						<div class="clearfix fr">
+							<a class="relative foot-weChat" href="javascript:;">
+								<img src="../images/foot-weChat.png" alt="" />
+								<p>WeChat</p>
+								<div class="footCode"><img src="../images/foot-logo.png"/></div>
+							</a>
+							<a href="https://weibo.com" target="_blank">
+								<img src="../images/foot-blog.png" alt="" />
+								<p>blog</p>
+							</a>
+							<a href="https://www.zhihu.com" target="_blank">
+								<img src="../images/foot-zhihu.png" alt="" />
+								<p>Zhihu</p>
+							</a>
+							<a href="http://focus.tianya.cn" target="_blank">
+								<img src="../images/foot-tianya.png" alt="" />
+								<p>tianyan</p>
+							</a>
+							<a href="question&answer.html">
+								<img src="../images/foot-FAQ.png" alt="" />
+								<p>FAQ</p>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="../lib/jquery.1.11.3.min.js"></script>
+	<script type="text/javascript" src="../lib/con_js.6.23.js"></script>
+	<script type="text/javascript" src="../lib/vue.js"></script>
+	<script type="text/javascript" src="../lib/swiper.min.js"></script>
+	<script type="text/javascript" src="../lib/page.js"></script>
+	<script>
+		var app = new Vue({
+			el: '#app',
+			data: {
+				typeList: [],
+				questionList: [],
+				quscon:'',
+				answercon:'',
+			},
+			mounted: function(){
+				//获取问题类型
+				$.ajax({
+					type:"get",
+					url: host+"/api/l/getProblemType",
+//					data:{page:1,num:5},
+					success: function(res){
+						res = JSON.parse(res);
+						if(res.success){
+							app.typeList = res.data;
+							app.getquestions(res.data[0].id);
+							console.log(app.typeList)
+						}else{
+							console.log(res.message);
+						}
+					}
+				});
+			},
+			methods: {
+				getquestions:function(id){
+				//获取问题列表
+					$.ajax({
+						type:"get",
+						url: host+"/api/l/getProblemList",
+						data:{
+//							page:1,num:5,
+							problems_ids:id
+						},
+						success: function(res){
+							res = JSON.parse(res);
+							if(res.success){
+								app.questionList = res.data;
+								app.quscon = res.data[0].title;
+								app.answercon = res.data[0].content;
+							}else{
+								console.log(res.message);
+							}
+						}
+					});
+				},
+				getanswer:function(a,b){
+					app.quscon = a;
+					app.answercon = b;
+				}
+			}
+		})
+		
+		$(function(){
+		        //当滚动条的位置处于距顶部100像素以下时，跳转链接出现，否则消失
+	
+	            $(window).scroll(function(){
+	                if ($(window).scrollTop()>100){
+	                    $("#back-to-top").fadeIn(500);
+	                }
+	                else
+	                {
+	                    $("#back-to-top").fadeOut(500);
+	                }
+	            });
+	
+	            //当点击跳转链接后，回到页面顶部位置
+	            $("#back-to-top").click(function(){
+	                //$('body,html').animate({scrollTop:0},1000);
+			        if ($(window).scrollTop()) {
+			                $('html,body').animate({ scrollTop: 0 }, 1000);
+			                return false;
+			            }
+			            $('html,body').animate({ scrollTop: 0 }, 1000);
+			                 return false;            
+	           });       
+
+		});
+	</script>
+
+</html>

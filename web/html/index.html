@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>简色</title>
+		<meta name="keywords" content="">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<!--<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">-->
+		<!--分享使用-->
+		<meta itemprop="name" content="" />
+		<meta itemprop="description" name="description" content="" />
+		<meta itemprop="image" content="img_url" />
+		<meta name="format-detection" content="telephone=no" />
+		<link rel="stylesheet" type="text/css" href="../css/swiper.min.css">
+		<link rel="stylesheet" type="text/css" href="../css/global.css">
+		<link rel="stylesheet" type="text/css" href="../css/ly.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/pyf.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/zyl.css"/>
+	</head>
+
+	<body>
+		<div class="main" id="app">
+			<div class="curHeader flex_dom flex_item_between flex_item_mid">
+				<img class="logo" src="../images/head-logo.png" alt="">
+				<a href="javascript:;"></a>
+			</div>
+			
+			<div class="container">
+				<div class="indexSwiper">
+					<div class="swiper-container">
+						<div class="swiper-wrapper">
+						    <div v-for="item in banner" class="swiper-slide"><img :alt="item.name" :src="item.image" alt="" /></div>
+						    <!--<div v-for="item in banner" class="swiper-slide">
+						    	<div class="indexBanner coverImg" :style="{backgroundImage: 'url('+item.image+')'}"></div>
+						    </div>-->
+						</div>
+						<div class="swiper-pagination"></div>
+					</div>
+				</div>
+				<div class="centerCon">
+					<div class="indexTitle">
+						<img src="../images/icon-down.png" alt="" />
+						<h1>DESIGNER</h1>
+						<p>设计师</p>
+					</div>
+					<div class="indexDesigner" v-cloak>
+						<div class="flex_dom">
+							<a v-for="(item,index) in designer" @mouseover="idIndex = index" :class="idIndex == index ? 'active' : ''" href="javascript:;">
+								<div class="id_img pointer" @click="goDesignerDetail(item.id)" :style="{backgroundImage: 'url('+item.photo+')'}"></div>
+								<div class="id_text">
+									<h3>{{item.name}}</h3>
+									<p>{{item.qualification}}</p>
+								</div>
+							</a>
+							<a class="flex_dom" href="recommendDesigner.html">
+								<div class="id_img id_goMore flex_dom flex_item_mid flex_item_around">
+									<div class="text-center">
+										<p class="color-fff"><span class="font20r">MORE</span> <i class="font18">+</i></p>
+										<p class="color-fff font15r">更多设计师</p>
+									</div>
+								</div>
+							</a>
+						</div>
+					</div>
+				</div>
+				<div class="centerCon" v-cloak>
+					<div class="id_swiper">
+						<div class="swiper-container" v-if="designer[idIndex] && designer[idIndex].case_image">
+							<div class="swiper-wrapper">
+							    <div class="swiper-slide pointer" v-for="(item,index) in designer[idIndex].case_image.split(',')" @click="openSwiper(index)"><img :src="item" alt="" /></div>
+							</div>
+						    <div class="swiper-button-prev"></div>
+						    <div class="swiper-button-next"></div>
+							<div class="swiper-pagination"></div>
+						</div>
+					</div>
+				</div>
+				<div class="indexCaseCon">
+					<div class="indexTitle">
+						<img src="../images/icon-down.png" alt="" />
+						<h1>DESIGN CASE</h1>
+						<p>最新案例</p>
+					</div>
+					<div class="indexCase" v-cloak>
+						<a v-for="item in caseList" href="javascript:;" @click="goCase(item)">
+							<div class="coverImg" :style="{backgroundImage: 'url('+item.image+')'}">
+								<div class="flex_column flex_item_between">
+									<div class="flex_dom">
+										<div class="whiteLine"></div>
+										<div class="color-fff">
+											<p class="font24r">{{item.type_name}}</p>
+											<span class="font16r">{{item.type_name_en}}</span>
+										</div>
+									</div>
+									<img class="indexCaseBtn" src="../images/icon-caseBtn.png" alt="" />
+								</div>
+							</div>
+						</a>
+					</div>
+				</div>
+				
+				<div>
+					<div class="indexTitle m-b-30">
+						<img src="../images/icon-down.png" alt="" />
+						<h1>INSPIRATION</h1>
+						<p>设计灵感</p>
+					</div>
+					<div class="centerCon indexInspiration" v-cloak>
+						<div class="flex_dom m-b-10r hgt285">
+							<div class="flex_2 m-r-10r relative pointer" @click="goInspiration()">
+								<div class="coverImg" :style="{backgroundImage: 'url('+(inspiration.length > 0 ? inspiration[0].image : '')+')'}"></div>
+								<div class="ist_mask" v-if="inspiration.length > 0">
+									<h3>{{inspiration[0].name}}</h3>
+									<p>{{inspiration[0].name_en}}</p>
+								</div>
+							</div>
+							<div class="flex_1 flex_dom">
+								<div class="flex_1 m-r-10r relative pointer" @click="goInspiration()">
+									<div class="coverImg" :style="{backgroundImage: 'url('+(inspiration.length > 1 ? inspiration[1].image : '')+')'}"></div>
+									<div class="ist_mask" v-if="inspiration.length > 1">
+										<h3>{{inspiration[1].name}}</h3>
+										<p>{{inspiration[1].name_en}}</p>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="flex_dom m-b-10r hgt285">
+							<div class="flex_1 relative pointer" @click="goInspiration()">
+								<div class="coverImg" :style="{backgroundImage: 'url('+(inspiration.length > 2 ? inspiration[2].image : '')+')'}"></div>
+								<div class="ist_mask" v-if="inspiration.length > 2">
+									<h3>{{inspiration[2].name}}</h3>
+									<p>{{inspiration[2].name_en}}</p>
+								</div>
+							</div>
+							<div class="flex_1 flex_dom m-r-10r">
+								<div class="flex_1 m-r-10r relative pointer" @click="goInspiration()">
+									<div class="coverImg" :style="{backgroundImage: 'url('+(inspiration.length > 3 ? inspiration[3].image : '')+')'}"></div>
+									<div class="ist_mask" v-if="inspiration.length > 3">
+										<h3>{{inspiration[3].name}}</h3>
+										<p>{{inspiration[3].name_en}}</p>
+									</div>
+								</div>
+								<div class="flex_1 relative pointer" @click="goInspiration()">
+									<div class="coverImg" :style="{backgroundImage: 'url('+(inspiration.length > 4 ? inspiration[4].image : '')+')'}"></div>
+									<div class="ist_mask" v-if="inspiration.length > 4">
+										<h3>{{inspiration[4].name}}</h3>
+										<p>{{inspiration[4].name_en}}</p>
+									</div>
+								</div>
+							</div>
+							<div class="flex_1 relative pointer" @click="goInspiration()">
+								<div class="coverImg" :style="{backgroundImage: 'url('+(inspiration.length > 5 ? inspiration[5].image : '')+')'}"></div>
+								<div class="ist_mask" v-if="inspiration.length > 5">
+									<h3>{{inspiration[5].name}}</h3>
+									<p>{{inspiration[5].name_en}}</p>
+								</div>
+							</div>
+						</div>
+						<div class="flex_dom">
+							<div class="flex_1">
+								<div class="flex_dom m-b-10r hgt300">
+									<div class="flex_1 m-r-10r relative pointer" @click="goInspiration()">
+										<div class="coverImg" :style="{backgroundImage: 'url('+(inspiration.length > 6 ? inspiration[6].image : '')+')'}"></div>
+										<div class="ist_mask" v-if="inspiration.length > 6">
+											<h3>{{inspiration[6].name}}</h3>
+											<p>{{inspiration[6].name_en}}</p>
+										</div>
+									</div>
+									<div class="flex_1 relative pointer" @click="goInspiration()">
+										<div class="coverImg" :style="{backgroundImage: 'url('+(inspiration.length > 7 ? inspiration[7].image : '')+')'}"></div>
+										<div class="ist_mask" v-if="inspiration.length > 7">
+											<h3>{{inspiration[7].name}}</h3>
+											<p>{{inspiration[7].name_en}}</p>
+										</div>
+									</div>
+								</div>
+								<div class="flex_dom hgt300">
+									<div class="flex_1 m-r-10r relative pointer" @click="goInspiration()">
+										<div class="coverImg" :style="{backgroundImage: 'url('+(inspiration.length > 8 ? inspiration[8].image : '')+')'}"></div>
+										<div class="ist_mask" v-if="inspiration.length > 8">
+											<h3>{{inspiration[8].name}}</h3>
+											<p>{{inspiration[8].name_en}}</p>
+										</div>
+									</div>
+									<div class="flex_1 relative pointer" @click="goInspiration()">
+										<div class="coverImg" :style="{backgroundImage: 'url('+(inspiration.length > 9 ? inspiration[9].image : '')+')'}"></div>
+										<div class="ist_mask" v-if="inspiration.length > 9">
+											<h3>{{inspiration[9].name}}</h3>
+											<p>{{inspiration[9].name_en}}</p>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="wid295 m-l-10r flex_column">
+								<div class="flex_1 color-fff font17 hgt300 m-b-20r relative pointer" @click="goInspiration()">
+									<div class="coverImg" :style="{backgroundImage: 'url('+(inspiration.length > 10 ? inspiration[10].image : '')+')'}"></div>
+									<div class="ist_mask" v-if="inspiration.length > 10">
+										<h3>{{inspiration[10].name}}</h3>
+										<p>{{inspiration[10].name_en}}</p>
+									</div>
+								</div>
+								<div class="inspirationBox hgt300">
+									<a class="inspirationBtn" href="inspiration.html">MORE +</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="indexBtm">
+					<div class="indexTitle">
+						<img src="../images/icon-down.png" alt="" />
+						<h1>DECORATION DIARY</h1>
+						<p>简色日记</p>
+					</div>
+					<div class="centerCon indexDay" v-cloak>
+						<div class="flex_dom m-b-30" v-if="dayNode">
+							<div class="indexDayNum flex_dom">
+								<span>{{dayNode.node_time}}</span>
+								<i>Day</i>
+							</div>
+							<div class="flex_1 indexDayText">
+								<h3>{{dayNode.node_title}}</h3>
+								<p v-if="dayNode.node_description">{{dayNode.node_description | getText}}</p>
+							</div>
+						</div>
+						<div class="flex_dom">
+							<div class="flex_1 flex_dom">
+								<a v-for="item in diary" @click="goDairyDetail(item.id,item.type_id)" @mouseover="dayNode = item.node" class="flex_1 hgt310 coverImg m-r-20" href="javascript:;" :style="{backgroundImage: 'url('+item.image+')'}"></a>
+							</div>
+							<div class="indexDayMore flex_dom flex_item_mid flex_item_around coverImg pointer" onclick="location.href='decoratedairy.html'" style="background-image: url(../images/banner_2.png);">
+								<div class="color-fff">
+									<h3 class="font20">MORE +</h3>
+									<p class="font15">査看往日</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="curFooter">
+				<p>©2016 i2edu.cn. All rights reserved.</p>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="../lib/jquery.1.11.3.min.js"></script>
+	<script type="text/javascript" src="../lib/con_js.6.23.js"></script>
+	<script type="text/javascript" src="../lib/vue.js"></script>
+	<script type="text/javascript" src="../lib/swiper.min.js"></script>
+	<script type="text/javascript" src="../lib/page.js"></script>
+	<script>
+		var idSwiper = null;
+		var app = new Vue({
+			el: '#app',
+			data: {
+				banner: [],
+				designer: [],
+				idIndex: 0,
+				designerBanner: [],
+				caseList: [],
+				inspiration: [],
+				diary: [],
+				dayNode: {}
+			},
+			watch: {
+				'idIndex': function(){
+					setTimeout(function(){
+							idSwiper = new Swiper('.id_swiper .swiper-container', {
+								autoplay: 5000,//可选选项，自动滑动
+								pagination : '.id_swiper .swiper-pagination',
+								loop : true,
+								observer:true,
+								paginationClickable :true,
+								prevButton:'.swiper-button-prev',
+								nextButton:'.swiper-button-next',
+							})
+					},0)
+				}
+			},
+			filters: {
+				getText: function(value){
+					var dd=value.replace(/<\/?.+?>/g,"");
+ 					var dds=dd.replace(/ /g,"");
+ 					return dds;
+				}
+			},
+			mounted: function(){
+				
+				//获取banner
+				$.ajax({
+					type:"get",
+					url: host+"/api/l/getBanner",
+					success: function(res){
+						res = JSON.parse(res);
+						if(res.success){
+							app.banner = res.data;
+							app.$nextTick(function(){
+								var mySwiper = new Swiper('.indexSwiper .swiper-container', {
+									autoplay: 5000,//可选选项，自动滑动
+									pagination : '.indexSwiper .swiper-pagination',
+									loop : true,
+									paginationClickable :true,
+								})
+							})
+						}else{
+							console.log(res.message);
+						}
+					}
+				});
+				//获取设计师
+				$.ajax({
+					type:"get",
+					url: host+"/api/l/getDesigner2Index",
+					success: function(res){
+						res = JSON.parse(res);
+						if(res.success){
+							app.designer = res.data;
+							//app.getDesigner(res.data[0].id);
+							app.$nextTick(function(){
+								if($('.id_swiper .swiper-wrapper').length == 0){
+									idSwiper = new Swiper('.id_swiper .swiper-container', {
+										autoplay: 5000,//可选选项，自动滑动
+										pagination : '.id_swiper .swiper-pagination',
+										loop : true,
+										observer:true,
+										paginationClickable :true,
+										prevButton:'.swiper-button-prev',
+										nextButton:'.swiper-button-next',
+									})
+								}
+								
+							})
+						}else{
+							console.log(res.message);
+						}
+					}
+				});
+				//获取案例
+				$.ajax({
+					type:"get",
+					url: host+"/api/l/getCase2Index",
+					success: function(res){
+						res = JSON.parse(res);
+						if(res.success){
+							app.caseList = res.data;
+						}else{
+							console.log(res.message);
+						}
+					}
+				});
+				//获取设计灵感
+				$.ajax({
+					type:"get",
+					url: host+"/api/l/getMaterial2Index",
+					success: function(res){
+						res = JSON.parse(res);
+						if(res.success){
+							app.inspiration = res.data;
+						}else{
+							console.log(res.message);
+						}
+					}
+				});
+				//获取装修日志
+				$.ajax({
+					type:"get",
+					url: host+"/api/l/getDecorate2Index",
+					success: function(res){
+						res = JSON.parse(res);
+						if(res.success){
+							app.diary = res.data;
+							app.dayNode = res.data[0].node;
+						}else{
+							console.log(res.message);
+						}
+					}
+				});
+			},
+			methods: {
+				goInspiration: function(){
+					location.href = 'inspiration.html';
+				},
+				goCase: function(item){
+					location.href = 'case.html?style='+item.id;
+				},
+				goDairyDetail: function(id,typeId){
+					location.href = 'dairydetail.html?id='+id+'&typeid='+typeId;
+				},
+				goDesignerDetail: function(id){
+					location.href='designerWork.html?id='+id;
+				},
+				openSwiper: function(idx){
+					var image = app.designer[app.idIndex].case_image;
+					var name = app.designer[app.idIndex].name;
+//					name=name.replace(/<\/?.+?>/g,"");
+//					name=name.replace(/ /g,"");
+					swiperMark(image,name,idx);
+				},
+				getDesigner: function(id){
+					$.ajax({
+						type:"get",
+						data: {
+							id: id
+						},
+						url: host+"/api/l/getDesignerDetail",
+						success: function(res){
+							res = JSON.parse(res);
+							if(res.success){
+								
+									
+							}else{
+								console.log(res.message);
+							}
+						}
+					});
+				}
+			}
+		})
+		
+	</script>
+
+</html>

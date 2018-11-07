@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>设计灵感</title>
+		<meta name="keywords" content="">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<!--<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">-->
+		<!--分享使用-->
+		<meta itemprop="name" content="" />
+		<meta itemprop="description" name="description" content="" />
+		<meta itemprop="image" content="img_url" />
+		<meta name="format-detection" content="telephone=no" />
+		<link rel="stylesheet" type="text/css" href="../css/swiper.min.css">
+		<link rel="stylesheet" type="text/css" href="../css/global.css">
+		<link rel="stylesheet" type="text/css" href="../css/ly.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/pyf.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/zyl.css"/>
+		<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css"/>
+	</head>
+
+	<body>
+		<div class="main" id="app">
+			<div class="curHeader centerCon clearfix">
+				<img src="../images/headLogo.png" alt="" />
+				<a href="index.html">首 页</a>
+				<a href="recommendDesigner.html">设计师</a>
+				<a href="case.html">案例</a>
+				<a href="inspiration.html" class="active">灵感</a>
+				<a href="javascript:;" class="relative headDairy">简色日记</a>
+				<a href="question&answer.html">常见问题</a>
+				<a href="aboutus.html">关于我们</a>
+			</div>
+			
+			<div class="container">
+				<div class="inspirationBanner">
+					<div class="centerCon color-fff">
+						<h1 class="font-w6">INSPIRATION</h1>
+						<p class="font28">设计灵感</p>
+					</div>
+				</div>
+				<div class="centerCon inspirationCtt m-b-40">
+					<div class="inspirationFilter">
+						<div class="inspirationSearch">
+							<form @submit.prevent="search" class="flex_dom">
+								<input class="flex_1 placeholder999" type="text" v-model="keywords" placeholder="搜索关键字" />
+								<button type="submit"></button>
+							</form>
+						</div>
+						<div class="insFilterIcon">
+							<div class="insFilterIcon1 m-b-10">
+								<a href="javascript:;" @click="choiceType($event,item)" :class="item.id == material_type ? 'active' : ''" v-cloak v-for="item in materialType">{{item.type}}</a>
+							</div>
+							<div class="insFilterIcon2 flex_dom flex_item_mid">
+								<span class="m-r-30">颜色</span>
+								<div class="colors flex_1 flex_dom flex_item_mid">
+									<a href="javascript:;" @click="choiceColor($event,8)" style="background-color: #FF4D00;"></a>
+									<a href="javascript:;" @click="choiceColor($event,9)" style="background-color: #FF7900;"></a>
+									<a href="javascript:;" @click="choiceColor($event,19)" style="background-color: #FFEC00;"></a>
+									<a href="javascript:;" @click="choiceColor($event,10)" style="background-color: #00FFEF;"></a>
+									<a href="javascript:;" @click="choiceColor($event,1004)" style="background-color: #00FF43;"></a>
+									<a href="javascript:;" @click="choiceColor($event,1005)" style="background-color: #0025FF;"></a>
+									<a href="javascript:;" @click="choiceColor($event,1006)" style="background-color: #7000CC;"></a>
+									<a href="javascript:;" @click="choiceColor($event,1007)" style="background-color: #4C2A1A;"></a>
+									<a href="javascript:;" @click="choiceColor($event,1008)" style="background-color: #CCCCCC;"></a>
+									<a href="javascript:;" @click="choiceColor($event,1009)" style="background-color: #000000;"></a>
+									<a href="javascript:;" @click="choiceColor($event,1010)" style="background-color: #FFFFFF;"></a>
+									<!--<a href="javascript:;" @click="choiceColor($event,key)" v-cloak v-for="(val, key, index) in types.color">{{val}}</a>-->
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="listCtt relative">
+						<!--<div class="caseItem">
+							<img src="../images/indexCase.png" alt="" />
+							<div class="p-v-10">
+								<h3 class="font15 color-2d2e35 font-w6">二居室  新派欧式  极简风</h3>
+								<div class="flex_dom">
+									<p class="flex_1 only_line font18 font-w6">120m²</p>
+									<a class="iconShare" href="javascript:;">分享</a>
+								</div>
+							</div>
+						</div>-->
+					</div>
+					<div class="text-center loadDiv">
+						<img src="../images/icon-pageDown.png" alt="" />
+						<p class="color-2d2e35 font18 m-t-5 m-b-40">向下滚动加载更多</p>
+						<img src="../images/loading.gif" alt="" />
+					</div>
+				</div>
+			</div>
+			
+			<div class="curFooter">
+					<div class="centerCon clearfix">
+						<div class="foot-l">
+							<div class="clearfix m-b-15">
+								<a href="index.html">首页</a>
+								<a href="case.html">案例</a>
+								<a href="inspiration.html">灵感</a>
+								<a href="javascript:;" class="footTab clearfix"></a>
+								<a href="question&answer.html">常见问题</a>
+								<a href="aboutus.html">关于我们</a>
+							</div>
+							<div class="m-b-15 color-fff font14 clearfix">
+								<p class="fl m-r-30" id="footTel">TEL：+86 400-008-0000</p>
+								<p class="fl" id="footMail">E-mail：jobs@126.com</p>
+							</div>
+							<p class="color-fff font14">©2016 i2edu.cn. All rights reserved.</p>
+						</div>
+						<div class="foot-r clearfix">
+							<img class="fr" src="../images/foot-logo.png" alt="" />
+							<div class="clearfix fr">
+								<a class="relative foot-weChat" href="javascript:;">
+									<img src="../images/foot-weChat.png" alt="" />
+									<p>WeChat</p>
+									<div class="footCode"><img src="../images/foot-logo.png"/></div>
+								</a>
+								<a href="https://weibo.com" target="_blank">
+									<img src="../images/foot-blog.png" alt="" />
+									<p>blog</p>
+								</a>
+								<a href="https://www.zhihu.com" target="_blank">
+									<img src="../images/foot-zhihu.png" alt="" />
+									<p>Zhihu</p>
+								</a>
+								<a href="http://focus.tianya.cn" target="_blank">
+									<img src="../images/foot-tianya.png" alt="" />
+									<p>tianyan</p>
+								</a>
+								<a href="question&answer.html">
+									<img src="../images/foot-FAQ.png" alt="" />
+									<p>FAQ</p>
+								</a>
+							</div>
+						</div>
+					</div>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="../lib/jquery.1.11.3.min.js"></script>
+	<script type="text/javascript" src="../lib/con_js.6.23.js"></script>
+	<script type="text/javascript" src="../lib/vue.js"></script>
+	<script type="text/javascript" src="../lib/swiper.min.js"></script>
+	<script type="text/javascript" src="../lib/page.js"></script>
+	<script type="text/javascript" src="../lib/jquery.waterfall.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/jquery.share.min.js"></script>
+	<script>
+		var page = 1,hasData = true;
+		var app = new Vue({
+			el: '#app',
+			data: {
+				types: [],
+				materialType: [],
+				list: [],
+				keywords: '',
+				type_name: '',
+				type_id: '',
+				material_type: ''
+			},
+			mounted: function(){
+				$.ajax({
+					type:"get",
+					url: host+"/api/l/getMaterialType",
+					success: function(res){
+						res = JSON.parse(res);
+						if(res.success){
+							app.materialType = res.data;
+							var urlParam = GetRequest();
+							if(urlParam.id){
+								app.material_type = urlParam.id;
+							}
+						}else{
+							console.log(res.message);
+						}
+					}
+				});
+				$.ajax({
+					type:"get",
+					url: host+"/api/l/getTypeList",
+					success: function(res){
+						res = JSON.parse(res);
+						if(res.success){
+							app.types = res.data;
+						}else{
+							console.log(res.message);
+						}
+					}
+				});
+				this.getList();
+			},
+			methods: {
+				//搜索
+				search: function(){
+					page = 1;
+					hasData = true;
+					$(".listCtt").html('');
+					$('.loadDiv').show();
+					$(".listCtt").html('').css('height','0px');
+					$(window).scrollTop($(window).scrollTop()+1);
+					$(window).scrollTop($(window).scrollTop()-1);
+				},
+				//选择类型
+				choiceType: function(e,item){
+					page = 1;
+					hasData = true;
+					$(".listCtt").html('').css('height','0px');
+					$(window).scrollTop($(window).scrollTop()+1);
+					$(window).scrollTop($(window).scrollTop()-1);
+					$('.loadDiv').show();
+					this.material_type = item.id;
+				},
+				//选择颜色
+				choiceColor: function(e,key){
+					page = 1;
+					hasData = true;
+					$(".listCtt").html('').css('height','0px');
+					$(window).scrollTop($(window).scrollTop()+1);
+					$(window).scrollTop($(window).scrollTop()-1);
+					$('.loadDiv').show();
+					$(e.target).addClass('active').siblings().removeClass('active');
+					this.type_name = 'color';
+					this.type_id = key;
+				},
+				getList: function(){
+					var that = this;
+					$(".listCtt").waterfall({
+					  itemClass: ".caseItem",
+					  minColCount: 4,
+					  spacingWidth: 4,
+					  spacingHeight: 10,
+					  resizeable: true,
+					  ajaxCallback: function(success, end) {
+					  	if(!hasData){
+							return;
+						}
+					  	hasData = false;
+					  	$.ajax({
+					  		type:"get",
+					  		data: {
+					  			page: page,
+					  			num: 10,
+					  			keywords: that.keywords,
+					  			type_name: that.type_name,
+					  			type_id: that.type_id,
+					  			material_type: that.material_type
+					  		},
+					  		url: host+"/api/l/getMaterialList",
+					  		success: function(res){
+					  			res = JSON.parse(res);
+					  			if(res.success){
+					  				page++;
+					  				var data = {"data": res.data};
+					  				if(res.data.length == 0) {
+					  					hasData = false;
+					  					$('.loadDiv').hide();
+					  					return;
+					  				}else{
+					  					hasData = true;
+					  				}
+								    var str = "";
+								    var templ = '<div class="caseItem"><img class="pointer" onclick="location.href=\'designer.html?id={{id}}\'" src="{{src}}" alt="" /><div class="p-v-10"><h3 class="font15 color-2d2e35 font-w6">{{label}}</h3><div class="flex_dom"><p class="flex_1 only_line font18 font-w6">{{area}}</p><a class="iconShare" onblur="unShare(this)" onclick="$(this).focus()" onfocus="share(this,null,\'{{name}}\',\'{{area}}\',\'{{src}}\')" href="javascript:;">分享<p></p></a></div></div></div>'
+								  	
+								    for(var i = 0; i < data.data.length; i++) {
+								    	var label = '';
+								    	for(var l in data.data[i].type){
+								    		label += '<i class="pointer m-r-5" onclick="changeLabel('+l+')">'+data.data[i].type[l]+'</i>';
+								    	}
+								      	str += templ.replace('{{id}}',data.data[i].id).replace(/{{src}}/g, data.data[i].image.split(',')[0]).replace("{{label}}", label).replace("{{name}}", data.data[i].name).replace(/{{area}}/g, JSON.stringify(data.data[i].space).split('"')[3]+'m²');
+								    }
+								    $(str).appendTo($(".listCtt"));
+					  				success();
+					    			end();
+					  			}else{
+					  				console.log(res.message);
+					  			}
+					  		}
+					  	});
+					  }
+					});
+				}
+			}
+		})
+		function changeLabel(key){
+			page = 1;
+			hasData = true;
+			$(".listCtt").html('').css('height','0px');
+			$(window).scrollTop($(window).scrollTop()+1);
+			$(window).scrollTop($(window).scrollTop()-1);
+			$('.loadDiv').show();
+			app.material_type = key;
+		}
+	</script>
+
+</html>
