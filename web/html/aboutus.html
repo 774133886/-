@@ -22,15 +22,9 @@
 
 	<body>
 		<div class="main">
-			<div class="curHeader centerCon clearfix">
-				<img src="../images/headLogo.png" alt="" />
-				<a href="index.html">首 页</a>
-				<a href="recommendDesigner.html">设计师</a>
-				<a href="case.html">案例</a>
-				<a href="inspiration.html">灵感</a>
-				<a href="javascript:;" class="relative headDairy">简色日记</a>
-				<a href="question&answer.html">常见问题</a>
-				<a href="aboutus.html" class="active">关于我们</a>
+			<div class="curHeader flex_dom flex_item_between flex_item_mid">
+				<img class="logo" src="../images/head-logo.png" alt="">
+				<a href="javascript:;"></a>
 			</div>
 			
 			<div class="container">
@@ -38,7 +32,7 @@
 					<div class="aboutMask">
 						<div class="centerCon color-fff">
 							<h1 class="font-w6">ABOUT US</h1>
-							<p class="font28">关于我们</p>
+							<p class="font28r">关于我们</p>
 						</div>
 					</div>
 				</div>
@@ -51,49 +45,7 @@
 			</div>
 			
 			<div class="curFooter">
-				<div class="centerCon clearfix">
-					<div class="foot-l">
-						<div class="clearfix m-b-15">
-							<a href="index.html">首页</a>
-							<a href="case.html">案例</a>
-							<a href="inspiration.html">灵感</a>
-							<a href="javascript:;" class="footTab clearfix"></a>
-							<a href="question&answer.html">常见问题</a>
-							<a href="aboutus.html">关于我们</a>
-						</div>
-						<div class="m-b-15 color-fff font14 clearfix">
-							<p class="fl m-r-30" id="footTel">TEL：+86 400-008-0000</p>
-							<p class="fl" id="footMail">E-mail：jobs@126.com</p>
-						</div>
-						<p class="color-fff font14">©2016 i2edu.cn. All rights reserved.</p>
-					</div>
-					<div class="foot-r clearfix">
-						<img class="fr" src="../images/foot-logo.png" alt="" />
-						<div class="clearfix fr">
-							<a class="relative foot-weChat" href="javascript:;">
-								<img src="../images/foot-weChat.png" alt="" />
-								<p>WeChat</p>
-								<div class="footCode"><img src="../images/foot-logo.png"/></div>
-							</a>
-							<a href="https://weibo.com" target="_blank">
-								<img src="../images/foot-blog.png" alt="" />
-								<p>blog</p>
-							</a>
-							<a href="https://www.zhihu.com" target="_blank">
-								<img src="../images/foot-zhihu.png" alt="" />
-								<p>Zhihu</p>
-							</a>
-							<a href="http://focus.tianya.cn" target="_blank">
-								<img src="../images/foot-tianya.png" alt="" />
-								<p>tianyan</p>
-							</a>
-							<a href="question&answer.html">
-								<img src="../images/foot-FAQ.png" alt="" />
-								<p>FAQ</p>
-							</a>
-						</div>
-					</div>
-				</div>
+				<p>©2016 i2edu.cn. All rights reserved.</p>
 			</div>
 		</div>
 	</body>
@@ -103,10 +55,20 @@
 	<script type="text/javascript" src="../lib/swiper.min.js"></script>
 	<script type="text/javascript" src="../lib/page.js"></script>
 	<script>
-		
-
-		
-
+		$(function(){
+			$.ajax({
+				type:"get",
+				url: host+"/api/l/getUs",
+				success: function(res){
+					res = JSON.parse(res);
+					if(res.success){
+						$('#aboutCtt').html(res.data.description)
+					}else{
+						console.log(res.message);
+					}
+				}
+			});
+		})
 	</script>
 
 </html>

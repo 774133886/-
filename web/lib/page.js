@@ -81,6 +81,13 @@ $(function(){
 							$(this).removeClass('active');
 						}
 					})
+					//绑定menu
+					$('.curHeader a').click(function(){
+						$('.headMenu').addClass('open')
+					})
+					$('.menuClose').click(function(){
+						$('.headMenu').removeClass('open')
+					})
 				}else{
 					console.log(res.message);
 				}

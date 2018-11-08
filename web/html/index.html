@@ -117,7 +117,7 @@
 								</div>
 							</div>
 							<div class="flex_1 flex_dom">
-								<div class="flex_1 m-r-10r relative pointer" @click="goInspiration()">
+								<div class="flex_1 relative pointer" @click="goInspiration()">
 									<div class="coverImg" :style="{backgroundImage: 'url('+(inspiration.length > 1 ? inspiration[1].image : '')+')'}"></div>
 									<div class="ist_mask" v-if="inspiration.length > 1">
 										<h3>{{inspiration[1].name}}</h3>
@@ -127,47 +127,49 @@
 							</div>
 						</div>
 						<div class="flex_dom m-b-10r hgt285">
-							<div class="flex_1 relative pointer" @click="goInspiration()">
-								<div class="coverImg" :style="{backgroundImage: 'url('+(inspiration.length > 2 ? inspiration[2].image : '')+')'}"></div>
-								<div class="ist_mask" v-if="inspiration.length > 2">
-									<h3>{{inspiration[2].name}}</h3>
-									<p>{{inspiration[2].name_en}}</p>
-								</div>
-							</div>
-							<div class="flex_1 flex_dom m-r-10r">
+							<div class="flex_2 m-r-10r flex_dom">
 								<div class="flex_1 m-r-10r relative pointer" @click="goInspiration()">
+									<div class="coverImg" :style="{backgroundImage: 'url('+(inspiration.length > 2 ? inspiration[2].image : '')+')'}"></div>
+									<div class="ist_mask" v-if="inspiration.length > 2">
+										<h3>{{inspiration[2].name}}</h3>
+										<p>{{inspiration[2].name_en}}</p>
+									</div>
+								</div>
+								<div class="flex_1 relative pointer" @click="goInspiration()">
 									<div class="coverImg" :style="{backgroundImage: 'url('+(inspiration.length > 3 ? inspiration[3].image : '')+')'}"></div>
 									<div class="ist_mask" v-if="inspiration.length > 3">
 										<h3>{{inspiration[3].name}}</h3>
 										<p>{{inspiration[3].name_en}}</p>
 									</div>
 								</div>
-								<div class="flex_1 relative pointer" @click="goInspiration()">
-									<div class="coverImg" :style="{backgroundImage: 'url('+(inspiration.length > 4 ? inspiration[4].image : '')+')'}"></div>
-									<div class="ist_mask" v-if="inspiration.length > 4">
-										<h3>{{inspiration[4].name}}</h3>
-										<p>{{inspiration[4].name_en}}</p>
-									</div>
-								</div>
 							</div>
 							<div class="flex_1 relative pointer" @click="goInspiration()">
-								<div class="coverImg" :style="{backgroundImage: 'url('+(inspiration.length > 5 ? inspiration[5].image : '')+')'}"></div>
-								<div class="ist_mask" v-if="inspiration.length > 5">
-									<h3>{{inspiration[5].name}}</h3>
-									<p>{{inspiration[5].name_en}}</p>
+								<div class="coverImg" :style="{backgroundImage: 'url('+(inspiration.length > 4 ? inspiration[4].image : '')+')'}"></div>
+								<div class="ist_mask" v-if="inspiration.length > 4">
+									<h3>{{inspiration[4].name}}</h3>
+									<p>{{inspiration[4].name_en}}</p>
 								</div>
 							</div>
 						</div>
 						<div class="flex_dom">
-							<div class="flex_1">
+							<div class="flex_2">
 								<div class="flex_dom m-b-10r hgt300">
-									<div class="flex_1 m-r-10r relative pointer" @click="goInspiration()">
+									<div class="flex_1 relative pointer" @click="goInspiration()">
+										<div class="coverImg" :style="{backgroundImage: 'url('+(inspiration.length > 5 ? inspiration[5].image : '')+')'}"></div>
+										<div class="ist_mask" v-if="inspiration.length > 5">
+											<h3>{{inspiration[5].name}}</h3>
+											<p>{{inspiration[5].name_en}}</p>
+										</div>
+									</div>
+									<div class="flex_1 m-l-10r relative pointer" @click="goInspiration()">
 										<div class="coverImg" :style="{backgroundImage: 'url('+(inspiration.length > 6 ? inspiration[6].image : '')+')'}"></div>
 										<div class="ist_mask" v-if="inspiration.length > 6">
 											<h3>{{inspiration[6].name}}</h3>
 											<p>{{inspiration[6].name_en}}</p>
 										</div>
 									</div>
+								</div>
+								<div class="flex_dom hgt300">
 									<div class="flex_1 relative pointer" @click="goInspiration()">
 										<div class="coverImg" :style="{backgroundImage: 'url('+(inspiration.length > 7 ? inspiration[7].image : '')+')'}"></div>
 										<div class="ist_mask" v-if="inspiration.length > 7">
@@ -175,30 +177,21 @@
 											<p>{{inspiration[7].name_en}}</p>
 										</div>
 									</div>
-								</div>
-								<div class="flex_dom hgt300">
-									<div class="flex_1 m-r-10r relative pointer" @click="goInspiration()">
+									<div class="flex_1 m-l-10r relative pointer" @click="goInspiration()">
 										<div class="coverImg" :style="{backgroundImage: 'url('+(inspiration.length > 8 ? inspiration[8].image : '')+')'}"></div>
 										<div class="ist_mask" v-if="inspiration.length > 8">
 											<h3>{{inspiration[8].name}}</h3>
 											<p>{{inspiration[8].name_en}}</p>
 										</div>
 									</div>
-									<div class="flex_1 relative pointer" @click="goInspiration()">
-										<div class="coverImg" :style="{backgroundImage: 'url('+(inspiration.length > 9 ? inspiration[9].image : '')+')'}"></div>
-										<div class="ist_mask" v-if="inspiration.length > 9">
-											<h3>{{inspiration[9].name}}</h3>
-											<p>{{inspiration[9].name_en}}</p>
-										</div>
-									</div>
 								</div>
 							</div>
-							<div class="wid295 m-l-10r flex_column">
-								<div class="flex_1 color-fff font17 hgt300 m-b-20r relative pointer" @click="goInspiration()">
-									<div class="coverImg" :style="{backgroundImage: 'url('+(inspiration.length > 10 ? inspiration[10].image : '')+')'}"></div>
-									<div class="ist_mask" v-if="inspiration.length > 10">
-										<h3>{{inspiration[10].name}}</h3>
-										<p>{{inspiration[10].name_en}}</p>
+							<div class="flex_1 m-l-10r flex_column">
+								<div class="flex_1 color-fff font17 hgt300 relative pointer" @click="goInspiration()">
+									<div class="coverImg" :style="{backgroundImage: 'url('+(inspiration.length > 9 ? inspiration[9].image : '')+')'}"></div>
+									<div class="ist_mask" v-if="inspiration.length > 9">
+										<h3>{{inspiration[9].name}}</h3>
+										<p>{{inspiration[9].name_en}}</p>
 									</div>
 								</div>
 								<div class="inspirationBox hgt300">
@@ -215,27 +208,28 @@
 						<p>简色日记</p>
 					</div>
 					<div class="centerCon indexDay" v-cloak>
-						<div class="flex_dom m-b-30" v-if="dayNode">
+						<div class="flex_dom m-b-30r" v-if="dayNode">
 							<div class="indexDayNum flex_dom">
-								<span>{{dayNode.node_time}}</span>
+								<span v-if="dayNode.node">{{dayNode.node.node_time}}</span>
 								<i>Day</i>
 							</div>
 							<div class="flex_1 indexDayText">
-								<h3>{{dayNode.node_title}}</h3>
-								<p v-if="dayNode.node_description">{{dayNode.node_description | getText}}</p>
+								<h3>{{dayNode.title}}</h3>
+								<p v-if="dayNode.node">{{dayNode.node.node_title}}</p>
 							</div>
 						</div>
-						<div class="flex_dom">
+						<div class="flex_dom m-b-30r" v-if="diary.length">
 							<div class="flex_1 flex_dom">
-								<a v-for="item in diary" @click="goDairyDetail(item.id,item.type_id)" @mouseover="dayNode = item.node" class="flex_1 hgt310 coverImg m-r-20" href="javascript:;" :style="{backgroundImage: 'url('+item.image+')'}"></a>
+								<a v-for="item,index in diary" v-if="index < 2" @click="goDairyDetail(item.id,item.type_id)" @mouseover="dayNode = item" class="flex_1 hgt310 coverImg m-r-20r" href="javascript:;" :style="{backgroundImage: 'url('+item.image+')'}"></a>
 							</div>
-							<div class="indexDayMore flex_dom flex_item_mid flex_item_around coverImg pointer" onclick="location.href='decoratedairy.html'" style="background-image: url(../images/banner_2.png);">
+							<div class="indexDayMore flex_dom flex_item_mid flex_item_around coverImg pointer" onclick="location.href='decoratedairy.html'" :style="{backgroundImage: 'url('+diary[diary.length-1].image+')'}">
 								<div class="color-fff">
-									<h3 class="font20">MORE +</h3>
-									<p class="font15">査看往日</p>
+									<h3 class="font24r">MORE +</h3>
+									<p class="font20r">査看往日</p>
 								</div>
 							</div>
 						</div>
+						<div class="dateText" v-if="dayNode.node">{{dayNode.node.node_description | getText}}</div>
 					</div>
 				</div>
 			</div>
@@ -371,7 +365,7 @@
 						res = JSON.parse(res);
 						if(res.success){
 							app.diary = res.data;
-							app.dayNode = res.data[0].node;
+							app.dayNode = res.data[0];
 						}else{
 							console.log(res.message);
 						}

@@ -38,6 +38,11 @@
 	overflow-y: auto;
 	-webkit-overflow-scrolling: touch;
 	padding: 1rem 0 0;
+	-webkit-transition: all .3s linear;
+	transition: all .3s linear;
+}
+.headMenu.open{
+	left: 0;
 }
 .headMenu .menuLogo{
 	display: block;
@@ -303,13 +308,13 @@
 	opacity: 0;
 }
 .hgt285{
-	height: 2.25rem;
+	height: 1.8rem;
 }
 .wid295{
 	width: 295px;
 }
 .hgt300{
-	height: 300px;
+	height: 1.8rem;
 }
 .inspirationBox{
 	background-color: #6f6e77;
@@ -320,32 +325,32 @@
 }
 .inspirationBtn{
 	position: absolute;
-	bottom: 20px;
-	right: 20px;
+	bottom: .2rem;
+	left: calc(50% - .6rem);
 	border: 1px solid #939299;
 	color: #FFFFFF !important;
-	width: 100px;
-	height: 34px;
+	width: 1.2rem;
+	height: .5rem;
 	text-align: center;
-	line-height: 32px;
-	font-size: 16px;
+	line-height: calc(.5rem - 2px);
+	font-size: .24rem;
 }
 .indexBtm{
-	background-color: #f1f2f4;
-	margin-top: 170px;
-	padding: 35px 0 105px;
+	
+}
+.indexBtm .indexTitle{
+	border-bottom: 1px solid #dbdbdd;
 }
 .indexDay{
-	margin-top: 50px;
-	
+	padding: .3rem 0;
 }
 .indexDayText h3{
 	color: #2d2e35;
-	font-size: 22px;
+	font-size: .28rem;
 }
 .indexDayText p{
 	color: #8B8B8B;
-	font-size: 15px;
+	font-size: .24rem;
 }
 .indexDayNum{
 	 color: #6ebdca;
@@ -354,22 +359,22 @@
 	 margin-top: -5px;
 }
 .indexDayNum span{
-	font-size: 88px;
-	line-height: 88px;
+	font-size: 1rem;
+	line-height: 1rem;
 }
 .indexDayNum i{
 	display: inline-block;
-	font-size: 20px;
-	height: 100%;
-	padding: 55px 0 0 20px;
-	background: url(../images/dateLine.png) no-repeat left center;
-	background-size: 50px;
+    font-size: .28rem;
+    height: 100%;
+    padding: .55rem 0 0 .4rem;
+    background: url(../images/dateLine.png) no-repeat left top;
+    background-size: auto .9rem;
 }
 .hgt310{
-	height: 310px;
+	height: 2.1rem;
 }
 .indexDayMore{
-	width: 205px;
+	width: 1.3rem;
 	position: relative;
 }
 .indexDayMore:before{
@@ -388,6 +393,11 @@
 }
 .font15{
 	font-size: 15px;
+}
+.dateText{
+	font-size: .2rem;
+	color: #8b8b8b;
+	margin-bottom: .5rem;
 }
 /*designer*/
 .designerCtt{
@@ -490,13 +500,13 @@
 	color: #2d2e35;
 }
 .inspirationBanner{
-	height: 485px;
+	height: 4rem;
 	background: url(../images/banner-3.jpg) no-repeat;
 	background-size: cover;
 	padding-top: 110px;
 }
 .inspirationBanner h1{
-	font-size: 44px;
+	font-size: .36rem;
 }
 .inspirationCtt{
 	margin-top: -110px;
@@ -562,32 +572,32 @@
 	margin-bottom: 40px;
 }
 .aboutBanner{
-    background: url(../images/banner2.png) no-repeat;
+	background: url(../images/banner2.png) no-repeat;
+	background-size: cover;
     padding-top: 0;
 }
 .aboutMask{
 	width: 100%;
 	height: 100%;
 	background-color: rgba(0,0,0,.6);
-	padding-top: 110px;
+	padding-top: 1rem;
 }
 .aboutCtt{
-	width: 1200px;
-	margin: -110px auto 100px;
+	margin: 0 0 1rem;
 	-webkit-box-shadow: 0 0 5px rgba(0,0,0,.1);
 	box-shadow: 0 0 5px rgba(0,0,0,.1);
 	background-color: #FFFFFF;
 }
 .aboutItem h1{
-	font-size: 30px;
+	font-size: .32rem;
 	text-align: center;
-	padding: 54px 0 10px;
+	padding: .5rem 0 .1rem;
 	border-bottom: 1px solid #d6d6d6;
 }
 .aboutItem .aboutItemCtt{
 	min-height: 330px;
 }
-.indexInspiration .flex_1{
+.indexInspiration .flex_1,.indexInspiration .flex_2{
 	overflow: hidden;
 }
 .indexInspiration .coverImg{
@@ -614,16 +624,16 @@
 	background-color: rgba(0,0,0,.7);
 	color: #fff;
 	text-align: center;
-	padding-top: 112px;
+	padding-top: .55rem;
 	opacity: 0;
 	-webkit-transition: all .3s ease;
 	transition: all .3s ease;
 }
 .indexInspiration .ist_mask h3{
-	font-size: 24px;
+	font-size: .28rem;
 }
 .indexInspiration .ist_mask p{
-	font-size: 12px;
+	font-size: .24rem;
 }
 .indexInspiration .relative:hover .ist_mask{
 	opacity: 1;
@@ -690,7 +700,7 @@
 	display: block;
 }
 .aboutItemCtt{
-	padding: 20px;
+	padding: .2rem;
 }
 button[type=submit]{
 	cursor: pointer;
