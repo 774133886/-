@@ -24,48 +24,43 @@
 
 	<body>
 		<div class="main" id="app">
-			<div class="border-b-e8e8e9">
-				<div class="curHeader centerCon clearfix">
-					<img src="../images/headLogo.png" alt="" />
-					<a href="index.html">首 页</a>
-					<a href="recommendDesigner.html">设计师</a>
-					<a href="case.html">案例</a>
-					<a href="inspiration.html" class="active">灵感</a>
-					<a href="javascript:;" class="relative headDairy">简色日记</a>
-					<a href="question&answer.html">常见问题</a>
-					<a href="aboutus.html">关于我们</a>
-				</div>
+			<div class="curHeader flex_dom flex_item_between flex_item_mid">
+				<img class="logo" src="../images/head-logo.png" alt="">
+				<a href="javascript:;"></a>
 			</div>
 			
 			<div class="container m-b-40">
-				<div class="centerCon">
+				<div class="">
 					<div class="designerCtt" v-cloak>
 						<div class="clearfix">
 							<div class="desHeadLeft">
-								<div class="coverImg" v-if="bannercase.id" @click="openMask()" :style="{backgroundImage: 'url('+bannercase.img+')'}"></div>
 								<div class="desHeadText">
 									<div class="flex_dom flex_item_mid">
 										<div class="flex_1">
-											<h3 class="font24"><i class="pointer m-r-5" @click="goInspiration(key)" v-for="(val,key,index) in bannercase.type">{{val}}</i></h3>
-											<p class="font14 only_line jianjie" v-html="bannercase.name"></p>
+											<h3 class="font28r"><i class="pointer m-r-5" @click="goInspiration(key)" v-for="(val,key,index) in bannercase.type">{{val}}</i></h3>
+											<p class="font20r only_line jianjie" v-html="bannercase.name"></p>
 										</div>
-										<a class="iconShare m-t-10" onblur="unShare(this)" onclick="$(this).focus()" onfocus="share(this,null,'123','13')" href="javascript:;">分享<p></p></a>
+										<!-- <a class="iconShare m-t-10" onblur="unShare(this)" onclick="$(this).focus()" onfocus="share(this,null,'123','13')" href="javascript:;">分享<p></p></a> -->
 									</div>
 								</div>
+								<div class="coverImg" v-if="bannercase.id" @click="openMask()" :style="{backgroundImage: 'url('+bannercase.img+')'}"></div>
 							</div>
-							<div class="desHeadRight">
+							<div class="indexTitle" style="padding: .3rem 0 .2rem;border-bottom: 1px solid #dbdbdd">
+								<img src="../images/icon-down.png" alt="" />
+								<h1>DESIGN CASE</h1>
+								<p>设 计 师 推 荐</p>
+							</div>
+							<div class="desHeadRight centerCon">
 								<div v-for="item in designer">
-									<div class="flex_dom m-b-30">
-										<div class="flex_1 p-t-20">
-											<h3 class="font22 color-2d2e35 pointer" @click="goDesigner(item.id)">{{item.name}}</h3>
-											<p class="font15 color-8b8b8b">{{item.qualification}}</p>
+									<div class="flex_dom flex_item_mid m-b-30r p-t-30r">
+										<div class="designcaseHead coverImg" :style="{backgroundImage: 'url('+item.photo+')'}"></div>
+										<div class="flex_1">
+											<h3 class="font28r color-2d2e35 only_line pointer" @click="goDesigner(item.id)">{{item.name}}</h3>
+											<p class="font22r color-8b8b8b only_line">{{item.qualification}}</p>
 										</div>
-										<div class="icon-tap">
-											设计师<br/>推荐
+										<div class="p_btns">
+											<a v-for="(val,key,index) in item.style_list" @click="goCase(key)" href="javascript:;">{{val}}</a>
 										</div>
-									</div>
-									<div class="p_btns m-b-15">
-										<a v-for="(val,key,index) in item.style_list" @click="goCase(key)" href="javascript:;">{{val}}</a>
 									</div>
 									<div class="clearfix p_imgs">
 										<div v-if="idx < 4" @click="openSwiper(img)" v-for="(img,idx) in item.case" class="coverImg" :style="{backgroundImage: 'url('+img.img+')'}"></div>
@@ -95,49 +90,7 @@
 			</div>
 			
 			<div class="curFooter">
-				<div class="centerCon clearfix">
-					<div class="foot-l">
-						<div class="clearfix m-b-15">
-							<a href="index.html">首页</a>
-							<a href="case.html">案例</a>
-							<a href="inspiration.html">灵感</a>
-							<a href="javascript:;" class="footTab clearfix"></a>
-							<a href="question&answer.html">常见问题</a>
-							<a href="aboutus.html">关于我们</a>
-						</div>
-						<div class="m-b-15 color-fff font14 clearfix">
-							<p class="fl m-r-30" id="footTel">TEL：+86 400-008-0000</p>
-							<p class="fl" id="footMail">E-mail：jobs@126.com</p>
-						</div>
-						<p class="color-fff font14">©2016 i2edu.cn. All rights reserved.</p>
-					</div>
-					<div class="foot-r clearfix">
-						<img class="fr" src="../images/foot-logo.png" alt="" />
-						<div class="clearfix fr">
-							<a class="relative foot-weChat" href="javascript:;">
-								<img src="../images/foot-weChat.png" alt="" />
-								<p>WeChat</p>
-								<div class="footCode"><img src="../images/foot-logo.png"/></div>
-							</a>
-							<a href="https://weibo.com" target="_blank">
-								<img src="../images/foot-blog.png" alt="" />
-								<p>blog</p>
-							</a>
-							<a href="https://www.zhihu.com" target="_blank">
-								<img src="../images/foot-zhihu.png" alt="" />
-								<p>Zhihu</p>
-							</a>
-							<a href="http://focus.tianya.cn" target="_blank">
-								<img src="../images/foot-tianya.png" alt="" />
-								<p>tianyan</p>
-							</a>
-							<a href="question&answer.html">
-								<img src="../images/foot-FAQ.png" alt="" />
-								<p>FAQ</p>
-							</a>
-						</div>
-					</div>
-				</div>
+				<p>©2016 i2edu.cn. All rights reserved.</p>
 			</div>
 		</div>
 	</body>
@@ -207,7 +160,7 @@
 					var name = app.bannercase.name;
 //					name=name.replace(/<\/?.+?>/g,"");
 //					name=name.replace(/ /g,"");
-					swiperMark(image,name);
+					// swiperMark(image,name);
 				},
 				goInspiration: function(key){
 					changeLabel(key);
@@ -224,14 +177,14 @@
 					var name = item.name;
 //					name=name.replace(/<\/?.+?>/g,"");
 //					name=name.replace(/ /g,"");
-					swiperMark(image,name);
+					// swiperMark(image,name);
 				},
 				bindScroll: function(){
 					$(".listCtt").waterfall({
 					  itemClass: ".caseItem",
-					  minColCount: 4,
-					  spacingWidth: 4,
-					  spacingHeight: 10,
+					  minColCount: 2,
+					  spacingWidth: 10,
+					  spacingHeight: 15,
 					  resizeable: true,
 					  ajaxCallback: function(success, end) {
 					  	if(!hasData){
@@ -261,8 +214,9 @@
 					  				}else{
 					  					hasData = true;
 					  				}
-								    var str = "";
-								    var templ = '<div class="caseItem"><img class="pointer" onclick="location.href=\'designer.html?id={{id}}\'" src="{{src}}" alt="" /><div class="p-v-10"><h3 class="font15 color-2d2e35 font-w6">{{label}}</h3><div class="flex_dom"><p class="flex_1 only_line font18 font-w6">{{area}}</p><a class="iconShare" onblur="unShare(this)" onclick="$(this).focus()" onfocus="share(this,null,\'{{name}}\',\'{{area}}\',\'{{src}}\')" href="javascript:;">分享<p></p></a></div></div></div>'
+									var str = "";
+									//<a class="iconShare" onblur="unShare(this)" onclick="$(this).focus()" onfocus="share(this,null,\'{{name}}\',\'{{area}}\',\'{{src}}\')" href="javascript:;">分享<p></p></a>
+								    var templ = '<div class="caseItem"><img class="pointer" onclick="location.href=\'designer.html?id={{id}}\'" src="{{src}}" alt="" /><div class="caseItemText"><h3 class="font15 color-2d2e35 font-w6">{{label}}</h3><div class="flex_dom"><p class="flex_1 only_line font18 font-w6">{{area}}</p></div></div></div>'
 								  	
 								    for(var i = 0; i < data.data.length; i++) {
 								    	var label = '';

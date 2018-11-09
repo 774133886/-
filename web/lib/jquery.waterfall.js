@@ -100,7 +100,6 @@
 	                if(index < $this.cols) {
 	                    dom.css("top", 0);
 	                    dom.css("left", $this.leftOffset + index * $this.itemWidth + index * $this.options.spacingWidth);
-	                    
 	                    $this.colHeightArray.push(dom.outerHeight());
 	                } else {
 	                    minHeight = Math.min.apply(null, $this.colHeightArray);
@@ -120,10 +119,24 @@
 //          });
 
         },
+        aa: function () {
+            $this._positionAll();
+        },
         _doScroll: function () {
             var $this = this,
                 scrollTimer;
-
+            if(!$($this.options.itemClass).last().length){
+                $this.ajaxLoading = true;
+                $this.options.ajaxCallback && $this.options.ajaxCallback(
+                    // reposition all the brick element after successful load ajax data
+                    function() {
+                        $this._positionAll();
+                    },
+                    function() {
+                        $this.ajaxLoading = false;
+                    }
+                );
+            }
             $window.on("scroll", function() {
                 if(scrollTimer) {
                     clearTimeout(scrollTimer);
@@ -156,6 +169,18 @@
                             }
                         );
                     }
+                    if(!scrollTop){
+                        $this.ajaxLoading = true;
+                        $this.options.ajaxCallback && $this.options.ajaxCallback(
+                            // reposition all the brick element after successful load ajax data
+                            function() {
+                                $this._positionAll();
+                            },
+                            function() {
+                                $this.ajaxLoading = false;
+                            }
+                        );
+                    }
                 }, 0);
             });
         }
@@ -163,8 +188,10 @@
 
     $.fn[pluginName] = function (options) {
         this.each(function() {
+            $.data(this, "plugin_" + pluginName, new Waterfall(this, options));
             if(!$.data(this, "plugin_" + pluginName)) {
-                $.data(this, "plugin_" + pluginName, new Waterfall(this, options));
+            }else{
+
             }
         });
 
