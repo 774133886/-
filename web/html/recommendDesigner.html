@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 	<head>
 		<meta charset="utf-8">
 		<title>设计师</title>
@@ -22,21 +21,35 @@
 
 	<body>
 		<div class="main designer" id="app">
-			<div class="curHeader centerCon clearfix">
-				<img src="../images/headLogo.png" alt="" />
-				<a href="index.html">首 页</a>
-				<a href="recommendDesigner.html" class="active">设计师</a>
-				<a href="case.html">案例</a>
-				<a href="inspiration.html">灵感</a>
-				<a href="javascript:;" class="relative headDairy">简色日记</a>
-				<a href="question&answer.html">常见问题</a>
-				<a href="aboutus.html">关于我们</a>
+			<div class="curHeader flex_dom flex_item_between flex_item_mid">
+				<img class="logo" src="../images/head-logo.png" alt="">
+				<a href="javascript:;"></a>
 			</div>
-			<div class="border-b-e8"></div>
-			
-			<div class="container bg-f1f2f4 clearfix">
-				<div class="designerBg">
-					<div class="center-1260 pt374">
+			<div class="container">
+				<img class="wid100" src="../images/designerBg1.png"/>
+				<div class="l-pad20 Con">
+					<div class="wid100 designerList">
+						<div class="between-center dlTop">
+							<img class="dlhImg" src="../images/avator2.png"/>
+							<div class="column-center-b flex_1 p-t-20 p-b-20">
+								<span class="color-2d2e35 font-w6 only_line font24r">阿瓦打我打</span>
+								<p class="color-8b8b8b font20r only_line">XXXXX资深空间设计师</p>
+							</div>
+							<div class="column-between dlTopright">
+								<p class="font22r color-2d2e35 text-center">500元/m2</p>
+								<button onclick="$('.fix-box').focus()" class="orderBtn between-center">
+									<img src="../images/icon_time.png"/>
+									<span>立即预约 &nbsp;></span>
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>	
+			<div class="container">
+				
+				<div class="">
+					<div class="">
 						<div v-for="(item,index) in Decommendlist" class="designerBox clearfix box_s l-pad70 bg-fff">
 							<div class="dbLeft" v-if="item.case.length">
 								<a v-bind:href="'designerWork.html?id='+item.id" :class="'rd_swiper'+index">
@@ -95,49 +108,7 @@
 			</div>
 			
 			<div class="curFooter">
-				<div class="centerCon clearfix">
-					<div class="foot-l">
-						<div class="clearfix m-b-15">
-							<a href="index.html">首页</a>
-							<a href="case.html">案例</a>
-							<a href="inspiration.html">灵感</a>
-							<a href="javascript:;" class="footTab clearfix"></a>
-							<a href="question&answer.html">常见问题</a>
-							<a href="aboutus.html">关于我们</a>
-						</div>
-						<div class="m-b-15 color-fff font14 clearfix">
-							<p class="fl m-r-30" id="footTel">TEL：+86 400-008-0000</p>
-							<p class="fl" id="footMail">E-mail：jobs@126.com</p>
-						</div>
-						<p class="color-fff font14">©2016 i2edu.cn. All rights reserved.</p>
-					</div>
-					<div class="foot-r clearfix">
-						<img class="fr" src="../images/foot-logo.png" alt="" />
-						<div class="clearfix fr">
-							<a class="relative foot-weChat" href="javascript:;">
-								<img src="../images/foot-weChat.png" alt="" />
-								<p>WeChat</p>
-								<div class="footCode"><img src="../images/foot-logo.png"/></div>
-							</a>
-							<a href="https://weibo.com" target="_blank">
-								<img src="../images/foot-blog.png" alt="" />
-								<p>blog</p>
-							</a>
-							<a href="https://www.zhihu.com" target="_blank">
-								<img src="../images/foot-zhihu.png" alt="" />
-								<p>Zhihu</p>
-							</a>
-							<a href="http://focus.tianya.cn" target="_blank">
-								<img src="../images/foot-tianya.png" alt="" />
-								<p>tianyan</p>
-							</a>
-							<a href="question&answer.html">
-								<img src="../images/foot-FAQ.png" alt="" />
-								<p>FAQ</p>
-							</a>
-						</div>
-					</div>
-				</div>
+				<p>©2016 i2edu.cn. All rights reserved.</p>
 			</div>
 		</div>
 	</body>

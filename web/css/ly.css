@@ -274,11 +274,11 @@
 .backTop{
 	width: 104px;
 	height: 92px;
-	background-color: #fff;
+	background-color: rgba(255,255,255,0);
 	position: fixed;
 	z-index: 999;
     right: 2%;
-	bottom: 300px;
+	bottom: 1rem;
 	padding: 10px 0;
 	cursor: pointer;
 	display: none;
@@ -414,15 +414,72 @@
 	width: 100%;
 	height: 318px;
 }
-.orderBtn{
-	background-color: #6fbdca;
-	padding: 0 46px;
-    cursor: pointer;
-}
+
 .libox{
 	margin-right: 66px;
 }
 .libox:nth-child(4){
 	float: right !important;
 	margin-right: 0 !important;
+}
+
+
+/*移动*/
+.qaTop{
+	width: 100%;
+	height: auto;
+	padding: .3rem 0;
+	
+}
+.qlbox{
+	width: 2rem;
+	height: 1.7rem;
+}
+.qaImg{
+	width: 1.14rem;
+	height: 1.14rem;
+}
+.color-7f7f80{
+	color: #7f7f80;
+}
+.qusArea>p{
+	font-size: .22rem;
+	position: relative;
+	color: #2d2e35;
+}
+.qusArea>p:after{
+	content: '';
+	position: absolute;
+	width: .08rem;
+	height: .08rem;
+	border-radius: 50%;
+	background-color: #6ebdca;
+	left: -.2rem;
+	top: .12rem;
+}
+.answerArea{
+	padding: .35rem 0;
+}
+.dlTop{
+	width: 100%;
+	height: 1.5rem;
+}
+.dlhImg{
+	width: .9rem;
+	height: .9rem;
+}
+.dlTopright{
+	width: 1.7rem;
+	height: .8rem;
+}
+.orderBtn{
+	background-color: #6fbdca;
+	padding: 0 0.16rem;
+	width: 1.7rem;
+	height: .45rem;
+	color: #fff;
+}
+.orderBtn img{
+	width: .23rem;
+	height: .23rem;
 }
