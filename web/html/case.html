@@ -48,22 +48,22 @@
 				<div style="height: .1rem;width: 100%;"></div>
 				<!-- 筛选 -->
 				<div class="filter flex_dom around-center">
-					<div class="filter-item flex_1 text-center font22r fw_600 pointer" v-cloak>
+					<div @click="toggleFilter('style')" class="filter-item flex_1 text-center font22r fw_600 pointer" v-cloak>
 						{{param.style ? styleName : '风格'}}
 						<img class="angle m-l-5" src="../images/icon_angle.png" alt="">
-						<ul class="abolute hide select-wrap color-000">
+						<ul v-show="showFilter" class="abolute select-wrap color-000">
 							<li @click="choiceStyle($event,val,key)" v-for="(val, key, index) in types.style">{{val}}</li>
 						</ul>
 					</div>
 					<div class="vert-line hgt20"></div>
-					<div class="filter-item flex_1 text-center font22r fw_600 pointer" v-cloak>
+					<div @click="toggleFilter('type')" class="filter-item flex_1 text-center font22r fw_600 pointer" v-cloak>
 						{{param.house_type ? houseName : '户型'}}
 						<img class="angle m-l-5" src="../images/icon_angle.png" alt="">
-						<ul class="abolute hide select-wrap color-000">
+						<ul v-show="showFilter == 'type'" class="abolute select-wrap color-000">
 							<li @click="choiceHousetype($event,val,key)" v-for="(val, key, index) in types.housetype">{{val}}</li>
 						</ul>
 					</div>
-					<div class="vert-line hgt20"></div>
+					<!-- <div class="vert-line hgt20"></div>
 					<div class="filter-item flex_1 text-center font15 fw_600 pointer">
 						设计费
 						<img class="angle m-l-5" src="../images/icon_angle.png" alt="">
@@ -80,24 +80,24 @@
 							<li>77</li>
 							<li>88</li>
 						</ul>
-					</div>
+					</div> -->
 				</div>
 			</div>
-			<div class="bg-f1f2f4 container" style="min-height: 300px;">
-				<div class="p-t-10 p-b-70 flex_column flex_wrap">
+			<div class="bg-f1f2f4 container pad30r" style="min-height: 300px;padding-top: 0!important">
+				<div class="p-b-70 flex_column flex_wrap">
 					<!-- 模板 -->
 					<div v-for="item in list" class="case-item relative">
-						<div class="wid100 hgt250 overflow_hide">
-							<img style="width: 100%; height: 2.5rem" @click="openSwiper(item)" class="block works pointer" :src="item.image.split(',')[0]"
+						<div class="wid100 overflow_hide">
+							<img style="width: 100%; height: 4rem" @click="openSwiper(item)" class="block works pointer" :src="item.image.split(',')[0]"
 							 alt="">
 						</div>
 						<!--<div class="font14 color-8b m-t-15 only_line" v-if="item.description">{{item.description | getText}}</div>-->
-						<div style="width: calc(100% - 50px);" class="font14r color-8b m-t-15 only_line" v-if="item.description">{{item.name}}</div>
-						<p style="width: calc(100% - 50px);" class="color-221714 m-t-10 font0">
-							<i class="font18r fw_600 m-r-5 pointer" @click="changeType(key,val)" v-for="(val,key,index) in item.housetype">{{val}}</i>
-							<i class="font18r fw_600 m-r-5 pointer" @click="changeStyle(key,val)" v-for="(val,key,index) in item.styles">{{val}}</i>
+						<div style="width: calc(100% - .7rem);" class="font14r color-8b m-t-20r only_line font22r" v-if="item.description">{{item.name}}</div>
+						<p style="width: calc(100% - .7rem);line-height: 1.4" class="color-221714 m-t-10r font0">
+							<i class="font26r fw_600 m-r-10r pointer" @click="changeType(key,val)" v-for="(val,key,index) in item.housetype">{{val}}</i>
+							<i class="font26r fw_600 m-r-10r pointer" @click="changeStyle(key,val)" v-for="(val,key,index) in item.styles">{{val}}</i>
 						</p>
-						<p class="m-t-15 font12 color-8b flex_dom flex_item_mid pointer" @click="goDesigner(item.designer.id)">
+						<p class="m-t-20r font18r color-8b flex_dom flex_item_mid pointer" @click="goDesigner(item.designer.id)">
 							<img class="avator m-r-10" :src="item.designer.photo" alt=""> {{item.designer.name}}
 						</p>
 						<img class="new" src="../images/new.png" alt="">
@@ -157,7 +157,8 @@
 			maxFee: '',
 			styleName: '',
 			houseName: '',
-			hasData: true
+			hasData: true,
+			showFilter: ''
 		},
 		filters: {
 			getText: function (value) {
@@ -313,9 +314,25 @@
 						}
 					}
 				});
+			},
+			toggleFilter: function(key){
+				switch(key){
+					case 'style':
+						if(app.showFilter == 'style')
+							app.showFilter = ''
+						else
+							app.showFilter = 'style'
+						break;
+					case 'type':
+						if(app.showFilter == 'type')
+								app.showFilter = ''
+						else
+							app.showFilter = 'type'
+				}
 			}
 		}
 	});
+
 	$(window).scroll(function () {
 		//已经滚动到上面的页面高度
 		var scrollTop = $(this).scrollTop();
