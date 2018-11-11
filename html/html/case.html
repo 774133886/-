@@ -1,126 +1,111 @@
 <!DOCTYPE html>
 <html>
 
-	<head>
-		<meta charset="utf-8">
-		<title>案例</title>
-		<meta name="keywords" content="">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-		<!--<meta name="apple-mobile-web-app-capable" content="yes">
+<head>
+	<meta charset="utf-8">
+	<title>案例</title>
+	<meta name="keywords" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<!--<meta name="apple-mobile-web-app-capable" content="yes">
 		<meta name="apple-mobile-web-app-status-bar-style" content="black">-->
-		<!--分享使用-->
-		<meta itemprop="name" content="" />
-		<meta itemprop="description" name="description" content="" />
-		<meta itemprop="image" content="img_url" />
-		<meta name="format-detection" content="telephone=no" />
-		<link rel="stylesheet" type="text/css" href="../css/swiper.min.css">
-		<link rel="stylesheet" type="text/css" href="../css/global.css">
-		<link rel="stylesheet" type="text/css" href="../css/ly.css"/>
-		<link rel="stylesheet" type="text/css" href="../css/pyf.css"/>
-		<link rel="stylesheet" type="text/css" href="../css/zyl.css"/>
-	</head>
+	<!--分享使用-->
+	<meta itemprop="name" content="" />
+	<meta itemprop="description" name="description" content="" />
+	<meta itemprop="image" content="img_url" />
+	<meta name="format-detection" content="telephone=no" />
+	<link rel="stylesheet" type="text/css" href="../css/swiper.min.css">
+	<link rel="stylesheet" type="text/css" href="../css/global.css">
+	<link rel="stylesheet" type="text/css" href="../css/ly.css" />
+	<link rel="stylesheet" type="text/css" href="../css/pyf.css" />
+	<link rel="stylesheet" type="text/css" href="../css/zyl.css" />
+</head>
 
-	<body>
-		<div class="case main" id="app">
-			<div class="curHeader centerCon clearfix">
-				<img src="../images/headLogo.png" alt="" />
-				<a href="index.html">首 页</a>
-				<a href="recommendDesigner.html">设计师</a>
-				<a href="case.html" class="active">案例</a>
-				<a href="inspiration.html">灵感</a>
-				<a href="javascript:;" class="relative headDairy">简色日记</a>
-				<a href="question&answer.html">常见问题</a>
-				<a href="aboutus.html">关于我们</a>
-			</div>
-			<div class="container">
+<body>
+	<div class="case main" id="app">
+		<div class="curHeader flex_dom flex_item_between flex_item_mid">
+			<img class="logo" src="../images/head-logo.png" alt="">
+			<a href="javascript:;"></a>
+		</div>
+		<div class="container">
 			<!-- 最新案例banner 功能导航 -->
 			<div class="banner">
 				<div class="mask-100">
-					<div class="center-1260 p-t-110">
-						<p class="color-fff font44 fw_600 p-l-20">DESIGN CASE</p>
-						<p class="color-fff font28 p-l-20">最新案例</p>
-						<!-- 搜索框 筛选 -->
-						<div class="filter-search bg-fff m-t-170 flex_dom around-center">
-							<!-- 筛选 -->
-							<div class="filter flex_dom around-center">
-								<div class="filter-item flex_1 text-center font15 fw_600 pointer" v-cloak>
-									{{param.style ? styleName : '风格'}}
-									<img class="angle m-l-5" src="../images/icon_angle.png" alt="">
-									<ul class="abolute hide select-wrap color-000">
-										<li @click="choiceStyle($event,val,key)" v-for="(val, key, index) in types.style">{{val}}</li>
-									</ul>
-								</div>
-								<div class="vert-line hgt20"></div>
-								<div class="filter-item flex_1 text-center font15 fw_600 pointer" v-cloak>
-									{{param.house_type ? houseName : '户型'}}
-									<img class="angle m-l-5" src="../images/icon_angle.png" alt="">
-									<ul class="abolute hide select-wrap color-000">
-										<li @click="choiceHousetype($event,val,key)" v-for="(val, key, index) in types.housetype">{{val}}</li>
-									</ul>
-								</div>
-								<div class="vert-line hgt20"></div>
-								<div class="numberBox flex_1 text-center font15 fw_600">
-									面积
-									<input type="number" v-model="minArea" />
-									-
-									<input type="number" v-model="maxArea" />
-								</div>
-								<div class="vert-line hgt20"></div>
-								<div class="numberBox flex_1 text-center font15 fw_600">
-									价格
-									<input type="number" v-model="minFee" />
-									-
-									<input type="number" v-model="maxFee" />
-									m²
-								</div>
-								<!--<div class="vert-line hgt20"></div>
-								<div class="filter-item flex_1 text-center font15 fw_600 pointer">
-									设计费
-									<img class="angle m-l-5" src="../images/icon_angle.png" alt="">
-									<ul class="abolute hide select-wrap color-000">
-										<li>55</li>
-										<li>66</li>
-									</ul>
-								</div>
-								<div class="vert-line hgt20"></div>
-								<div class="filter-item flex_1 text-center font15 fw_600 pointer">
-									标签
-									<img class="angle m-l-5" src="../images/icon_angle.png" alt="">
-									<ul class="abolute hide select-wrap color-000">
-										<li>77</li>
-										<li>88</li>
-									</ul>
-								</div>-->
-							</div>
-							<div class="search flex_1 relative">
-								<input class="font15 placeholderccc" v-model="param.keywords" placeholder="搜索关键字" type="text">
-								<button class="search-btn" @click="search()"></button>
-							</div>
-						</div>
+					<div class="overflow_hide">
+						<p class="color-fff font44r fw_600 p-l-20 m-t-40r">DESIGN CASE</p>
+						<p class="color-fff font28r p-l-20">最新案例</p>
+
 					</div>
 				</div>
 			</div>
-			<div class="bg-f1f2f4 container" style="min-height: 300px;">
-				<div class="center-1260 p-t-10 p-b-70 flex_dom flex_wrap">
+			<!-- 搜索框 筛选 -->
+			<div class="filter-search bg-fff flex_column">
+				<div class="search-wrapper">
+					<div class="search flex_1 relative">
+						<input class="font22r placeholdereee" v-model="param.keywords" placeholder="搜索关键字" type="text">
+						<button class="search-btn" @click="search()"></button>
+					</div>
+				</div>
+				<div style="height: .1rem;width: 100%;"></div>
+				<!-- 筛选 -->
+				<div class="filter flex_dom around-center">
+					<div @click="toggleFilter('style')" class="filter-item flex_1 text-center font22r fw_600 pointer" v-cloak>
+						{{param.style ? styleName : '风格'}}
+						<img class="angle m-l-5" src="../images/icon_angle.png" alt="">
+						<ul v-show="showFilter" class="abolute select-wrap color-000">
+							<li @click="choiceStyle($event,val,key)" v-for="(val, key, index) in types.style">{{val}}</li>
+						</ul>
+					</div>
+					<div class="vert-line hgt20"></div>
+					<div @click="toggleFilter('type')" class="filter-item flex_1 text-center font22r fw_600 pointer" v-cloak>
+						{{param.house_type ? houseName : '户型'}}
+						<img class="angle m-l-5" src="../images/icon_angle.png" alt="">
+						<ul v-show="showFilter == 'type'" class="abolute select-wrap color-000">
+							<li @click="choiceHousetype($event,val,key)" v-for="(val, key, index) in types.housetype">{{val}}</li>
+						</ul>
+					</div>
+					<!-- <div class="vert-line hgt20"></div>
+					<div class="filter-item flex_1 text-center font15 fw_600 pointer">
+						设计费
+						<img class="angle m-l-5" src="../images/icon_angle.png" alt="">
+						<ul class="abolute hide select-wrap color-000">
+							<li>55</li>
+							<li>66</li>
+						</ul>
+					</div>
+					<div class="vert-line hgt20"></div>
+					<div class="filter-item flex_1 text-center font15 fw_600 pointer">
+						标签
+						<img class="angle m-l-5" src="../images/icon_angle.png" alt="">
+						<ul class="abolute hide select-wrap color-000">
+							<li>77</li>
+							<li>88</li>
+						</ul>
+					</div> -->
+				</div>
+			</div>
+			<div class="bg-f1f2f4 container pad30r" style="min-height: 300px;padding-top: 0!important">
+				<div class="p-b-70 flex_column flex_wrap">
 					<!-- 模板 -->
 					<div v-for="item in list" class="case-item relative">
-						<div class="wid100 hgt250 overflow_hide"><img style="width: 100%; height: 250px" @click="openSwiper(item)" class="block works pointer" :src="item.image.split(',')[0]" alt=""></div>
+						<div class="wid100 overflow_hide">
+							<img style="width: 100%; height: 4rem" @click="openSwiper(item)" class="block works pointer" :src="item.image.split(',')[0]"
+							 alt="">
+						</div>
 						<!--<div class="font14 color-8b m-t-15 only_line" v-if="item.description">{{item.description | getText}}</div>-->
-						<div style="width: calc(100% - 50px);" class="font14 color-8b m-t-15 only_line" v-if="item.description">{{item.name}}</div>
-						<p style="width: calc(100% - 50px);" class="color-221714 m-t-10 font0">
-							<i class="font18 fw_600 m-r-5 pointer" @click="changeType(key,val)" v-for="(val,key,index) in item.housetype">{{val}}</i>
-							<i class="font18 fw_600 m-r-5 pointer" @click="changeStyle(key,val)" v-for="(val,key,index) in item.styles">{{val}}</i>
+						<div style="width: calc(100% - .7rem);" class="font14r color-8b m-t-20r only_line font22r" v-if="item.description">{{item.name}}</div>
+						<p style="width: calc(100% - .7rem);line-height: 1.4" class="color-221714 m-t-10r font0">
+							<i class="font26r fw_600 m-r-10r pointer" @click="changeType(key,val)" v-for="(val,key,index) in item.housetype">{{val}}</i>
+							<i class="font26r fw_600 m-r-10r pointer" @click="changeStyle(key,val)" v-for="(val,key,index) in item.styles">{{val}}</i>
 						</p>
-						<p class="m-t-15 font12 color-8b flex_dom flex_item_mid pointer" @click="goDesigner(item.designer.id)">
-							<img class="avator m-r-10" :src="item.designer.photo" alt="">
-							{{item.designer.name}}
+						<p class="m-t-20r font18r color-8b flex_dom flex_item_mid pointer" @click="goDesigner(item.designer.id)">
+							<img class="avator m-r-10" :src="item.designer.photo" alt=""> {{item.designer.name}}
 						</p>
 						<img class="new" src="../images/new.png" alt="">
 					</div>
 				</div>
 				<div class="text-center loadDiv">
 					<img src="../images/icon-pageDown.png" alt="" />
-					<p class="color-2d2e35 font18 m-t-5 m-b-40">向下滚动加载更多</p>
+					<p class="color-2d2e35 font18r m-t-5 m-b-40">向下滚动加载更多</p>
 					<img src="../images/loading.gif" alt="" />
 				</div>
 			</div>
@@ -129,260 +114,237 @@
 			<div class="caseSwiper">
 				<div class="swiper-container" v-if="caseImg">
 					<div class="swiper-wrapper">
-					    <div class="swiper-slide" v-for="item in caseImg"><img :src="item" alt="" /></div>
+						<div class="swiper-slide" v-for="item in caseImg">
+							<img :src="item" alt="" />
+						</div>
 					</div>
-				    <div class="swiper-button-prev swiper-button-white"></div>
-				    <div class="swiper-button-next swiper-button-white"></div>
+					<div class="swiper-button-prev swiper-button-white"></div>
+					<div class="swiper-button-next swiper-button-white"></div>
 					<div class="swiper-pagination"></div>
 				</div>
 			</div>
-			</div>
-			<div class="curFooter">
-				<div class="centerCon clearfix">
-					<div class="foot-l">
-						<div class="clearfix m-b-15">
-							<a href="index.html">首页</a>
-							<a href="case.html">案例</a>
-							<a href="inspiration.html">灵感</a>
-							<a href="javascript:;" class="footTab clearfix"></a>
-							<a href="question&answer.html">常见问题</a>
-							<a href="aboutus.html">关于我们</a>
-						</div>
-						<div class="m-b-15 color-fff font14 clearfix">
-							<p class="fl m-r-30" id="footTel">TEL：+86 400-008-0000</p>
-							<p class="fl" id="footMail">E-mail：jobs@126.com</p>
-						</div>
-						<p class="color-fff font14">©2016 i2edu.cn. All rights reserved.</p>
-					</div>
-					<div class="foot-r clearfix">
-						<img class="fr" src="../images/foot-logo.png" alt="" />
-						<div class="clearfix fr">
-							<a class="relative foot-weChat" href="javascript:;">
-								<img src="../images/foot-weChat.png" alt="" />
-								<p>WeChat</p>
-								<div class="footCode"><img src="../images/foot-logo.png"/></div>
-							</a>
-							<a href="https://weibo.com" target="_blank">
-								<img src="../images/foot-blog.png" alt="" />
-								<p>blog</p>
-							</a>
-							<a href="https://www.zhihu.com" target="_blank">
-								<img src="../images/foot-zhihu.png" alt="" />
-								<p>Zhihu</p>
-							</a>
-							<a href="http://focus.tianya.cn" target="_blank">
-								<img src="../images/foot-tianya.png" alt="" />
-								<p>tianyan</p>
-							</a>
-							<a href="question&answer.html">
-								<img src="../images/foot-FAQ.png" alt="" />
-								<p>FAQ</p>
-							</a>
-						</div>
-					</div>
-				</div>
-			</div>
 		</div>
-	</body>
-	<script type="text/javascript" src="../lib/jquery.1.11.3.min.js"></script>
-	<script type="text/javascript" src="../lib/con_js.6.23.js"></script>
-	<script type="text/javascript" src="../lib/vue.js"></script>
-	<script type="text/javascript" src="../lib/swiper.min.js"></script>
-	<script type="text/javascript" src="../lib/page.js"></script>
-	<script>
-		var caseSwiper = null;
-		var app = new Vue({
-			el: '#app',
-			data: {
-				types: [],
-				list: [],
-				caseImg: [],
-				param: {
-					page: 1,
-					num: 10,
-					keywords: '',
-					style: '',
-					house_type: '',
-					area: '',
-					fee: ''
-				},
-				minArea: '',
-				maxArea: '',
-				minFee: '',
-				maxFee: '',
-				styleName: '',
-				houseName: '',
-				hasData: true
+		<div class="curFooter">
+			<p>©2016 i2edu.cn. All rights reserved.</p>
+		</div>
+	</div>
+</body>
+<script type="text/javascript" src="../lib/jquery.1.11.3.min.js"></script>
+<script type="text/javascript" src="../lib/con_js.6.23.js"></script>
+<script type="text/javascript" src="../lib/vue.js"></script>
+<script type="text/javascript" src="../lib/swiper.min.js"></script>
+<script type="text/javascript" src="../lib/page.js"></script>
+<script>
+	var caseSwiper = null;
+	var app = new Vue({
+		el: '#app',
+		data: {
+			types: [],
+			list: [],
+			caseImg: [],
+			param: {
+				page: 1,
+				num: 10,
+				keywords: '',
+				style: '',
+				house_type: '',
+				area: '',
+				fee: ''
 			},
-			filters: {
-				getText: function(value){
-					var dd=value.replace(/<\/?.+?>/g,"");
- 					var dds=dd.replace(/ /g,"");
- 					return dds;
-				}
-			},
-			mounted: function(){
-				var that = this;
-				//获取类型
-				$.ajax({
-					type:"get",
-					url: host+"/api/l/getTypeList",
-					success: function(res){
-						res = JSON.parse(res);
-						if(res.success){
-							var urlParam = GetRequest();
-							for(var item in res.data.style){
-								if(item == urlParam.style){
-									console.log(item)
-									that.param.style = item;
-									that.styleName = res.data.style[item];
-								}
+			minArea: '',
+			maxArea: '',
+			minFee: '',
+			maxFee: '',
+			styleName: '',
+			houseName: '',
+			hasData: true,
+			showFilter: ''
+		},
+		filters: {
+			getText: function (value) {
+				var dd = value.replace(/<\/?.+?>/g, "");
+				var dds = dd.replace(/ /g, "");
+				return dds;
+			}
+		},
+		mounted: function () {
+			var that = this;
+			//获取类型
+			$.ajax({
+				type: "get",
+				url: host + "/api/l/getTypeList",
+				success: function (res) {
+					res = JSON.parse(res);
+					if (res.success) {
+						var urlParam = GetRequest();
+						for (var item in res.data.style) {
+							if (item == urlParam.style) {
+								console.log(item)
+								that.param.style = item;
+								that.styleName = res.data.style[item];
 							}
-							console.log(that.param)
-							that.types = res.data;
-							setTimeout(function(){
-								that.getList();
-							},0)
-							//app.getDesigner(res.data[0].id);
-						}else{
+						}
+						console.log(that.param)
+						that.types = res.data;
+						setTimeout(function () {
+							that.getList();
+						}, 0)
+						//app.getDesigner(res.data[0].id);
+					} else {
+						console.log(res.message);
+					}
+				}
+			});
+		},
+		methods: {
+			changeType: function (key, val) {
+				app.houseName = key;
+				app.param.house_type = key;
+				$('.loadDiv').show();
+				app.hasData = true;
+				app.param.page = 1;
+				app.getList();
+			},
+			changeStyle: function (key, val) {
+				app.param.style = key;
+				app.styleName = val;
+				$('.loadDiv').show();
+				app.hasData = true;
+				app.param.page = 1;
+				app.getList();
+			},
+			openSwiper: function (item) {
+				var image = item.image;
+				var name = item.name;
+				//					name=name.replace(/<\/?.+?>/g,"");
+				//					name=name.replace(/ /g,"");
+				swiperMark(image, name);
+			},
+			goDesigner: function (id) {
+				location.href = 'designerWork.html?id=' + id
+			},
+			//点击图片
+			openMask: function (imgs) {
+				app.caseImg = imgs.split(',');
+				$('.caseMask,.caseSwiper').fadeIn(0);
+				app.$nextTick(function () {
+					if (!caseSwiper) {
+						caseSwiper = new Swiper('.caseSwiper .swiper-container', {
+							pagination: '.caseSwiper .swiper-pagination',
+							loop: false,
+							observer: true,
+							paginationClickable: true,
+							prevButton: '.swiper-button-prev',
+							nextButton: '.swiper-button-next',
+						})
+					}
+				});
+			},
+			closeMask: function () {
+				$('.caseMask,.caseSwiper').fadeOut(300);
+			},
+			//选择风格
+			choiceStyle: function (e, val, key) {
+				app.param.style = key;
+				app.styleName = val;
+				$('.loadDiv').show();
+				app.hasData = true;
+				app.param.page = 1;
+				app.getList();
+			},
+			//选择户型
+			choiceHousetype: function (e, val, key) {
+				app.param.house_type = key;
+				app.houseName = val;
+				$('.loadDiv').show();
+				app.hasData = true;
+				app.param.page = 1;
+				app.getList();
+			},
+			//搜索
+			search: function () {
+				if (app.minArea && !app.maxArea) {
+					app.param.area = app.minArea + "_0";
+				} else if (!app.minArea && app.maxArea) {
+					app.param.area = "0_" + app.maxArea;
+				} else {
+					app.param.area = '';
+				}
+				if (app.minFee && !app.maxFee) {
+					app.param.fee = app.minFee + "_0";
+				} else if (!app.minFee && app.maxFee) {
+					app.param.fee = "0_" + app.maxFee;
+				} else {
+					app.param.fee = '';
+				}
+				$('.loadDiv').show();
+				app.hasData = true;
+				app.param.page = 1;
+				app.getList();
+			},
+			//获取列表
+			getList: function () {
+				var that = this;
+				if (!that.hasData) {
+					return;
+				}
+				that.hasData = false;
+				$.ajax({
+					type: "get",
+					url: host + "/api/l/getCaseList",
+					data: that.param,
+					success: function (res) {
+						res = JSON.parse(res);
+						if (res.data.length == 0) {
+							app.hasData = false;
+							$('.loadDiv').hide();
+							return;
+						} else {
+							app.hasData = true;
+						}
+						if (res.success) {
+							if (that.param.page == 1) {
+								that.list = res.data;
+							} else {
+								that.list = that.list.concat(res.data);
+							}
+							that.param.page++;
+						} else {
 							console.log(res.message);
 						}
 					}
 				});
 			},
-			methods: {
-				changeType: function(key,val){
-					app.houseName = key;
-					app.param.house_type = key;
-					$('.loadDiv').show();
-					app.hasData = true;
-					app.param.page = 1;
-					app.getList();
-				},
-				changeStyle: function(key,val){
-					app.param.style = key;
-					app.styleName = val;
-					$('.loadDiv').show();
-					app.hasData = true;
-					app.param.page = 1;
-					app.getList();
-				},
-				openSwiper: function(item){
-					var image = item.image;
-					var name = item.name;
-//					name=name.replace(/<\/?.+?>/g,"");
-//					name=name.replace(/ /g,"");
-					swiperMark(image,name);
-				},
-				goDesigner: function(id){
-					location.href = 'designerWork.html?id='+id
-				},
-				//点击图片
-				openMask: function(imgs){
-					app.caseImg = imgs.split(',');
-					$('.caseMask,.caseSwiper').fadeIn(0);
-					app.$nextTick(function(){
-						if(!caseSwiper){
-							caseSwiper = new Swiper('.caseSwiper .swiper-container', {
-								pagination : '.caseSwiper .swiper-pagination',
-								loop : false,
-								observer:true,
-								paginationClickable :true,
-								prevButton:'.swiper-button-prev',
-								nextButton:'.swiper-button-next',
-							})
-						}
-					});
-				},
-				closeMask: function(){
-					$('.caseMask,.caseSwiper').fadeOut(300);
-				},
-				//选择风格
-				choiceStyle: function(e,val,key){
-					app.param.style = key;
-					app.styleName = val;
-					$('.loadDiv').show();
-					app.hasData = true;
-					app.param.page = 1;
-					app.getList();
-				},
-				//选择户型
-				choiceHousetype: function(e,val,key){
-					app.param.house_type = key;
-					app.houseName = val;
-					$('.loadDiv').show();
-					app.hasData = true;
-					app.param.page = 1;
-					app.getList();
-				},
-				//搜索
-				search: function(){
-					if(app.minArea && !app.maxArea){
-						app.param.area = app.minArea + "_0";
-					}else if(!app.minArea && app.maxArea){
-						app.param.area = "0_" + app.maxArea;
-					}else{
-						app.param.area = '';
-					}
-					if(app.minFee && !app.maxFee){
-						app.param.fee = app.minFee + "_0";
-					}else if(!app.minFee && app.maxFee){
-						app.param.fee = "0_" + app.maxFee;
-					}else{
-						app.param.fee = '';
-					}
-					$('.loadDiv').show();
-					app.hasData = true;
-					app.param.page = 1;
-					app.getList();
-				},
-				//获取列表
-				getList: function(){
-					var that = this;
-					if(!that.hasData){
-						return;
-					}
-					that.hasData = false;
-					$.ajax({
-						type:"get",
-						url: host+"/api/l/getCaseList",
-						data: that.param,
-						success: function(res){
-							res = JSON.parse(res);
-							if(res.data.length == 0){
-								app.hasData = false;
-								$('.loadDiv').hide();
-								return;
-							}else{
-								app.hasData = true;
-							}
-							if(res.success){
-								if(that.param.page == 1){
-									that.list = res.data;
-								}else{
-									that.list = that.list.concat(res.data);
-								}
-								that.param.page++;
-							}else{
-								console.log(res.message);
-							}
-						}
-					});
+			toggleFilter: function(key){
+				switch(key){
+					case 'style':
+						if(app.showFilter == 'style')
+							app.showFilter = ''
+						else
+							app.showFilter = 'style'
+						break;
+					case 'type':
+						if(app.showFilter == 'type')
+								app.showFilter = ''
+						else
+							app.showFilter = 'type'
 				}
 			}
-		});
-		$(window).scroll(function () {
-		    //已经滚动到上面的页面高度
-		    var scrollTop = $(this).scrollTop();
-		    //页面高度
-		    var scrollHeight = $(document).height();
-	       	//浏览器窗口高度
-	     	var windowHeight = $(this).height();
-	      	//此处是滚动条到底部时候触发的事件，在这里写要加载的数据，或者是拉动滚动条的操作
-	      	if (scrollTop + windowHeight >= scrollHeight-200) {
-	        	app.getList();
-	       	}
-		});
-	</script>
+		}
+	});
+
+	$(window).scroll(function () {
+		//已经滚动到上面的页面高度
+		var scrollTop = $(this).scrollTop();
+		//页面高度
+		var scrollHeight = $(document).height();
+		//浏览器窗口高度
+		var windowHeight = $(this).height();
+		//此处是滚动条到底部时候触发的事件，在这里写要加载的数据，或者是拉动滚动条的操作
+		if (scrollTop + windowHeight >= scrollHeight - 200) {
+			app.getList();
+		}
+	});
+</script>
 
 </html>

@@ -72,15 +72,15 @@
 /* 案例页面 */
 .case .banner{
     width: 100%;
-    height: 485px;
+    height: 2.5rem;
     background: url(../images/banner2.png) no-repeat center;
     background-size:  cover;
 }
 .case .case-item{
-    width: 400px;
-    height: 400px;
-    padding: 15px;
-    margin-top: 30px;
+    width: 100%;
+    height: 6.3rem;
+    padding: .15rem;
+    margin-top: .3rem;
     /* box-shadow: 0px 0px 15px rgba(0, 0, 0, .2); */
     background-color: #fff;
     cursor: pointer;
@@ -99,32 +99,42 @@
 .case .case-item p{
     line-height: 1;
 }
-.case .case-item:not(:nth-child(3n+3)){
+/* .case .case-item:not(:nth-child(3n+3)){
     margin-right: calc((100% - 1200px) / 2);
-}
+} */
 .case .filter-search{
-    height: 60px;
-    line-height: 60px;
+    /* height: 60px;
+    line-height: 60px; */
 }
 .case .filter{
-    width: 800px;
+    width: 100%;
+    height: 1rem;
+    line-height: 1rem;
 }
 .case .filter-item .angle{
     width: 16px;
 }
 .case .search{
-    margin-right: 20px;
+    margin-right: .2rem;
+    margin-left: .2rem;
     border: 1px solid #dbdbdd;
-    height: 40px;
-    line-height: 40px;
+    height: .55rem;
+    line-height: .55rem;
     border-radius: 3px;
-    padding-left: 25px;
-    padding-right:  50px;
+    padding-left: .25rem;
+    padding-right:  .5rem;
+}
+.case .search-wrapper{
+    padding: .2rem 0;
+    -webkit-box-shadow:0 0 .1rem #f1f1f1;
+    -moz-box-shadow:0 0 .1rem #f1f1f1;
+    box-shadow:0 0 .1rem #f1f1f1;
+  
 }
 .case .search .search-btn{
     background: url(../images/icon_scope.png) no-repeat center;
-    background-size: 27px 28px;
-    width: 50px;
+    background-size: .37rem .4rem;
+    width: .5rem;
     height: 100%;
     position: absolute;
     top: 0;
