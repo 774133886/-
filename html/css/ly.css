@@ -209,10 +209,7 @@
 .qusBg{
 	width: 100%;
 	height: auto;
-	background-image: url(../images/q&aBg.png);
-    /*background-color: #5f6269;*/
-    background-position: top center;
-    background-repeat: no-repeat;
+	
 }
 .qaBox{
 	width: 100%;
@@ -403,7 +400,7 @@
 }
 .designerBox:nth-child(2n+1) .dbLeft{
 	float: right;
-}
+}qusBg
 .designerBox:nth-child(2n+1) .hgt594{
 	float: left;
 }
@@ -425,4 +422,17 @@
 .libox:nth-child(4){
 	float: right !important;
 	margin-right: 0 !important;
+}
+
+/*移动*/
+.qlbox{
+	width: 2rem;
+	height: 2.7rem;
+}
+.qaImg{
+	width: 1.14rem;
+	height: 1.14rem;
+}
+.color-7f7f80{
+	color: #7f7f80;
 }
