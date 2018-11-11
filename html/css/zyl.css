@@ -72,16 +72,16 @@
 /* 案例页面 */
 .case .banner{
     width: 100%;
-    height: 485px;
+    height: 2.5rem;
     background: url(../images/banner2.png) no-repeat center;
     background-size:  cover;
 }
 .case .case-item{
-    width: 400px;
-    height: 400px;
-    padding: 15px;
-    margin-top: 30px;
-    /* box-shadow: 0px 0px 15px rgba(0, 0, 0, .2); */
+    width: 100%;
+    min-height: 6.3rem;
+    padding: .15rem;
+    margin-top: .3rem;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, .2);
     background-color: #fff;
     cursor: pointer;
     transition: all linear .2s;
@@ -91,40 +91,51 @@
     transition: all linear .3s;
 }
 .case .case-item:hover{
-    box-shadow: 0px 0px 15px rgba(0, 0, 0, .2);
+    /* box-shadow: 0px 0px 15px rgba(0, 0, 0, .2); */
 }
 .case .case-item:hover .works{
-    transform: scale(1.15);
+    /* transform: scale(1.15); */
 }
 .case .case-item p{
     line-height: 1;
 }
-.case .case-item:not(:nth-child(3n+3)){
+/* .case .case-item:not(:nth-child(3n+3)){
     margin-right: calc((100% - 1200px) / 2);
-}
+} */
 .case .filter-search{
-    height: 60px;
-    line-height: 60px;
+    /* height: 60px;
+    line-height: 60px; */
 }
 .case .filter{
-    width: 800px;
+    width: 100%;
+    height: 1rem;
+    line-height: 1rem;
+    /* box-shadow: 5px 5px 15px rgba(0, 0, 0, .2); */
 }
 .case .filter-item .angle{
     width: 16px;
 }
 .case .search{
-    margin-right: 20px;
+    margin-right: .2rem;
+    margin-left: .2rem;
     border: 1px solid #dbdbdd;
-    height: 40px;
-    line-height: 40px;
+    height: .55rem;
+    line-height: .55rem;
     border-radius: 3px;
-    padding-left: 25px;
-    padding-right:  50px;
+    padding-left: .25rem;
+    padding-right:  .5rem;
+}
+.case .search-wrapper{
+    padding: .2rem 0;
+    -webkit-box-shadow:0 0 .1rem #ccc;
+    -moz-box-shadow:0 0 .1rem #ccc;
+    box-shadow:0 0 .1rem #ccc;
+  
 }
 .case .search .search-btn{
     background: url(../images/icon_scope.png) no-repeat center;
-    background-size: 27px 28px;
-    width: 50px;
+    background-size: .37rem .4rem;
+    width: .5rem;
     height: 100%;
     position: absolute;
     top: 0;
@@ -132,15 +143,15 @@
     cursor: pointer;
 }
 .case .case-item .avator{
-    width: 28px;
-    height: 28px;
+    width: .44rem;
+    height: .44rem;
     border-radius: 50%;
 }
 .case .case-item .new{
-    width: 40px;
+    width: .65rem;
     position: absolute;
-    right: 14px;
-    bottom: 74px;
+    right: .14rem;
+    bottom: .74rem;
 }
 .case .select-wrap{
     width: 100%;
@@ -149,20 +160,20 @@
     opacity: 0;
 }
 .case .filter-item:hover .select-wrap{
-    display: block;
+    /* display: block; */
     border: 1px solid #eee;
-    transition: all linear 1s;
+    /* transition: all linear 1s; */
     opacity: 1;
 }
 .case .filter-item:hover .select-wrap li:not(:first-child){
     border-top: 1px solid #eee;
 }
-.case .filter-item .select-wrap li:hover{
+.case .filter-item .select-wrap li:active{
     color: #fff;
     background-color: #6ebdca;
 }
 .case .filter-item:hover .angle{
-    transform: rotate(180deg);
+    /* transform: rotate(180deg); */
     /* transition: all linear .1s; */
 }
 /* .case .filter-item:hover{
@@ -180,29 +191,37 @@
 .designer .banner{
     background: url(../images/banner4.png) no-repeat center;
 }
-.designer .main-wrapper{
+/* .designer .main-wrapper{
     position: relative;
     bottom: 105px;
     z-index: 9;
-}
+} */
 .designer .d-info{
-    box-shadow: 0 0 2px #edeeef;
+    /* box-shadow: 0 0 2px #edeeef; */
+    border-top: 1px solid #dbdbdd;
+    border-bottom: 1px solid #e4e4e5;
+    height: 4.35rem;
+    padding-top: .55rem;
+    padding-right: .7rem;
+    padding-left: .7rem;
 }
 .designer .d-info .avator{
-    width: 172px;
-    height: 172px;
-    border-radius: 50%;
+    width: 2.8rem;
+    height: 3.15rem;
 }
 .designer .d-info .tag .tag-item{
     display: inline-block;
-    width: 107px;
-    height: 35px;
-    line-height: 35px;
+    width: calc((100% - .2rem) / 2);
+    height: .43rem;
+    line-height: .43rem;
     border: 1px solid #d2d1d1;
     text-align: center;
-    font-size: 15px;
+    font-size: .2rem;
 }
-.designer .d-info .tag .tag-item:hover{
+.designer .d-info .tag .tag-item:nth-child(2n+1){
+    margin-right: .2rem;
+}
+.designer .d-info .tag .tag-item:active{
 	background-color: #6ebdca;
 	color: #FFFFFF !important;
 }
@@ -212,13 +231,14 @@
 }
 .designer .order-btn{
     background-color: #6e6e6e;
-    background: url(../images/icon_time.png) no-repeat 30px center #6ebdca;
-    background-size: 25px 25px;
+    background: url(../images/icon_time.png) no-repeat .3rem center #6ebdca;
+    background-size: .25rem .25rem;
     cursor: pointer;
+    line-height: .5rem;
 }
 .designer .case-item img{
     width: 100%;
-    height: auto;
+    height: 4rem;
 }
 .designer .banner{
     width: 100%;
@@ -226,13 +246,16 @@
     background-size:  cover;
 }
 .designer .case-item{
-    margin-bottom: 90px;
+    min-height: 5.65rem;
+    margin-bottom: .3rem;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, .2);
 }
 .designer .new{
-    width: 40px !important;
+    width: .6rem !important;
     position: absolute;
-    right: 5px;
-    top: 30px;
+    right: 0;
+    top: .1rem;
+    height: auto!important;
 }
 
 
@@ -345,3 +368,4 @@
 .color-6f6e77{color: #6f6e77}
 .m-r-40{margin-right: 40px;}
 .main{position: relative;}
+.p-l-70r{padding-left: .7rem!important;}
